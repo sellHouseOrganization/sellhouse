@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.AdmitbuyMapper">
+  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Admitbuy">
+    <id column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />
+    <result column="scheduleid" jdbcType="INTEGER" property="scheduleid" />
+    <result column="managePerson" jdbcType="INTEGER" property="manageperson" />
+    <result column="adviserid" jdbcType="INTEGER" property="adviserid" />
+    <result column="clientid" jdbcType="INTEGER" property="clientid" />
+    <result column="mustPrices" jdbcType="VARCHAR" property="mustprices" />
+    <result column="payWayid" jdbcType="INTEGER" property="paywayid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admitbuy
+    where admitBuyid = #{admitbuyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.newer.sellhouse.domain.Admitbuy">
+    insert into admitbuy (admitBuyid, scheduleid, managePerson, 
+      adviserid, clientid, mustPrices, 
+      payWayid)
+    values (#{admitbuyid,jdbcType=INTEGER}, #{scheduleid,jdbcType=INTEGER}, #{manageperson,jdbcType=INTEGER}, 
+      #{adviserid,jdbcType=INTEGER}, #{clientid,jdbcType=INTEGER}, #{mustprices,jdbcType=VARCHAR}, 
+      #{paywayid,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Admitbuy">
+    update admitbuy
+    set scheduleid = #{scheduleid,jdbcType=INTEGER},
+      managePerson = #{manageperson,jdbcType=INTEGER},
+      adviserid = #{adviserid,jdbcType=INTEGER},
+      clientid = #{clientid,jdbcType=INTEGER},
+      mustPrices = #{mustprices,jdbcType=VARCHAR},
+      payWayid = #{paywayid,jdbcType=INTEGER}
+    where admitBuyid = #{admitbuyid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select admitBuyid, scheduleid, managePerson, adviserid, clientid, mustPrices, payWayid
+    from admitbuy
+    where admitBuyid = #{admitbuyid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select admitBuyid, scheduleid, managePerson, adviserid, clientid, mustPrices, payWayid
+    from admitbuy
+  </select>
+</mapper>

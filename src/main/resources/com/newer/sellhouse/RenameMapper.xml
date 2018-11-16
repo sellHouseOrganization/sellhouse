@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.RenameMapper">
+  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Rename">
+    <id column="renameid" jdbcType="INTEGER" property="renameid" />
+    <result column="oldclientid" jdbcType="INTEGER" property="oldclientid" />
+    <result column="newclientid" jdbcType="INTEGER" property="newclientid" />
+    <result column="renamedate" jdbcType="TIMESTAMP" property="renamedate" />
+    <result column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rename
+    where renameid = #{renameid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.newer.sellhouse.domain.Rename">
+    insert into rename (renameid, oldclientid, newclientid, 
+      renamedate, admitBuyid)
+    values (#{renameid,jdbcType=INTEGER}, #{oldclientid,jdbcType=INTEGER}, #{newclientid,jdbcType=INTEGER}, 
+      #{renamedate,jdbcType=TIMESTAMP}, #{admitbuyid,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Rename">
+    update rename
+    set oldclientid = #{oldclientid,jdbcType=INTEGER},
+      newclientid = #{newclientid,jdbcType=INTEGER},
+      renamedate = #{renamedate,jdbcType=TIMESTAMP},
+      admitBuyid = #{admitbuyid,jdbcType=INTEGER}
+    where renameid = #{renameid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select renameid, oldclientid, newclientid, renamedate, admitBuyid
+    from rename
+    where renameid = #{renameid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select renameid, oldclientid, newclientid, renamedate, admitBuyid
+    from rename
+  </select>
+</mapper>

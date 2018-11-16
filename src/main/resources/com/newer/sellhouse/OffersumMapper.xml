@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.OffersumMapper">
+  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Offersum">
+    <id column="offerSumid" jdbcType="INTEGER" property="offersumid" />
+    <result column="offerSumDeadline" jdbcType="VARCHAR" property="offersumdeadline" />
+    <result column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />
+    <result column="sum" jdbcType="VARCHAR" property="sum" />
+    <result column="offerSumName" jdbcType="VARCHAR" property="offersumname" />
+    <result column="offerSumEvent" jdbcType="VARCHAR" property="offersumevent" />
+    <result column="offerSumTime" jdbcType="DATE" property="offersumtime" />
+    <result column="offerperiods" jdbcType="VARCHAR" property="offerperiods" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from offersum
+    where offerSumid = #{offersumid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.newer.sellhouse.domain.Offersum">
+    insert into offersum (offerSumid, offerSumDeadline, admitBuyid, 
+      `sum`, offerSumName, offerSumEvent, 
+      offerSumTime, offerperiods)
+    values (#{offersumid,jdbcType=INTEGER}, #{offersumdeadline,jdbcType=VARCHAR}, #{admitbuyid,jdbcType=INTEGER}, 
+      #{sum,jdbcType=VARCHAR}, #{offersumname,jdbcType=VARCHAR}, #{offersumevent,jdbcType=VARCHAR}, 
+      #{offersumtime,jdbcType=DATE}, #{offerperiods,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Offersum">
+    update offersum
+    set offerSumDeadline = #{offersumdeadline,jdbcType=VARCHAR},
+      admitBuyid = #{admitbuyid,jdbcType=INTEGER},
+      `sum` = #{sum,jdbcType=VARCHAR},
+      offerSumName = #{offersumname,jdbcType=VARCHAR},
+      offerSumEvent = #{offersumevent,jdbcType=VARCHAR},
+      offerSumTime = #{offersumtime,jdbcType=DATE},
+      offerperiods = #{offerperiods,jdbcType=VARCHAR}
+    where offerSumid = #{offersumid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select offerSumid, offerSumDeadline, admitBuyid, `sum`, offerSumName, offerSumEvent, 
+    offerSumTime, offerperiods
+    from offersum
+    where offerSumid = #{offersumid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select offerSumid, offerSumDeadline, admitBuyid, `sum`, offerSumName, offerSumEvent, 
+    offerSumTime, offerperiods
+    from offersum
+  </select>
+</mapper>

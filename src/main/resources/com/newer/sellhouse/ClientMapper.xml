@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.ClientMapper">
+  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Client">
+    <id column="clientid" jdbcType="INTEGER" property="clientid" />
+    <result column="clientName" jdbcType="VARCHAR" property="clientname" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="cardnumber" jdbcType="VARCHAR" property="cardnumber" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from client
+    where clientid = #{clientid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.newer.sellhouse.domain.Client">
+    insert into client (clientid, clientName, sex, 
+      cardnumber, age, phone
+      )
+    values (#{clientid,jdbcType=INTEGER}, #{clientname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{cardnumber,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Client">
+    update client
+    set clientName = #{clientname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      cardnumber = #{cardnumber,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR}
+    where clientid = #{clientid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select clientid, clientName, sex, cardnumber, age, phone
+    from client
+    where clientid = #{clientid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select clientid, clientName, sex, cardnumber, age, phone
+    from client
+  </select>
+</mapper>

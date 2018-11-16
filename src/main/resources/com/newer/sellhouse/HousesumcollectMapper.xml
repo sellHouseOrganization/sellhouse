@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.HousesumcollectMapper">
+  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Housesumcollect">
+    <id column="houseSumCollectid" jdbcType="INTEGER" property="housesumcollectid" />
+    <result column="offerSumid" jdbcType="INTEGER" property="offersumid" />
+    <result column="bill" jdbcType="VARCHAR" property="bill" />
+    <result column="collectionDate" jdbcType="TIMESTAMP" property="collectiondate" />
+    <result column="money" jdbcType="DOUBLE" property="money" />
+    <result column="billDate" jdbcType="TIMESTAMP" property="billdate" />
+    <result column="payway" jdbcType="VARCHAR" property="payway" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from housesumcollect
+    where houseSumCollectid = #{housesumcollectid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.newer.sellhouse.domain.Housesumcollect">
+    insert into housesumcollect (houseSumCollectid, offerSumid, bill, 
+      collectionDate, money, billDate, 
+      payway)
+    values (#{housesumcollectid,jdbcType=INTEGER}, #{offersumid,jdbcType=INTEGER}, #{bill,jdbcType=VARCHAR}, 
+      #{collectiondate,jdbcType=TIMESTAMP}, #{money,jdbcType=DOUBLE}, #{billdate,jdbcType=TIMESTAMP}, 
+      #{payway,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Housesumcollect">
+    update housesumcollect
+    set offerSumid = #{offersumid,jdbcType=INTEGER},
+      bill = #{bill,jdbcType=VARCHAR},
+      collectionDate = #{collectiondate,jdbcType=TIMESTAMP},
+      money = #{money,jdbcType=DOUBLE},
+      billDate = #{billdate,jdbcType=TIMESTAMP},
+      payway = #{payway,jdbcType=VARCHAR}
+    where houseSumCollectid = #{housesumcollectid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select houseSumCollectid, offerSumid, bill, collectionDate, money, billDate, payway
+    from housesumcollect
+    where houseSumCollectid = #{housesumcollectid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select houseSumCollectid, offerSumid, bill, collectionDate, money, billDate, payway
+    from housesumcollect
+  </select>
+</mapper>

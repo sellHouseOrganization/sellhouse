@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.AdviserMapper">
+  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Adviser">
+    <id column="adviserid" jdbcType="INTEGER" property="adviserid" />
+    <result column="adviserName" jdbcType="VARCHAR" property="advisername" />
+    <result column="adviseridPhone" jdbcType="VARCHAR" property="adviseridphone" />
+    <result column="staffid" jdbcType="INTEGER" property="staffid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from adviser
+    where adviserid = #{adviserid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.newer.sellhouse.domain.Adviser">
+    insert into adviser (adviserid, adviserName, adviseridPhone, 
+      staffid)
+    values (#{adviserid,jdbcType=INTEGER}, #{advisername,jdbcType=VARCHAR}, #{adviseridphone,jdbcType=VARCHAR}, 
+      #{staffid,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Adviser">
+    update adviser
+    set adviserName = #{advisername,jdbcType=VARCHAR},
+      adviseridPhone = #{adviseridphone,jdbcType=VARCHAR},
+      staffid = #{staffid,jdbcType=INTEGER}
+    where adviserid = #{adviserid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select adviserid, adviserName, adviseridPhone, staffid
+    from adviser
+    where adviserid = #{adviserid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select adviserid, adviserName, adviseridPhone, staffid
+    from adviser
+  </select>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.RoomtypeMapper">
+  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Roomtype">
+    <id column="houseTypeid" jdbcType="INTEGER" property="housetypeid" />
+    <result column="pooledArea" jdbcType="VARCHAR" property="pooledarea" />
+    <result column="privateArea" jdbcType="VARCHAR" property="privatearea" />
+    <result column="orientation" jdbcType="VARCHAR" property="orientation" />
+    <result column="hallRoom" jdbcType="VARCHAR" property="hallroom" />
+    <result column="houseType" jdbcType="VARCHAR" property="housetype" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from roomtype
+    where houseTypeid = #{housetypeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.newer.sellhouse.domain.Roomtype">
+    insert into roomtype (houseTypeid, pooledArea, privateArea, 
+      orientation, hallRoom, houseType
+      )
+    values (#{housetypeid,jdbcType=INTEGER}, #{pooledarea,jdbcType=VARCHAR}, #{privatearea,jdbcType=VARCHAR}, 
+      #{orientation,jdbcType=VARCHAR}, #{hallroom,jdbcType=VARCHAR}, #{housetype,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Roomtype">
+    update roomtype
+    set pooledArea = #{pooledarea,jdbcType=VARCHAR},
+      privateArea = #{privatearea,jdbcType=VARCHAR},
+      orientation = #{orientation,jdbcType=VARCHAR},
+      hallRoom = #{hallroom,jdbcType=VARCHAR},
+      houseType = #{housetype,jdbcType=VARCHAR}
+    where houseTypeid = #{housetypeid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select houseTypeid, pooledArea, privateArea, orientation, hallRoom, houseType
+    from roomtype
+    where houseTypeid = #{housetypeid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select houseTypeid, pooledArea, privateArea, orientation, hallRoom, houseType
+    from roomtype
+  </select>
+</mapper>
