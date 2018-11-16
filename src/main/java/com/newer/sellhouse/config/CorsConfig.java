@@ -8,7 +8,7 @@ import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 public class CorsConfig {
-    //配置访问源
+    //配置访问源11111
     public static String[] originVals={
             "127.0.0.1:8080",
             "localhost:8080",
