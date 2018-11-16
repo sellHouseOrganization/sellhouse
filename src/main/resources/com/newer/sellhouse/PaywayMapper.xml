@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.PaywayMapper">
+  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Payway">
+    <id column="payWayid" jdbcType="INTEGER" property="paywayid" />
+    <result column="payWayName" jdbcType="VARCHAR" property="paywayname" />
+    <result column="mortgageLoanNo" jdbcType="VARCHAR" property="mortgageloanno" />
+    <result column="resrvedFundsLoanNo" jdbcType="VARCHAR" property="resrvedfundsloanno" />
+    <result column="notStart" jdbcType="VARCHAR" property="notstart" />
+    <result column="mortgageTerm" jdbcType="VARCHAR" property="mortgageterm" />
+    <result column="firstScale" jdbcType="VARCHAR" property="firstscale" />
+    <result column="twiceScale" jdbcType="VARCHAR" property="twicescale" />
+    <result column="thriceScale" jdbcType="VARCHAR" property="thricescale" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from payway
+    where payWayid = #{paywayid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.newer.sellhouse.domain.Payway">
+    insert into payway (payWayid, payWayName, mortgageLoanNo, 
+      resrvedFundsLoanNo, notStart, mortgageTerm, 
+      firstScale, twiceScale, thriceScale
+      )
+    values (#{paywayid,jdbcType=INTEGER}, #{paywayname,jdbcType=VARCHAR}, #{mortgageloanno,jdbcType=VARCHAR}, 
+      #{resrvedfundsloanno,jdbcType=VARCHAR}, #{notstart,jdbcType=VARCHAR}, #{mortgageterm,jdbcType=VARCHAR}, 
+      #{firstscale,jdbcType=VARCHAR}, #{twicescale,jdbcType=VARCHAR}, #{thricescale,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Payway">
+    update payway
+    set payWayName = #{paywayname,jdbcType=VARCHAR},
+      mortgageLoanNo = #{mortgageloanno,jdbcType=VARCHAR},
+      resrvedFundsLoanNo = #{resrvedfundsloanno,jdbcType=VARCHAR},
+      notStart = #{notstart,jdbcType=VARCHAR},
+      mortgageTerm = #{mortgageterm,jdbcType=VARCHAR},
+      firstScale = #{firstscale,jdbcType=VARCHAR},
+      twiceScale = #{twicescale,jdbcType=VARCHAR},
+      thriceScale = #{thricescale,jdbcType=VARCHAR}
+    where payWayid = #{paywayid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select payWayid, payWayName, mortgageLoanNo, resrvedFundsLoanNo, notStart, mortgageTerm, 
+    firstScale, twiceScale, thriceScale
+    from payway
+    where payWayid = #{paywayid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select payWayid, payWayName, mortgageLoanNo, resrvedFundsLoanNo, notStart, mortgageTerm, 
+    firstScale, twiceScale, thriceScale
+    from payway
+  </select>
+</mapper>

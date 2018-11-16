@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.ClientcontactcarefulMapper">
+  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Clientcontactcareful">
+    <id column="clientContactCarefulid" jdbcType="INTEGER" property="clientcontactcarefulid" />
+    <result column="purposeDegree" jdbcType="VARCHAR" property="purposedegree" />
+    <result column="interviewDate" jdbcType="DATE" property="interviewdate" />
+    <result column="messageAddress" jdbcType="VARCHAR" property="messageaddress" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="houseMortgageLoan" jdbcType="VARCHAR" property="housemortgageloan" />
+    <result column="aim" jdbcType="VARCHAR" property="aim" />
+    <result column="projectPrice" jdbcType="VARCHAR" property="projectprice" />
+    <result column="needArea" jdbcType="VARCHAR" property="needarea" />
+    <result column="payWay" jdbcType="VARCHAR" property="payway" />
+    <result column="considerFactor" jdbcType="VARCHAR" property="considerfactor" />
+    <result column="contactWay" jdbcType="VARCHAR" property="contactway" />
+    <result column="clientid" jdbcType="INTEGER" property="clientid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from clientcontactcareful
+    where clientContactCarefulid = #{clientcontactcarefulid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.newer.sellhouse.domain.Clientcontactcareful">
+    insert into clientcontactcareful (clientContactCarefulid, purposeDegree, 
+      interviewDate, messageAddress, email, 
+      houseMortgageLoan, aim, projectPrice, 
+      needArea, payWay, considerFactor, 
+      contactWay, clientid)
+    values (#{clientcontactcarefulid,jdbcType=INTEGER}, #{purposedegree,jdbcType=VARCHAR}, 
+      #{interviewdate,jdbcType=DATE}, #{messageaddress,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{housemortgageloan,jdbcType=VARCHAR}, #{aim,jdbcType=VARCHAR}, #{projectprice,jdbcType=VARCHAR}, 
+      #{needarea,jdbcType=VARCHAR}, #{payway,jdbcType=VARCHAR}, #{considerfactor,jdbcType=VARCHAR}, 
+      #{contactway,jdbcType=VARCHAR}, #{clientid,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Clientcontactcareful">
+    update clientcontactcareful
+    set purposeDegree = #{purposedegree,jdbcType=VARCHAR},
+      interviewDate = #{interviewdate,jdbcType=DATE},
+      messageAddress = #{messageaddress,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      houseMortgageLoan = #{housemortgageloan,jdbcType=VARCHAR},
+      aim = #{aim,jdbcType=VARCHAR},
+      projectPrice = #{projectprice,jdbcType=VARCHAR},
+      needArea = #{needarea,jdbcType=VARCHAR},
+      payWay = #{payway,jdbcType=VARCHAR},
+      considerFactor = #{considerfactor,jdbcType=VARCHAR},
+      contactWay = #{contactway,jdbcType=VARCHAR},
+      clientid = #{clientid,jdbcType=INTEGER}
+    where clientContactCarefulid = #{clientcontactcarefulid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select clientContactCarefulid, purposeDegree, interviewDate, messageAddress, email, 
+    houseMortgageLoan, aim, projectPrice, needArea, payWay, considerFactor, contactWay, 
+    clientid
+    from clientcontactcareful
+    where clientContactCarefulid = #{clientcontactcarefulid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select clientContactCarefulid, purposeDegree, interviewDate, messageAddress, email, 
+    houseMortgageLoan, aim, projectPrice, needArea, payWay, considerFactor, contactWay, 
+    clientid
+    from clientcontactcareful
+  </select>
+</mapper>

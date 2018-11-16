@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.ItemMapper">
+  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Item">
+    <id column="itemid" jdbcType="INTEGER" property="itemid" />
+    <result column="itemName" jdbcType="VARCHAR" property="itemname" />
+    <result column="itemCompanyName" jdbcType="VARCHAR" property="itemcompanyname" />
+    <result column="itemLevel" jdbcType="VARCHAR" property="itemlevel" />
+    <result column="notSettle" jdbcType="INTEGER" property="notsettle" />
+    <result column="reserve1" jdbcType="INTEGER" property="reserve1" />
+    <result column="reserve2" jdbcType="INTEGER" property="reserve2" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from item
+    where itemid = #{itemid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.newer.sellhouse.domain.Item">
+    insert into item (itemid, itemName, itemCompanyName, 
+      itemLevel, notSettle, reserve1, 
+      reserve2)
+    values (#{itemid,jdbcType=INTEGER}, #{itemname,jdbcType=VARCHAR}, #{itemcompanyname,jdbcType=VARCHAR}, 
+      #{itemlevel,jdbcType=VARCHAR}, #{notsettle,jdbcType=INTEGER}, #{reserve1,jdbcType=INTEGER}, 
+      #{reserve2,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Item">
+    update item
+    set itemName = #{itemname,jdbcType=VARCHAR},
+      itemCompanyName = #{itemcompanyname,jdbcType=VARCHAR},
+      itemLevel = #{itemlevel,jdbcType=VARCHAR},
+      notSettle = #{notsettle,jdbcType=INTEGER},
+      reserve1 = #{reserve1,jdbcType=INTEGER},
+      reserve2 = #{reserve2,jdbcType=INTEGER}
+    where itemid = #{itemid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select itemid, itemName, itemCompanyName, itemLevel, notSettle, reserve1, reserve2
+    from item
+    where itemid = #{itemid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select itemid, itemName, itemCompanyName, itemLevel, notSettle, reserve1, reserve2
+    from item
+  </select>
+</mapper>

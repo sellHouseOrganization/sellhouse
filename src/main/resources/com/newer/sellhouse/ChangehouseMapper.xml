@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.ChangehouseMapper">
+  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Changehouse">
+    <id column="changeHouseid" jdbcType="INTEGER" property="changehouseid" />
+    <result column="oldHouseid" jdbcType="INTEGER" property="oldhouseid" />
+    <result column="newHouseid" jdbcType="INTEGER" property="newhouseid" />
+    <result column="ChangeHouseDate" jdbcType="DATE" property="changehousedate" />
+    <result column="periodizationNumber" jdbcType="VARCHAR" property="periodizationnumber" />
+    <result column="paymentPeriodizationNumber" jdbcType="VARCHAR" property="paymentperiodizationnumber" />
+    <result column="paysum" jdbcType="VARCHAR" property="paysum" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from changehouse
+    where changeHouseid = #{changehouseid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.newer.sellhouse.domain.Changehouse">
+    insert into changehouse (changeHouseid, oldHouseid, newHouseid, 
+      ChangeHouseDate, periodizationNumber, paymentPeriodizationNumber, 
+      paysum)
+    values (#{changehouseid,jdbcType=INTEGER}, #{oldhouseid,jdbcType=INTEGER}, #{newhouseid,jdbcType=INTEGER}, 
+      #{changehousedate,jdbcType=DATE}, #{periodizationnumber,jdbcType=VARCHAR}, #{paymentperiodizationnumber,jdbcType=VARCHAR}, 
+      #{paysum,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Changehouse">
+    update changehouse
+    set oldHouseid = #{oldhouseid,jdbcType=INTEGER},
+      newHouseid = #{newhouseid,jdbcType=INTEGER},
+      ChangeHouseDate = #{changehousedate,jdbcType=DATE},
+      periodizationNumber = #{periodizationnumber,jdbcType=VARCHAR},
+      paymentPeriodizationNumber = #{paymentperiodizationnumber,jdbcType=VARCHAR},
+      paysum = #{paysum,jdbcType=VARCHAR}
+    where changeHouseid = #{changehouseid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select changeHouseid, oldHouseid, newHouseid, ChangeHouseDate, periodizationNumber, 
+    paymentPeriodizationNumber, paysum
+    from changehouse
+    where changeHouseid = #{changehouseid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select changeHouseid, oldHouseid, newHouseid, ChangeHouseDate, periodizationNumber, 
+    paymentPeriodizationNumber, paysum
+    from changehouse
+  </select>
+</mapper>

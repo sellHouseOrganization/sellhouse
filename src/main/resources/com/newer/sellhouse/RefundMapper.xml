@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.RefundMapper">
+  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Refund">
+    <id column="refundid" jdbcType="INTEGER" property="refundid" />
+    <result column="refundSum" jdbcType="DOUBLE" property="refundsum" />
+    <result column="refundDate" jdbcType="TIMESTAMP" property="refunddate" />
+    <result column="refundExplain" jdbcType="VARCHAR" property="refundexplain" />
+    <result column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />
+    <result column="takesum" jdbcType="DOUBLE" property="takesum" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from refund
+    where refundid = #{refundid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.newer.sellhouse.domain.Refund">
+    insert into refund (refundid, refundSum, refundDate, 
+      refundExplain, admitBuyid, takesum
+      )
+    values (#{refundid,jdbcType=INTEGER}, #{refundsum,jdbcType=DOUBLE}, #{refunddate,jdbcType=TIMESTAMP}, 
+      #{refundexplain,jdbcType=VARCHAR}, #{admitbuyid,jdbcType=INTEGER}, #{takesum,jdbcType=DOUBLE}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Refund">
+    update refund
+    set refundSum = #{refundsum,jdbcType=DOUBLE},
+      refundDate = #{refunddate,jdbcType=TIMESTAMP},
+      refundExplain = #{refundexplain,jdbcType=VARCHAR},
+      admitBuyid = #{admitbuyid,jdbcType=INTEGER},
+      takesum = #{takesum,jdbcType=DOUBLE}
+    where refundid = #{refundid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select refundid, refundSum, refundDate, refundExplain, admitBuyid, takesum
+    from refund
+    where refundid = #{refundid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select refundid, refundSum, refundDate, refundExplain, admitBuyid, takesum
+    from refund
+  </select>
+</mapper>
