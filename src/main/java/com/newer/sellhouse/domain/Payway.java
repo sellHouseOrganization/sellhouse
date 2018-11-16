@@ -2,6 +2,9 @@ package com.newer.sellhouse.domain;
 
 import java.io.Serializable;
 
+/**
+ * 付款方式类
+ */
 public class Payway implements Serializable {
     private Integer paywayid;
 

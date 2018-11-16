@@ -2,6 +2,9 @@ package com.newer.sellhouse.domain;
 
 import java.io.Serializable;
 
+/**
+ * 项目类
+ */
 public class Item implements Serializable {
     private Integer itemid;
 

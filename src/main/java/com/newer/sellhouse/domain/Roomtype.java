@@ -2,6 +2,9 @@ package com.newer.sellhouse.domain;
 
 import java.io.Serializable;
 
+/**
+ * 房型类
+ */
 public class Roomtype implements Serializable {
     private Integer housetypeid;
 

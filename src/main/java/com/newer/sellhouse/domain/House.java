@@ -3,6 +3,9 @@ package com.newer.sellhouse.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 房源类
+ */
 public class House implements Serializable {
     private Integer houseid;
 

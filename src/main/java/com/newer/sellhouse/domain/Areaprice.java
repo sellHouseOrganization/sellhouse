@@ -2,6 +2,9 @@ package com.newer.sellhouse.domain;
 
 import java.io.Serializable;
 
+/**
+ * 面积售价类
+ */
 public class Areaprice implements Serializable {
     private Integer areapriceid;
 
