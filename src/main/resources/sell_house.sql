@@ -1,24 +1,25 @@
 /*
-Navicat MySQL Data Transfer
-
-Source Server         : 黄伟
-Source Server Version : 50721
-Source Host           : localhost:3306
-Source Database       : sell_house
-
-Target Server Type    : MYSQL
-Target Server Version : 50721
-File Encoding         : 65001
-
-Date: 2018-11-16 11:54:15
+SQLyog Ultimate v12.3.1 (64 bit)
+MySQL - 5.5.49 : Database - shellhouse
+*********************************************************************
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+/*!40101 SET NAMES utf8 */;
 
--- ----------------------------
--- Table structure for admitbuy
--- ----------------------------
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`shellhouse` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `shellhouse`;
+
+/*Table structure for table `admitbuy` */
+
 DROP TABLE IF EXISTS `admitbuy`;
+
 CREATE TABLE `admitbuy` (
   `admitBuyid` int(11) NOT NULL AUTO_INCREMENT COMMENT '认购ID',
   `scheduleid` int(11) DEFAULT NULL COMMENT '预定ID',
@@ -38,10 +39,12 @@ CREATE TABLE `admitbuy` (
   CONSTRAINT `SC_ID` FOREIGN KEY (`scheduleid`) REFERENCES `schedule` (`scheduleid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for adviser
--- ----------------------------
+/*Data for the table `admitbuy` */
+
+/*Table structure for table `adviser` */
+
 DROP TABLE IF EXISTS `adviser`;
+
 CREATE TABLE `adviser` (
   `adviserid` int(11) NOT NULL AUTO_INCREMENT COMMENT '置业顾问ID',
   `adviserName` varchar(20) DEFAULT NULL COMMENT '置业顾问名称',
@@ -52,23 +55,27 @@ CREATE TABLE `adviser` (
   CONSTRAINT `STAFF_ID` FOREIGN KEY (`staffid`) REFERENCES `staff` (`staffid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for areaprice
--- ----------------------------
+/*Data for the table `adviser` */
+
+/*Table structure for table `areaprice` */
+
 DROP TABLE IF EXISTS `areaprice`;
+
 CREATE TABLE `areaprice` (
   `areaPriceid` int(11) NOT NULL AUTO_INCREMENT COMMENT '面积售价ID',
   `price` varchar(20) DEFAULT NULL COMMENT '单价',
-  `itemid` int(11) DEFAULT NULL COMMENT '项目id',
+  `floorid` int(11) DEFAULT NULL COMMENT '楼栋id',
   PRIMARY KEY (`areaPriceid`),
-  KEY `fk_itemid` (`itemid`),
-  CONSTRAINT `fk_itemid` FOREIGN KEY (`itemid`) REFERENCES `item` (`itemid`)
+  KEY `fk_foolr` (`floorid`),
+  CONSTRAINT `fk_foolr` FOREIGN KEY (`floorid`) REFERENCES `floor` (`floorid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for changehouse
--- ----------------------------
+/*Data for the table `areaprice` */
+
+/*Table structure for table `changehouse` */
+
 DROP TABLE IF EXISTS `changehouse`;
+
 CREATE TABLE `changehouse` (
   `changeHouseid` int(11) NOT NULL AUTO_INCREMENT COMMENT '换房ID',
   `oldHouseid` int(11) DEFAULT NULL COMMENT '原房源ID',
@@ -84,10 +91,12 @@ CREATE TABLE `changehouse` (
   CONSTRAINT `CHAN_ID` FOREIGN KEY (`oldHouseid`) REFERENCES `house` (`houseid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for client
--- ----------------------------
+/*Data for the table `changehouse` */
+
+/*Table structure for table `client` */
+
 DROP TABLE IF EXISTS `client`;
+
 CREATE TABLE `client` (
   `clientid` int(11) NOT NULL AUTO_INCREMENT COMMENT '客户ID',
   `clientName` varchar(64) DEFAULT NULL COMMENT '客户姓名',
@@ -98,10 +107,12 @@ CREATE TABLE `client` (
   PRIMARY KEY (`clientid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for clientcontactcareful
--- ----------------------------
+/*Data for the table `client` */
+
+/*Table structure for table `clientcontactcareful` */
+
 DROP TABLE IF EXISTS `clientcontactcareful`;
+
 CREATE TABLE `clientcontactcareful` (
   `clientContactCarefulid` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '客户交往明细ID',
   `purposeDegree` varchar(100) DEFAULT NULL COMMENT '意向程度',
@@ -121,10 +132,12 @@ CREATE TABLE `clientcontactcareful` (
   CONSTRAINT `CLIENT_ID` FOREIGN KEY (`clientid`) REFERENCES `client` (`clientid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10003 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for floor
--- ----------------------------
+/*Data for the table `clientcontactcareful` */
+
+/*Table structure for table `floor` */
+
 DROP TABLE IF EXISTS `floor`;
+
 CREATE TABLE `floor` (
   `floorid` int(11) NOT NULL AUTO_INCREMENT COMMENT '楼栋ID',
   `itemid` int(11) DEFAULT NULL COMMENT '项目ID',
@@ -141,10 +154,12 @@ creationdate` date DEFAULT NULL COMMENT '建立日期',
   CONSTRAINT `ITEM_ID` FOREIGN KEY (`itemid`) REFERENCES `item` (`itemid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for house
--- ----------------------------
+/*Data for the table `floor` */
+
+/*Table structure for table `house` */
+
 DROP TABLE IF EXISTS `house`;
+
 CREATE TABLE `house` (
   `houseid` int(11) NOT NULL AUTO_INCREMENT COMMENT '房源ID',
   `floorid` int(11) DEFAULT NULL COMMENT '楼栋ID',
@@ -161,10 +176,31 @@ CREATE TABLE `house` (
   CONSTRAINT `ROOM_ID` FOREIGN KEY (`houseTypeid`) REFERENCES `roomtype` (`houseTypeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for item
--- ----------------------------
+/*Data for the table `house` */
+
+/*Table structure for table `housesumcollect` */
+
+DROP TABLE IF EXISTS `housesumcollect`;
+
+CREATE TABLE `housesumcollect` (
+  `houseSumCollectid` int(11) NOT NULL AUTO_INCREMENT COMMENT '收款id',
+  `offerSumid` int(11) DEFAULT NULL COMMENT '供款id',
+  `bill` varchar(50) DEFAULT NULL COMMENT '票据类型',
+  `collectionDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '收款日期',
+  `money` double DEFAULT NULL COMMENT '金额',
+  `billDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '开票日期',
+  `payway` varchar(20) DEFAULT NULL COMMENT '付款方式',
+  PRIMARY KEY (`houseSumCollectid`),
+  KEY `fk_offerSumid` (`offerSumid`),
+  CONSTRAINT `fk_offerSumid` FOREIGN KEY (`offerSumid`) REFERENCES `offersum` (`offerSumid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `housesumcollect` */
+
+/*Table structure for table `item` */
+
 DROP TABLE IF EXISTS `item`;
+
 CREATE TABLE `item` (
   `itemid` int(11) NOT NULL AUTO_INCREMENT COMMENT '项目ID',
   `itemName` varchar(50) DEFAULT NULL COMMENT '项目名称',
@@ -176,10 +212,12 @@ CREATE TABLE `item` (
   PRIMARY KEY (`itemid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for offersum
--- ----------------------------
+/*Data for the table `item` */
+
+/*Table structure for table `offersum` */
+
 DROP TABLE IF EXISTS `offersum`;
+
 CREATE TABLE `offersum` (
   `offerSumid` int(11) NOT NULL AUTO_INCREMENT COMMENT '供款ID',
   `offerSumDeadline` varchar(50) DEFAULT NULL COMMENT '付款期限',
@@ -194,10 +232,12 @@ CREATE TABLE `offersum` (
   CONSTRAINT `ADM_ID` FOREIGN KEY (`admitBuyid`) REFERENCES `admitbuy` (`admitBuyid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for payway
--- ----------------------------
+/*Data for the table `offersum` */
+
+/*Table structure for table `payway` */
+
 DROP TABLE IF EXISTS `payway`;
+
 CREATE TABLE `payway` (
   `payWayid` int(11) NOT NULL AUTO_INCREMENT COMMENT '付款方式ID',
   `payWayName` varchar(50) DEFAULT NULL COMMENT '付款方式名称',
@@ -211,10 +251,68 @@ CREATE TABLE `payway` (
   PRIMARY KEY (`payWayid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for roomtype
--- ----------------------------
+/*Data for the table `payway` */
+
+/*Table structure for table `promptnotesregister` */
+
+DROP TABLE IF EXISTS `promptnotesregister`;
+
+CREATE TABLE `promptnotesregister` (
+  `promptNotesregisterid` int(11) NOT NULL AUTO_INCREMENT COMMENT '催款记录登记ID',
+  `offersumID` int(11) DEFAULT NULL COMMENT '供款id',
+  `promptDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '催款日期',
+  `promptWay` varchar(20) DEFAULT NULL COMMENT '催款方式',
+  `promptContent` varchar(100) DEFAULT NULL COMMENT '催款内容',
+  PRIMARY KEY (`promptNotesregisterid`),
+  KEY `fk_offersumID_promptNotesregister` (`offersumID`),
+  CONSTRAINT `fk_offersumID_promptNotesregister` FOREIGN KEY (`offersumID`) REFERENCES `offersum` (`offerSumid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `promptnotesregister` */
+
+/*Table structure for table `refund` */
+
+DROP TABLE IF EXISTS `refund`;
+
+CREATE TABLE `refund` (
+  `refundid` int(11) NOT NULL AUTO_INCREMENT COMMENT '退款ID',
+  `refundSum` double DEFAULT NULL COMMENT '退款金额',
+  `refundDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '退款日期',
+  `refundExplain` varchar(100) DEFAULT NULL COMMENT '退款说明',
+  `admitBuyid` int(11) DEFAULT NULL COMMENT '认购ID',
+  `takesum` double DEFAULT NULL COMMENT '收取金额',
+  PRIMARY KEY (`refundid`),
+  KEY `fk_admitBuyid_refund` (`admitBuyid`),
+  CONSTRAINT `fk_admitBuyid_refund` FOREIGN KEY (`admitBuyid`) REFERENCES `admitbuy` (`admitBuyid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `refund` */
+
+/*Table structure for table `rename` */
+
+DROP TABLE IF EXISTS `rename`;
+
+CREATE TABLE `rename` (
+  `renameid` int(11) NOT NULL AUTO_INCREMENT COMMENT '更名id',
+  `oldclientid` int(11) DEFAULT NULL COMMENT '原客户id',
+  `newclientid` int(11) DEFAULT NULL COMMENT '新客户id',
+  `renamedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更变日期',
+  `admitBuyid` int(11) DEFAULT NULL COMMENT '认购id',
+  PRIMARY KEY (`renameid`),
+  KEY `fk_oldclientid` (`oldclientid`),
+  KEY `fk_newclientid` (`newclientid`),
+  KEY `fk_admitbuyid` (`admitBuyid`),
+  CONSTRAINT `fk_oldclientid` FOREIGN KEY (`oldclientid`) REFERENCES `client` (`clientid`),
+  CONSTRAINT `fk_newclientid` FOREIGN KEY (`newclientid`) REFERENCES `client` (`clientid`),
+  CONSTRAINT `fk_admitbuyid` FOREIGN KEY (`admitBuyid`) REFERENCES `admitbuy` (`admitBuyid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `rename` */
+
+/*Table structure for table `roomtype` */
+
 DROP TABLE IF EXISTS `roomtype`;
+
 CREATE TABLE `roomtype` (
   `houseTypeid` int(11) NOT NULL AUTO_INCREMENT COMMENT '房型ID',
   `pooledArea` varchar(50) DEFAULT NULL COMMENT '公摊面积',
@@ -225,10 +323,12 @@ CREATE TABLE `roomtype` (
   PRIMARY KEY (`houseTypeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for schedule
--- ----------------------------
+/*Data for the table `roomtype` */
+
+/*Table structure for table `schedule` */
+
 DROP TABLE IF EXISTS `schedule`;
+
 CREATE TABLE `schedule` (
   `scheduleid` int(11) NOT NULL AUTO_INCREMENT COMMENT '预定ID',
   `houseid` int(11) DEFAULT NULL COMMENT '房源ID',
@@ -246,13 +346,22 @@ CREATE TABLE `schedule` (
   CONSTRAINT `HOUSE_ID` FOREIGN KEY (`houseid`) REFERENCES `house` (`houseid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for staff
--- ----------------------------
+/*Data for the table `schedule` */
+
+/*Table structure for table `staff` */
+
 DROP TABLE IF EXISTS `staff`;
+
 CREATE TABLE `staff` (
   `staffid` int(11) NOT NULL AUTO_INCREMENT COMMENT '员工ID',
   `username` varchar(20) DEFAULT NULL COMMENT '用户名',
   `password` varchar(20) DEFAULT NULL COMMENT '用户密码',
   PRIMARY KEY (`staffid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `staff` */
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
