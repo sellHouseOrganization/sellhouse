@@ -3,12 +3,13 @@ package com.newer.sellhouse;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
-@MapperScan()
-public class Application {
-
+@MapperScan("com.newer.sellhouse.mapper")
+@EnableCaching
+public class SellhouseApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(SellhouseApplication.class, args);
     }
 }
