@@ -21,14 +21,19 @@
     <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
-    <title>付款方式管理</title>
+    <title>价格管理</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 付款方式 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>价格方案 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-    <div class="text-c"> 项目名：
-        <input type="text" class="input-text" style="width:250px" placeholder="输入项目名称" id="" name="">
-        <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜项目</button>
+    <div class="text-c"> 项目名
+        <select class="select-box" style="width: 150px"  id="" name="">
+            <option value="">请选择</option>
+        </select>
+        楼栋名
+        <select class="select-box" style="width: 150px"  id="" name="">
+            <option value="">请选择</option>
+        </select>
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
         <a href="javascript:;" onclick="Item_add()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 添加</a>
@@ -39,16 +44,11 @@
         <tr class="text-c">
             <th width="25"><input type="checkbox" name="" value=""></th>
             <th width="40">序号</th>
-            <th width="100">项目名称</th>
-            <th width="150">付款方式名称</th>
-            <th width="150">名称细目</th>
-            <th width="90">是否按揭</th>
-            <th width="150">是否公积金</th>
-            <th width="100">按揭年限</th>
-            <th width="100">首次比例</th>
-            <th width="100">二次比例</th>
-            <th width="100">三次比例</th>
-            <th width="100">是否启用</th>
+            <th width="100">楼栋号</th>
+            <th width="150">方案名称</th>
+            <th width="150">单价（元/平方）</th>
+            <th width="90">日期</th>
+            <th width="150">备注</th>
             <th width="50">操作</th>
         </tr>
         </thead>
@@ -58,11 +58,6 @@
             <td>1</td>
             <td>admin</td>
             <td>13000000000</td>
-            <td>admin@mail.com</td>
-            <td>admin@mail.com</td>
-            <td>admin@mail.com</td>
-            <td>admin@mail.com</td>
-            <td>admin@mail.com</td>
             <td>admin@mail.com</td>
             <td>admin@mail.com</td>
             <td class="td-status"><span class="label label-success radius">未结案</span></td>
