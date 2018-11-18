@@ -27,6 +27,7 @@ CREATE TABLE `admitbuy` (
   `adviserid` int(11) DEFAULT NULL COMMENT '置业顾问ID',
   `clientid` int(11) DEFAULT NULL COMMENT '客户ID',
   `mustPrices` varchar(50) DEFAULT NULL COMMENT '应交售价',
+  `admitbuyDate` date(30) DEFAULT NULL COMMENT '认购日期',
   `payWayid` int(11) DEFAULT NULL COMMENT '付款方式ID',
   PRIMARY KEY (`admitBuyid`),
   KEY `SC_ID` (`scheduleid`),
@@ -68,6 +69,7 @@ CREATE TABLE `areaprice` (
   PRIMARY KEY (`areaPriceid`),
   KEY `fk_foolr` (`floorid`),
   CONSTRAINT `fk_foolr` FOREIGN KEY (`floorid`) REFERENCES `floor` (`floorid`)
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `areaprice` */
