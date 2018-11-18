@@ -26,44 +26,38 @@
 <body>
 <article class="page-container">
     <form method="post" class="form form-horizontal" id="form-drug-add">
-        <input type="hidden" name="notSettle" id="notSettle">
-        <input type="hidden" name="FloorID" id="FloorID">
+        <input type="hidden" name="houseid" id="houseid">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>项目编号:</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>项目名称:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" id="itemID" name="itemID" placeholder="项目编号" style="width: 225px;">
+                <input type="text" class="input-text" id="Itemid" name="Itemid" placeholder="项目名称" style="width: 225px;">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>楼号:</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>楼栋名称:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text"  class="input-text" placeholder="楼号名称" id="floornumber" name="floornumber"
+                <input type="text" class="input-text" id="floorid" name="floorid" placeholder="楼栋名称" style="width: 225px;">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>层号:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text"  class="input-text" placeholder="层号" id="tiernumber" name="tiernumber"
                        style="width: 225px;">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>楼栋层数:</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>房间号:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="楼栋层数" id="tier" name="tier"
+                <input type="text"  class="input-text" placeholder="房间号" id="houseNumber" name="houseNumber"
                        style="width: 225px;">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">开盘批次：</label>
+            <label class="form-label col-xs-4 col-sm-3">房型ID：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-			<select class="select" name="batch" id="batch" size="1">
-				<option value="0">第一批</option>
-				<option value="1">第二批</option>
-				<option value="2">第三批</option>
-			</select>
-			</span> </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">楼栋结构：</label>
-            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-			<select class="select" name="structure" id="structure" size="1">
-				<option value="0">住宅</option>
-				<option value="1">商用</option>
+			<select class="select" name="houseTypeid" id="houseTypeid" size="1">
+
 			</select>
 			</span> </div>
         </div>
