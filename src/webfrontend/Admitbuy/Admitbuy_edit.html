@@ -24,6 +24,7 @@
     <!--/meta 作为公共模版分离出去-->
 </head>
 <body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 认购管理 <span class="c-gray en">&gt;</span> 添加认购 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <article class="page-container">
     <form method="post" class="form form-horizontal" id="form-drug-add">
         <input type="hidden" name="AdmitbuyID" id="AdmitbuyID">
@@ -32,32 +33,77 @@
             <div class="formControls col-xs-8 col-sm-9">
                 <input type="text" class="input-text" id="clientName" name="clientName" placeholder="客户姓名" style="width: 225px;">
             </div>
+        </div>
+        <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text"  class="input-text" placeholder="性别" id="clientSex" name="clientSex"
+                <input type="radio" id="sex" name="sex" value="男" checked>男
+                <input type="radio" id="sex1" name="sex" value="女">女
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">项目名称：</label>
+            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+			<select class="select" name="itemName" id="itemName" size="1">
+				<option value="0">请选择</option>
+				<option value="1">流星花园</option>
+                <option value="2">皇宫</option>
+
+			</select>
+			</span> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>定金:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" placeholder="定金" id="fromtMoney" name="fromtMoney"
                        style="width: 225px;">
             </div>
         </div>
-
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>身份证号:</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>公摊面积:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="身份证号" id="clientCardnumber" name="clientCardnumber"
-                       style="width: 225px;">
+                <input type="text" class="input-text" id="pooledArea" name="pooledArea" placeholder="公摊面积" style="width: 225px;">
             </div>
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>年龄:</label>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>私有面积:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="年龄" id="clientAge" name="clientAge"
+                <input type="text" class="input-text" id="privateArea" name="privateArea" placeholder="私有面积" style="width: 225px;">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>单价:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" id="price" name="price" placeholder="单价" style="width: 225px;">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>预定日期:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" placeholder="预定日期" id="scheduleDate" name="scheduleDate"
                        style="width: 225px;">
             </div>
         </div>
-
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>电话号码:</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>认购日期:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="电话号码" id="clientPhone" name="clientPhone"
+                <input type="text" class="input-text" placeholder="认购日期" id="admitbuyDate" name="admitbuyDate"
                        style="width: 225px;">
             </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">付款方式名称：</label>
+            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+			<select class="select" name="structure" id="structure" size="1">
+				<option value="0">请选择</option>
+				<option value="1">按揭</option>
+                <option value="2">全额</option>
+
+			</select>
+			</span> </div>
+        </div>
+
+        <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>应交售价:</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <input type="text" class="input-text" placeholder="应交售价" id="mustPrices" name="mustPrices"
@@ -65,33 +111,26 @@
             </div>
         </div>
 
-
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">付款方式：</label>
-            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-			<select class="select" name="structure" id="structure" size="1">
-				<option value="0">按揭</option>
-				<option value="1">全额付</option>
-			</select>
-			</span> </div>
-        </div>
-
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">经办人：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 			<select class="select" name="managePerson" id="managePerson" size="1">
-				<option value="0">张三</option>
-				<option value="1">李四</option>
-				<option value="2">王五</option>
+				<option value="0">请选择</option>
+				<option value="1">张三</option>
+				<option value="2">李四</option>
 			</select>
 			</span> </div>
         </div>
-
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>简要备注:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" placeholder="简要备注" id="remake" name="remake"
+                       style="width: 225px;">
+            </div>
+        </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                 <input class="btn btn-primary radius" type="button" id="btnSvn" value="&nbsp;&nbsp;认购确定&nbsp;&nbsp;">
-            </div>
-            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                 <input class="btn btn-primary radius" type="button" id="btnSvn1" value="&nbsp;&nbsp;返回&nbsp;&nbsp;">
             </div>
         </div>
