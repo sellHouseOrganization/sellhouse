@@ -51,8 +51,14 @@ public class ItemController {
     }
 
     @RequestMapping(value = "Delete",method = RequestMethod.DELETE)
-    public ResponseEntity<?>InsertItem(Integer ItemId){
-        int ret = itemService.DeleteItem(ItemId);
+    public ResponseEntity<?>InsertItem(@RequestParam(name = "ckid",required = true) String ckid){
+        String[]ckid1 =ckid.split(",");
+
+        int ret = 0;
+        for(int i=0;i<ckid1.length;i++){
+            int ItemId = Integer.parseInt(ckid1[i]);
+            ret = itemService.DeleteItem(ItemId);
+        }
         if(ret==1){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }

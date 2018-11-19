@@ -10,7 +10,7 @@ public interface ItemMapper {
 
     Item selectByPrimaryKey(Integer itemid);
 
-    List<Item> selectAll();
+    List<Item> selectAll(String ItemName);
 
     int updateByPrimaryKey(Item record);
 }

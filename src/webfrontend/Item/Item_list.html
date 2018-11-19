@@ -75,10 +75,7 @@
     })
 
     function Ckbox() {
-        var ckid=[];
-        $.each($('input:checkbox:checked'),function(){
-            ckid=$(this).val();
-        });
+
     }
 
     function query() {
@@ -99,7 +96,7 @@
                     console.log(item);
                     appendVal+=`
                     <tr class="text-c">
-                    <td><input type="checkbox" name="ckID" value="${item.itemid}" onclick="Ckbox()"></td>
+                    <td><input type="checkbox" name="ckID" value="${item.itemid}"></td>
                     <td>${item.itemid}</td>
                     <td>${item.itemname}</td>
                     <td>${item.itemcompanyname}</td>
@@ -134,11 +131,15 @@
     /*管理员-删除*/
 
     function Item_del(){
-
+        var ckid=[];
+        $.each($('input:checkbox:checked'),function(index,c){
+            ckid.push(c.value);
+        });
+        console.log(ckid);
         layer.confirm('确认要删除吗？',function(index){
             $.ajax({
-                type: 'POST',
-                url: '',
+                type: 'DELETE',
+                url: "http://127.0.0.1:9090/Item/Delete?ckid="+ckid,
                 dataType: 'json',
                 success: function(data){
                     $(obj).parents("tr").remove();
