@@ -50,7 +50,7 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!-- 生成mapxml文件 -->
-        <sqlMapGenerator targetPackage="com/newer/sellhouse" targetProject="${resources}" >
+        <sqlMapGenerator targetPackage="com/newer/sellhouse/mapper" targetProject="${resources}" >
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
         <!-- 生成mapxml对应client，也就是接口dao -->
