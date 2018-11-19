@@ -1,8 +1,10 @@
 package com.newer.sellhouse.mapper;
 
 import com.newer.sellhouse.domain.Admitbuy;
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+@Repository
 public interface AdmitbuyMapper {
     int deleteByPrimaryKey(Integer admitbuyid);
 
