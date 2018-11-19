@@ -29,17 +29,27 @@
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
     <div class="text-c">
-        姓名：<input type="text" class="input-text" style="width:250px" placeholder="输入姓名" id="" name="">
-
-        楼栋名称：<input type="text" class="input-text" style="width:250px" placeholder="输入楼栋名称" id="" name="">
+        姓名：<input type="text" class="input-text" style="width:250px" placeholder="输入姓名" id="clientName" name="clientName">
+        房源名称：<input type="text" class="input-text" style="width:250px" placeholder="输入房源名称" id="houseName" name="houseName">
         <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+        <table class="table table-border table-bordered table-hover table-bg table-sort" id="adtable" >
+            <thead>
+            <tr class="text-c">
+                <th width="90">客户姓名</th>
+                <th width="90">房源</th>
+                <th width="100">操作</th>
+            </tr>
+            </thead>
+            <tbody id="tbody1">
+            </tbody>
+        </table>
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l"><a href="javascript:;" onclick="Receivables()"
                                                                class="btn btn-danger radius">供款</a>
         <a href="javascript:;" onclick="PressMoney()"
-            class="btn btn-danger radius">催款</a> </span> </div>
+            class="btn btn-danger radius">催款</a> </span></div>
     <div class="mt-20">
-        <table class="table table-border table-bordered table-hover table-bg table-sort">
+        <table class="table table-border table-bordered table-hover table-bg table-sort" id="offersumtb">
             <thead>
             <tr class="text-c">
                 <th width="25"><input type="checkbox" name="" value=""></th>
@@ -97,25 +107,45 @@
 <script type="text/javascript" src="../lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="../lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="../lib/laypage/1.2/laypage.js"></script>
+<script src="../js/sellHouse.js"></script>
 <script type="text/javascript">
     $(function () {
-        $('.table-sort').dataTable({
-            "aaSorting": [[1, "desc"]],//默认第几个排序
-            "bStateSave": true,//状态保存
-            "aoColumnDefs": [
-                //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-                {"orderable": false, "aTargets": [0, 8, 9]}// 制定列不参与排序
-            ]
+        $('#offersumtb').dataTable({
+            "searching" : false,
+            "lengthMenu": [3],
+            "lengthChange": false,
+            "info": false,
         });
 
     });
-    function PressMoney() {
-        location.href="../Receivables/Receivables-Press.html";
-
+    function selectAdmitBuyByClientNameHouseName() {
+            var clientName=$("#clientName").val();
+            var houseName=$("#houseName").val();
+            $.ajax({
+                url:OFFERSUM_URL+"findByClientNameHouseName?clientName="+clientName+"&houseName="+houseName,
+                type:"get",
+                async:"false",
+                dataType:"json",
+                success:function (data) {
+                   var str=``;
+                   $.each(data,function (i,n) {
+                       str+=`<tr class="text-c">
+                           <td>${n.clientName}</td>
+                           <td>${n.houseName}</td>
+                           <td><input class="btn btn-primary radius" style="height: 27px" type="button" value="&nbsp;&nbsp;供款详情&nbsp;&nbsp;"></td>' +
+                           </tr>`
+                   })
+                    $("#tbody1").html(str);
+                    $('#adtable').dataTable({
+                        "searching" : false,
+                        "lengthMenu": [3],
+                        "lengthChange": false,
+                        "info": false,
+                    });
+                }
+            })
     }
-    function Receivables(){
-        location.href="../Receivables/Receivables-Provide.html";
-    }
+    selectAdmitBuyByClientNameHouseName();
 
     /*用户-添加*/
     function member_add(title, url, w, h) {
@@ -127,73 +157,8 @@
         layer_show(title, url, w, h);
     }
 
-    /*用户-停用*/
-    function member_stop(obj, id) {
-        layer.confirm('确认要停用吗？', function (index) {
-            $.ajax({
-                type: 'POST',
-                url: '',
-                dataType: 'json',
-                success: function (data) {
-                    $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_start(this,id)" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe6e1;</i></a>');
-                    $(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
-                    $(obj).remove();
-                    layer.msg('已停用!', {icon: 5, time: 1000});
-                },
-                error: function (data) {
-                    console.log(data.msg);
-                },
-            });
-        });
-    }
 
-    /*用户-启用*/
-    function member_start(obj, id) {
-        layer.confirm('确认要启用吗？', function (index) {
-            $.ajax({
-                type: 'POST',
-                url: '',
-                dataType: 'json',
-                success: function (data) {
-                    $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,id)" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>');
-                    $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
-                    $(obj).remove();
-                    layer.msg('已启用!', {icon: 6, time: 1000});
-                },
-                error: function (data) {
-                    console.log(data.msg);
-                },
-            });
-        });
-    }
 
-    /*用户-编辑*/
-    function member_edit(title, url, id, w, h) {
-        layer_show(title, url, w, h);
-    }
-
-    /*密码-修改*/
-    function change_password(title, url, id, w, h) {
-        layer_show(title, url, w, h);
-    }
-
-    /*用户-删除*/
-    function member_del(obj, id) {
-        layer.confirm('确认要删除吗？', function (index) {
-            $.ajax({
-                type: 'POST',
-                url: '',
-                dataType: 'json',
-                success: function (data) {
-                    $(obj).parents("tr").remove();
-                    layer.msg('已删除!', {icon: 1, time: 1000});
-                },
-                error: function (data) {
-                    console.log(data.msg);
-                },
-            });
-        });
-    }
 </script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package com.newer.sellhouse.mapper;
 
 import com.newer.sellhouse.domain.Admitbuy;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface AdmitbuyMapper {
@@ -10,7 +12,8 @@ public interface AdmitbuyMapper {
 
     Admitbuy selectByPrimaryKey(Integer admitbuyid);
 
-    List<Admitbuy> selectAll();
+    List<Admitbuy> selectAdmitBuyByClientNameHouseName(@Param("clientName")String clientName,
+                                                       @Param("houseName")String houseName);
 
     int updateByPrimaryKey(Admitbuy record);
 }
