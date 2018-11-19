@@ -32,7 +32,7 @@ public class ItemController {
         return new ResponseEntity<>(ItemList,HttpStatus.OK);
     }
 
-    @RequestMapping(value = "Insert",method = RequestMethod.POST)
+    @RequestMapping(value = "edit",method = RequestMethod.POST)
     public ResponseEntity<?>InsertItem(Item item){
         int ret = itemService.InsertItem(item);
         if(ret==1){
@@ -41,7 +41,7 @@ public class ItemController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "Update",method = RequestMethod.PUT)
+    @RequestMapping(value = "edit",method = RequestMethod.PUT)
     public ResponseEntity<?>UpdateItem(Item item){
         int ret = itemService.UpdateItem(item);
         if(ret==1){
@@ -53,11 +53,14 @@ public class ItemController {
     @RequestMapping(value = "Delete",method = RequestMethod.DELETE)
     public ResponseEntity<?>InsertItem(@RequestParam(name = "ckid",required = true) String ckid){
         String[]ckid1 =ckid.split(",");
-
+        System.out.println(ckid1.length);
         int ret = 0;
         for(int i=0;i<ckid1.length;i++){
             int ItemId = Integer.parseInt(ckid1[i]);
             ret = itemService.DeleteItem(ItemId);
+            if(i==ckid1.length){
+                break;
+            }
         }
         if(ret==1){
             return new ResponseEntity<>(ret,HttpStatus.OK);
@@ -70,6 +73,16 @@ public class ItemController {
         Item item = itemService.QueryItem(ItemId);
         if(item!=null){
             return new ResponseEntity<>(item,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "changeSettle",method = RequestMethod.PUT)
+    public ResponseEntity<?>changeSettle(@RequestParam(name = "itemid")Integer itemid,
+                                         @RequestParam(name = "notSettle")Integer notSettle){
+        int ret = itemService.changeSettle(itemid, notSettle);
+        if(ret==1){
+            return new ResponseEntity<>(ret,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

@@ -31,4 +31,8 @@ public class ItemService {
     public Item QueryItem(Integer ItemId){
         return itemMapper.selectByPrimaryKey(ItemId);
     }
+
+    public int changeSettle(Integer itemid,Integer notSettle){
+        return itemMapper.SettleChange(itemid,notSettle);
+    }
 }

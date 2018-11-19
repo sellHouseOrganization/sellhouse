@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.AdmitbuyMapper">
+<select id="queryParam" resultMap="com.newer.sellhouse.domain.Admitbuy">
+    select admitBuyid,manageperson,firstpay,admitbuydate,clientName,sex,cardnumber,
+    phone,fromtmoney,adviserName,mustprices,sumprices,houseName,payWayName from admitbuy a,schedule s,house h ,client c,adviser ad,payway p WHERE a.scheduleid=s.scheduleid and a.houseid=h.houseid
+and a.clientid=c.clientid and a.adviserid=ad.adviserid and a.paywayid=p.paywayid
+</select>
+</mapper>

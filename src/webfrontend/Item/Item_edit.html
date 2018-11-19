@@ -26,37 +26,34 @@
 <body>
 <article class="page-container">
     <form method="post" class="form form-horizontal" id="form-drug-add">
-        <input type="hidden" name="notSettle" id="notSettle">
-        <input type="hidden" name="ItemID" id="ItemID">
+        <input type="hidden" name="itemid" id="itemid">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>项目名称:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" id="itemName" name="itemName" placeholder="项目名称" style="width: 225px;">
+                <input type="text" class="input-text" id="itemname" name="itemname" placeholder="项目名称" style="width: 225px;">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>项目公司名称:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" min="0" step="1" class="input-text" placeholder="项目公司名称" id="itemCompanyName" name="itemCompanyName"
-                       style="width: 225px;">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>项目级别:</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="项目级别" id="itemLevel" name="itemLevel"
+                <input type="text" class="input-text" placeholder="项目公司名称" id="itemcompanyname" name="itemcompanyname"
                        style="width: 225px;">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">项目级别：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-			<select class="select" name="adminRole" size="1">
-				<option value="0">一级</option>
-				<option value="1">二级</option>
-				<option value="2">三级</option>
+			<select class="select" name="itemlevel" id="itemlevel" size="1">
+				<option value="1">一级</option>
+				<option value="2">二级</option>
+				<option value="3">三级</option>
 			</select>
 			</span> </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;保存&nbsp;&nbsp;">
+            </div>
         </div>
     </form>
 </article>
@@ -85,15 +82,15 @@
         // 表单提交
         $("#form-drug-add").validate({
             rules: {
-                drname: {
+                itemName: {
                     required: true,
                     minlength: 2,
                     maxlength: 16
                 },
-                drsum: {
+                itemCompanyName: {
                     required: true,
                 },
-                drprice: {
+                itemLevel: {
                     required: true,
                 },
             },
@@ -101,21 +98,20 @@
             focusCleanup: true,
             success: "valid",
             submitHandler: function (form) {
-                var drid = $("#drid").val();
-                alert(drid);
+                var ItemID = $("#itemid").val();
+                alert(ItemID);
                 var type;
                 //判断sno是否有值  有值就给隐藏框act赋值upd，没值就赋值add
-                if(drid != undefined && drid != ""&& drid != 0){
+                if(ItemID != undefined && ItemID != ""&& ItemID != 0){
                     type="put";
                 }else{
                     type="post";
                 }
                 console.log(type);
                 $(form).ajaxSubmit({
-                    url: HOST_URL3 + "edit",
+                    url: "http://127.0.0.1:9090/Item/edit",
                     type: type,
                     dataType: "json",
-                    headers: createAuthorizationTokenHeader(),
                     success: function (result) {
                         console.log("新增结果"+result);
                         if(result==1){
@@ -134,33 +130,19 @@
         query();
     })
     function query() {
-        var drid = localStorage.getItem("drid");
-        alert(drid);
-        if(drid != undefined && drid != ""&& drid != 0){
-            $("#drid").val(drid);
+        var itemid = localStorage.getItem("itemid");
+        alert(itemid);
+        if(itemid != undefined && itemid != ""&& itemid != 0){
+            $("#itemid").val(itemid);
             $.ajax({
                 type:"get",
-                url: HOST_URL3+"queryById?drid="+drid,
-                headers: createAuthorizationTokenHeader(),
+                url: "http://127.0.0.1:9090/Item/queryId?ItemId="+itemid,
                 dataType:'json',
                 success:function (result) {
-                    $("#drstate").val(result.drstate)
-                    $("#drname").val(result.drname)
-                    $("#drsum").val(result.drsum)
-                    $("#drprice").val(result.drprice)
-                    $("#dyid").val(result.dyid)
-                }
-            })
-            // 用该药的科室
-            $.ajax({
-                url: HOST_URL3+"drugdepart?drid="+drid,
-                dataType: "json",
-                headers: createAuthorizationTokenHeader(),
-                success: function (data) {
-                    $.each(data, (i, item) => {
-                        console.log($("input[name=deid][value=" + item.deid + "]").prop("checked", true));
-                        $("input[name=deid][value=" + item.deid + "]").prop("checked", true)
-                    })
+                    console.log(result);
+                    $("#itemname").val(result.itemname)
+                    $("#itemcompanyname").val(result.itemcompanyname)
+                    $("#itemlevel").val(result.itemlevel)
                 }
             })
         }

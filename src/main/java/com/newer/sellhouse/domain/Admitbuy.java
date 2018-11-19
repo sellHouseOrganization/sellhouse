@@ -2,28 +2,59 @@ package com.newer.sellhouse.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Admitbuy implements Serializable {
-    private Integer admitbuyid;
+    private Integer admitbuyid; //认购ID
 
-    private Integer scheduleid;
+    private Integer scheduleid;//预定ID
 
-    private Integer manageperson;
+    private Integer manageperson;//经办人员
 
-    private Integer adviserid;
+    private Integer adviserid;//置业顾问ID
 
-    private Integer clientid;
+    private Integer clientid;//客户ID
 
-    private Integer paywayid;
+    private Integer paywayid;//付款方式ID
 
-    private Integer houseid;
+    private Integer houseid;//房源ID
 
-    private Double firstpay;
+    private Double firstpay;//首付
 
-    private Date admitbuydate;
+    private Date admitbuydate;//认购日期
+
+  /*  private List<Client> clientList;//客户关联
+
+    private List<Schedule> scheduleList;//预定关联
+
+    private Adviser adviserName;//关联置业顾问*/
 
     private static final long serialVersionUID = 1L;
 
+   /* public List<Client> getClientList() {
+        return clientList;
+    }
+
+    public void setClientList(List<Client> clientList) {
+        this.clientList = clientList;
+    }
+
+    public List<Schedule> getScheduleList() {
+        return scheduleList;
+    }
+
+    public void setScheduleList(List<Schedule> scheduleList) {
+        this.scheduleList = scheduleList;
+    }
+
+    public Adviser getAdviserName() {
+        return adviserName;
+    }
+
+    public void setAdviserName(Adviser adviserName) {
+        this.adviserName = adviserName;
+    }
+*/
     public Integer getAdmitbuyid() {
         return admitbuyid;
     }

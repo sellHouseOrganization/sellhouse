@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.newer.sellhouse.mapper.AdmitbuyMapper">
-  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Admitbuy">
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.newer.sellhouse.mapper.AdmitbuyMapper">
+  <!--<resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Admitbuy">
     <id column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />
     <result column="scheduleid" jdbcType="INTEGER" property="scheduleid" />
     <result column="managePerson" jdbcType="INTEGER" property="manageperson" />
@@ -11,7 +11,7 @@
     <result column="houseid" jdbcType="INTEGER" property="houseid" />
     <result column="firstPay" jdbcType="DOUBLE" property="firstpay" />
     <result column="admitbuyDate" jdbcType="DATE" property="admitbuydate" />
-  </resultMap>
+  </resultMap>-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from admitbuy
     where admitBuyid = #{admitbuyid,jdbcType=INTEGER}
@@ -39,8 +39,8 @@
     where admitBuyid = #{admitbuyid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select admitBuyid, scheduleid, managePerson, adviserid, clientid, payWayid, houseid, 
-    firstPay, admitbuyDate
+    select a.dmitBuyid, a.scheduleid, a.managePerson, a.adviserid, a.clientid, a.payWayid, a.houseid,
+    a.firstPay, a.admitbuyDate,adv.adviserName,
     from admitbuy
     where admitBuyid = #{admitbuyid,jdbcType=INTEGER}
   </select>
