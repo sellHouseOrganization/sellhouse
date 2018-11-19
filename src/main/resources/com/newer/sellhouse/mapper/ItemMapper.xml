@@ -40,5 +40,10 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select itemid, itemName, itemCompanyName, itemLevel, notSettle, reserve1, reserve2
     from item
+    <where>
+      <if test="itemName!=null and itemName!=''">
+        and itemName like concat('%',concat(#{itemName},'%'))
+      </if>
+    </where>
   </select>
 </mapper>
