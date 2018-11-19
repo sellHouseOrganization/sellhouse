@@ -31,95 +31,77 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>客户姓名:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" id="clientName" name="clientName" placeholder="客户姓名" style="width: 225px;">
+                <td><input type="text" class="input-text" id="clientName" name="clientName" placeholder="客户姓名" style="width: 225px;"></td>
+                <span class="c-red">*</span>性别:
+                <td> <input type="radio" id="sex" name="sex" value="男" checked>男
+                <input type="radio" id="sex1" name="sex" value="女">女</td>
+
             </div>
         </div>
+
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别:</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="radio" id="sex" name="sex" value="男" checked>男
-                <input type="radio" id="sex1" name="sex" value="女">女
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">项目名称：</label>
-            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+            <label class="form-label col-xs-4 col-sm-3">单元名称：</label>
+            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:225px;">
 			<select class="select" name="itemName" id="itemName" size="1">
 				<option value="0">请选择</option>
 				<option value="1">流星花园</option>
                 <option value="2">皇宫</option>
-
 			</select>
-			</span> </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>定金:</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="定金" id="fromtMoney" name="fromtMoney"
-                       style="width: 225px;">
+			</span>
+            <span class="c-red">*</span>预售定金:<td><input type="text" class="input-text" placeholder="定金" id="fromtMoney" name="fromtMoney"
+                       style="width: 225px;"></td>
             </div>
         </div>
+
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>公摊面积:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" id="pooledArea" name="pooledArea" placeholder="公摊面积" style="width: 225px;">
+                <td><input type="text" class="input-text" id="pooledArea" name="pooledArea" placeholder="公摊面积" style="width: 225px;"></td>
+                <span class="c-red">*</span>私有面积:
+                <td><input type="text" class="input-text" id="privateArea" name="privateArea" placeholder="私有面积" style="width: 225px;"></td>
+
             </div>
         </div>
+
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>私有面积:</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>付款方式：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" id="privateArea" name="privateArea" placeholder="私有面积" style="width: 225px;">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>单价:</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" id="price" name="price" placeholder="单价" style="width: 225px;">
+                <span class="select-box" style="width:225px;">
+			<select class="select" name="structure" id="structure" size="1">
+				<option value="0">请选择</option>
+				<option value="1">按揭</option>
+                <option value="2">全额</option>
+			</select>
+			</span>
+                <span class="c-red">*</span>预售单价:
+                <td><input type="text" class="input-text" id="price" name="price" placeholder="单价" style="width: 225px;"></td>
+
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>预定日期:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="预定日期" id="scheduleDate" name="scheduleDate"
-                       style="width: 225px;">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>认购日期:</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="认购日期" id="admitbuyDate" name="admitbuyDate"
-                       style="width: 225px;">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">付款方式名称：</label>
-            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-			<select class="select" name="structure" id="structure" size="1">
-				<option value="0">请选择</option>
-				<option value="1">按揭</option>
-                <option value="2">全额</option>
-
-			</select>
-			</span> </div>
-        </div>
-
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>应交售价:</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="应交售价" id="mustPrices" name="mustPrices"
-                       style="width: 225px;">
+                <td><input type="text" class="input-text" placeholder="预定日期" id="scheduleDate" name="scheduleDate"
+                       style="width: 225px;"></td>
+                <span class="c-red">*</span>认购日期:
+                <td><input type="text" class="input-text" placeholder="认购日期" id="admitbuyDate" name="admitbuyDate"
+                       style="width: 225px;"></td>
             </div>
         </div>
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">经办人：</label>
-            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:225px;">
 			<select class="select" name="managePerson" id="managePerson" size="1">
 				<option value="0">请选择</option>
 				<option value="1">张三</option>
 				<option value="2">李四</option>
 			</select>
-			</span> </div>
+			</span>
+                <span class="c-red">*</span>应交售价:
+                <td><input type="text" class="input-text" placeholder="应交售价" id="mustPrices" name="mustPrices"
+                       style="width: 225px;"></td>
+            </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>简要备注:</label>
