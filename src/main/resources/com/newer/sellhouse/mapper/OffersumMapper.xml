@@ -5,7 +5,7 @@
     <id column="offerSumid" jdbcType="INTEGER" property="offersumid" />
     <result column="offerSumDeadline" jdbcType="VARCHAR" property="offersumdeadline" />
     <result column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />
-    <result column="sum" jdbcType="VARCHAR" property="sum" />
+    <result column="sum" jdbcType="DOUBLE" property="sum" />
     <result column="offerSumName" jdbcType="VARCHAR" property="offersumname" />
     <result column="offerSumEvent" jdbcType="VARCHAR" property="offersumevent" />
     <result column="offerSumTime" jdbcType="DATE" property="offersumtime" />
@@ -20,14 +20,14 @@
       `sum`, offerSumName, offerSumEvent, 
       offerSumTime, offerperiods)
     values (#{offersumid,jdbcType=INTEGER}, #{offersumdeadline,jdbcType=VARCHAR}, #{admitbuyid,jdbcType=INTEGER}, 
-      #{sum,jdbcType=VARCHAR}, #{offersumname,jdbcType=VARCHAR}, #{offersumevent,jdbcType=VARCHAR}, 
+      #{sum,jdbcType=DOUBLE}, #{offersumname,jdbcType=VARCHAR}, #{offersumevent,jdbcType=VARCHAR}, 
       #{offersumtime,jdbcType=DATE}, #{offerperiods,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Offersum">
     update offersum
     set offerSumDeadline = #{offersumdeadline,jdbcType=VARCHAR},
       admitBuyid = #{admitbuyid,jdbcType=INTEGER},
-      `sum` = #{sum,jdbcType=VARCHAR},
+      `sum` = #{sum,jdbcType=DOUBLE},
       offerSumName = #{offersumname,jdbcType=VARCHAR},
       offerSumEvent = #{offersumevent,jdbcType=VARCHAR},
       offerSumTime = #{offersumtime,jdbcType=DATE},

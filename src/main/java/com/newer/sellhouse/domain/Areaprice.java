@@ -2,15 +2,12 @@ package com.newer.sellhouse.domain;
 
 import java.io.Serializable;
 
-/**
- * 面积售价类
- */
 public class Areaprice implements Serializable {
     private Integer areapriceid;
 
-    private String price;
+    private Double price;
 
-    private Integer floorid;
+    private Integer itemid;
 
     private static final long serialVersionUID = 1L;
 
@@ -22,20 +19,20 @@ public class Areaprice implements Serializable {
         this.areapriceid = areapriceid;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
-        this.price = price == null ? null : price.trim();
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
-    public Integer getFloorid() {
-        return floorid;
+    public Integer getItemid() {
+        return itemid;
     }
 
-    public void setFloorid(Integer floorid) {
-        this.floorid = floorid;
+    public void setItemid(Integer itemid) {
+        this.itemid = itemid;
     }
 
     @Override
@@ -46,7 +43,7 @@ public class Areaprice implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", areapriceid=").append(areapriceid);
         sb.append(", price=").append(price);
-        sb.append(", floorid=").append(floorid);
+        sb.append(", itemid=").append(itemid);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

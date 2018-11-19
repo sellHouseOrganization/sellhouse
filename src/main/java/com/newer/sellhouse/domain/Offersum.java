@@ -10,7 +10,7 @@ public class Offersum implements Serializable {
 
     private Integer admitbuyid;
 
-    private String sum;
+    private Double sum;
 
     private String offersumname;
 
@@ -46,12 +46,12 @@ public class Offersum implements Serializable {
         this.admitbuyid = admitbuyid;
     }
 
-    public String getSum() {
+    public Double getSum() {
         return sum;
     }
 
-    public void setSum(String sum) {
-        this.sum = sum == null ? null : sum.trim();
+    public void setSum(Double sum) {
+        this.sum = sum;
     }
 
     public String getOffersumname() {

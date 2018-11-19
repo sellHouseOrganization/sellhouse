@@ -3,32 +3,32 @@
 <mapper namespace="com.newer.sellhouse.mapper.AreapriceMapper">
   <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Areaprice">
     <id column="areaPriceid" jdbcType="INTEGER" property="areapriceid" />
-    <result column="price" jdbcType="VARCHAR" property="price" />
-    <result column="floorid" jdbcType="INTEGER" property="floorid" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="itemid" jdbcType="INTEGER" property="itemid" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from areaprice
     where areaPriceid = #{areapriceid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.newer.sellhouse.domain.Areaprice">
-    insert into areaprice (areaPriceid, price, floorid
+    insert into areaprice (areaPriceid, price, itemid
       )
-    values (#{areapriceid,jdbcType=INTEGER}, #{price,jdbcType=VARCHAR}, #{floorid,jdbcType=INTEGER}
+    values (#{areapriceid,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, #{itemid,jdbcType=INTEGER}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Areaprice">
     update areaprice
-    set price = #{price,jdbcType=VARCHAR},
-      floorid = #{floorid,jdbcType=INTEGER}
+    set price = #{price,jdbcType=DOUBLE},
+      itemid = #{itemid,jdbcType=INTEGER}
     where areaPriceid = #{areapriceid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select areaPriceid, price, floorid
+    select areaPriceid, price, itemid
     from areaprice
     where areaPriceid = #{areapriceid,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select areaPriceid, price, floorid
+    select areaPriceid, price, itemid
     from areaprice
   </select>
 </mapper>

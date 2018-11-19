@@ -3,9 +3,6 @@ package com.newer.sellhouse.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * 楼栋类
- */
 public class Floor implements Serializable {
     private Integer floorid;
 
@@ -23,7 +20,8 @@ public class Floor implements Serializable {
 
     private String notapertura;
 
-    private Date creationdate;
+    private Date 
+creationdate;
 
     private static final long serialVersionUID = 1L;
 
@@ -91,11 +89,11 @@ public class Floor implements Serializable {
         this.notapertura = notapertura == null ? null : notapertura.trim();
     }
 
-    public Date getcreationdate() {
+    public Date getCreationdate() {
         return creationdate;
     }
 
-    public void setcreationdate(Date creationdate) {
+    public void setCreationdate(Date creationdate) {
         this.creationdate = creationdate;
     }
 

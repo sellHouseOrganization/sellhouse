@@ -8,7 +8,7 @@ public class Schedule implements Serializable {
 
     private Integer houseid;
 
-    private String fromtmoney;
+    private Double fromtmoney;
 
     private Integer adviserid;
 
@@ -17,6 +17,10 @@ public class Schedule implements Serializable {
     private Date scheduledate;
 
     private Integer clientid;
+
+    private Double mustprices;
+
+    private Double sumprices;
 
     private static final long serialVersionUID = 1L;
 
@@ -36,12 +40,12 @@ public class Schedule implements Serializable {
         this.houseid = houseid;
     }
 
-    public String getFromtmoney() {
+    public Double getFromtmoney() {
         return fromtmoney;
     }
 
-    public void setFromtmoney(String fromtmoney) {
-        this.fromtmoney = fromtmoney == null ? null : fromtmoney.trim();
+    public void setFromtmoney(Double fromtmoney) {
+        this.fromtmoney = fromtmoney;
     }
 
     public Integer getAdviserid() {
@@ -76,6 +80,22 @@ public class Schedule implements Serializable {
         this.clientid = clientid;
     }
 
+    public Double getMustprices() {
+        return mustprices;
+    }
+
+    public void setMustprices(Double mustprices) {
+        this.mustprices = mustprices;
+    }
+
+    public Double getSumprices() {
+        return sumprices;
+    }
+
+    public void setSumprices(Double sumprices) {
+        this.sumprices = sumprices;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -89,6 +109,8 @@ public class Schedule implements Serializable {
         sb.append(", remake=").append(remake);
         sb.append(", scheduledate=").append(scheduledate);
         sb.append(", clientid=").append(clientid);
+        sb.append(", mustprices=").append(mustprices);
+        sb.append(", sumprices=").append(sumprices);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

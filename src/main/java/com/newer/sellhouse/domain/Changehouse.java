@@ -16,7 +16,7 @@ public class Changehouse implements Serializable {
 
     private String paymentperiodizationnumber;
 
-    private String paysum;
+    private Double paysum;
 
     private static final long serialVersionUID = 1L;
 
@@ -68,12 +68,12 @@ public class Changehouse implements Serializable {
         this.paymentperiodizationnumber = paymentperiodizationnumber == null ? null : paymentperiodizationnumber.trim();
     }
 
-    public String getPaysum() {
+    public Double getPaysum() {
         return paysum;
     }
 
-    public void setPaysum(String paysum) {
-        this.paysum = paysum == null ? null : paysum.trim();
+    public void setPaysum(Double paysum) {
+        this.paysum = paysum;
     }
 
     @Override
