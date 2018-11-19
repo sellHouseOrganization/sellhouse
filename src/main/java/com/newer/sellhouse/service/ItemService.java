@@ -15,4 +15,20 @@ public class ItemService {
     public List<Item> itemList(String itemName){
         return itemMapper.selectAll(itemName);
     }
+
+    public int InsertItem(Item item){
+        return itemMapper.insert(item);
+    }
+
+    public int UpdateItem(Item item){
+        return itemMapper.updateByPrimaryKey(item);
+    }
+
+    public int DeleteItem(Integer ItemId){
+        return itemMapper.deleteByPrimaryKey(ItemId);
+    }
+
+    public Item QueryItem(Integer ItemId){
+        return itemMapper.selectByPrimaryKey(ItemId);
+    }
 }

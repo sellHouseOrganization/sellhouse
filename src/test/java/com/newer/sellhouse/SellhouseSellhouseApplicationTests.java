@@ -24,4 +24,28 @@ public class SellhouseSellhouseApplicationTests {
         }
     }
 
+    @Test
+    public void InsertItem(){
+        Item item = new Item();
+        item.setItemname("长房半岛蓝湾");
+        item.setItemcompanyname("长房地产");
+        item.setItemlevel("第一级");
+        item.setNotsettle(0);
+        int ret = itemMapper.insert(item);
+        System.out.println(ret);
+    }
+
+
+    @Test
+    public void UpdateItem(){
+        Item item = new Item();
+        item.setItemname("万科金域华府");
+        item.setItemcompanyname("万科地产");
+        item.setItemlevel("一级");
+        item.setNotsettle(0);
+        item.setItemid(1);
+        int ret = itemMapper.updateByPrimaryKey(item);
+        System.out.println(ret);
+    }
+
 }
