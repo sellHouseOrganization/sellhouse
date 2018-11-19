@@ -89,18 +89,12 @@ creationdate;
         this.notapertura = notapertura == null ? null : notapertura.trim();
     }
 
-    public Date get
-creationdate() {
-        return 
-creationdate;
+    public Date getCreationdate() {
+        return creationdate;
     }
 
-    public void set
-creationdate(Date 
-creationdate) {
-        this.
-creationdate = 
-creationdate;
+    public void setCreationdate(Date creationdate) {
+        this.creationdate = creationdate;
     }
 
     @Override
@@ -117,9 +111,7 @@ creationdate;
         sb.append(", batch=").append(batch);
         sb.append(", notout=").append(notout);
         sb.append(", notapertura=").append(notapertura);
-        sb.append(", 
-creationdate=").append(
-creationdate);
+        sb.append(", creationdate=").append(creationdate);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
