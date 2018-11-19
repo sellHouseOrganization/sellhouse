@@ -7,8 +7,10 @@
     <result column="managePerson" jdbcType="INTEGER" property="manageperson" />
     <result column="adviserid" jdbcType="INTEGER" property="adviserid" />
     <result column="clientid" jdbcType="INTEGER" property="clientid" />
-    <result column="mustPrices" jdbcType="VARCHAR" property="mustprices" />
     <result column="payWayid" jdbcType="INTEGER" property="paywayid" />
+    <result column="houseid" jdbcType="INTEGER" property="houseid" />
+    <result column="firstPay" jdbcType="DOUBLE" property="firstpay" />
+    <result column="admitbuyDate" jdbcType="DATE" property="admitbuydate" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from admitbuy
@@ -16,11 +18,13 @@
   </delete>
   <insert id="insert" parameterType="com.newer.sellhouse.domain.Admitbuy">
     insert into admitbuy (admitBuyid, scheduleid, managePerson, 
-      adviserid, clientid, mustPrices, 
-      payWayid)
+      adviserid, clientid, payWayid, 
+      houseid, firstPay, admitbuyDate
+      )
     values (#{admitbuyid,jdbcType=INTEGER}, #{scheduleid,jdbcType=INTEGER}, #{manageperson,jdbcType=INTEGER}, 
-      #{adviserid,jdbcType=INTEGER}, #{clientid,jdbcType=INTEGER}, #{mustprices,jdbcType=VARCHAR}, 
-      #{paywayid,jdbcType=INTEGER})
+      #{adviserid,jdbcType=INTEGER}, #{clientid,jdbcType=INTEGER}, #{paywayid,jdbcType=INTEGER}, 
+      #{houseid,jdbcType=INTEGER}, #{firstpay,jdbcType=DOUBLE}, #{admitbuydate,jdbcType=DATE}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Admitbuy">
     update admitbuy
@@ -28,17 +32,21 @@
       managePerson = #{manageperson,jdbcType=INTEGER},
       adviserid = #{adviserid,jdbcType=INTEGER},
       clientid = #{clientid,jdbcType=INTEGER},
-      mustPrices = #{mustprices,jdbcType=VARCHAR},
-      payWayid = #{paywayid,jdbcType=INTEGER}
+      payWayid = #{paywayid,jdbcType=INTEGER},
+      houseid = #{houseid,jdbcType=INTEGER},
+      firstPay = #{firstpay,jdbcType=DOUBLE},
+      admitbuyDate = #{admitbuydate,jdbcType=DATE}
     where admitBuyid = #{admitbuyid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select admitBuyid, scheduleid, managePerson, adviserid, clientid, mustPrices, payWayid
+    select admitBuyid, scheduleid, managePerson, adviserid, clientid, payWayid, houseid, 
+    firstPay, admitbuyDate
     from admitbuy
     where admitBuyid = #{admitbuyid,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select admitBuyid, scheduleid, managePerson, adviserid, clientid, mustPrices, payWayid
+    select admitBuyid, scheduleid, managePerson, adviserid, clientid, payWayid, houseid, 
+    firstPay, admitbuyDate
     from admitbuy
   </select>
 </mapper>

@@ -8,7 +8,7 @@
     <result column="ChangeHouseDate" jdbcType="DATE" property="changehousedate" />
     <result column="periodizationNumber" jdbcType="VARCHAR" property="periodizationnumber" />
     <result column="paymentPeriodizationNumber" jdbcType="VARCHAR" property="paymentperiodizationnumber" />
-    <result column="paysum" jdbcType="VARCHAR" property="paysum" />
+    <result column="paysum" jdbcType="DOUBLE" property="paysum" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from changehouse
@@ -20,7 +20,7 @@
       paysum)
     values (#{changehouseid,jdbcType=INTEGER}, #{oldhouseid,jdbcType=INTEGER}, #{newhouseid,jdbcType=INTEGER}, 
       #{changehousedate,jdbcType=DATE}, #{periodizationnumber,jdbcType=VARCHAR}, #{paymentperiodizationnumber,jdbcType=VARCHAR}, 
-      #{paysum,jdbcType=VARCHAR})
+      #{paysum,jdbcType=DOUBLE})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Changehouse">
     update changehouse
@@ -29,7 +29,7 @@
       ChangeHouseDate = #{changehousedate,jdbcType=DATE},
       periodizationNumber = #{periodizationnumber,jdbcType=VARCHAR},
       paymentPeriodizationNumber = #{paymentperiodizationnumber,jdbcType=VARCHAR},
-      paysum = #{paysum,jdbcType=VARCHAR}
+      paysum = #{paysum,jdbcType=DOUBLE}
     where changeHouseid = #{changehouseid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

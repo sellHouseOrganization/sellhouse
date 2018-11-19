@@ -1,8 +1,6 @@
 package com.newer.sellhouse.mapper;
 
 import com.newer.sellhouse.domain.Item;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
 public interface ItemMapper {
@@ -12,7 +10,7 @@ public interface ItemMapper {
 
     Item selectByPrimaryKey(Integer itemid);
 
-    List<Item> selectAll(@Param("itemName") String itemName);
+    List<Item> selectAll();
 
     int updateByPrimaryKey(Item record);
 }

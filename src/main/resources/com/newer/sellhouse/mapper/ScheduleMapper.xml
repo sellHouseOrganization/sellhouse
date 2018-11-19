@@ -4,11 +4,13 @@
   <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Schedule">
     <id column="scheduleid" jdbcType="INTEGER" property="scheduleid" />
     <result column="houseid" jdbcType="INTEGER" property="houseid" />
-    <result column="fromtMoney" jdbcType="VARCHAR" property="fromtmoney" />
+    <result column="fromtMoney" jdbcType="DOUBLE" property="fromtmoney" />
     <result column="adviserid" jdbcType="INTEGER" property="adviserid" />
     <result column="remake" jdbcType="VARCHAR" property="remake" />
     <result column="scheduleDate" jdbcType="DATE" property="scheduledate" />
     <result column="clientid" jdbcType="INTEGER" property="clientid" />
+    <result column="mustPrices" jdbcType="DOUBLE" property="mustprices" />
+    <result column="sumPrices" jdbcType="DOUBLE" property="sumprices" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from schedule
@@ -17,28 +19,34 @@
   <insert id="insert" parameterType="com.newer.sellhouse.domain.Schedule">
     insert into schedule (scheduleid, houseid, fromtMoney, 
       adviserid, remake, scheduleDate, 
-      clientid)
-    values (#{scheduleid,jdbcType=INTEGER}, #{houseid,jdbcType=INTEGER}, #{fromtmoney,jdbcType=VARCHAR}, 
+      clientid, mustPrices, sumPrices
+      )
+    values (#{scheduleid,jdbcType=INTEGER}, #{houseid,jdbcType=INTEGER}, #{fromtmoney,jdbcType=DOUBLE}, 
       #{adviserid,jdbcType=INTEGER}, #{remake,jdbcType=VARCHAR}, #{scheduledate,jdbcType=DATE}, 
-      #{clientid,jdbcType=INTEGER})
+      #{clientid,jdbcType=INTEGER}, #{mustprices,jdbcType=DOUBLE}, #{sumprices,jdbcType=DOUBLE}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Schedule">
     update schedule
     set houseid = #{houseid,jdbcType=INTEGER},
-      fromtMoney = #{fromtmoney,jdbcType=VARCHAR},
+      fromtMoney = #{fromtmoney,jdbcType=DOUBLE},
       adviserid = #{adviserid,jdbcType=INTEGER},
       remake = #{remake,jdbcType=VARCHAR},
       scheduleDate = #{scheduledate,jdbcType=DATE},
-      clientid = #{clientid,jdbcType=INTEGER}
+      clientid = #{clientid,jdbcType=INTEGER},
+      mustPrices = #{mustprices,jdbcType=DOUBLE},
+      sumPrices = #{sumprices,jdbcType=DOUBLE}
     where scheduleid = #{scheduleid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select scheduleid, houseid, fromtMoney, adviserid, remake, scheduleDate, clientid
+    select scheduleid, houseid, fromtMoney, adviserid, remake, scheduleDate, clientid, 
+    mustPrices, sumPrices
     from schedule
     where scheduleid = #{scheduleid,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select scheduleid, houseid, fromtMoney, adviserid, remake, scheduleDate, clientid
+    select scheduleid, houseid, fromtMoney, adviserid, remake, scheduleDate, clientid, 
+    mustPrices, sumPrices
     from schedule
   </select>
 </mapper>

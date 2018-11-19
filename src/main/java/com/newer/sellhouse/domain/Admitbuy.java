@@ -1,6 +1,7 @@
 package com.newer.sellhouse.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Admitbuy implements Serializable {
     private Integer admitbuyid;
@@ -13,9 +14,13 @@ public class Admitbuy implements Serializable {
 
     private Integer clientid;
 
-    private String mustprices;
-
     private Integer paywayid;
+
+    private Integer houseid;
+
+    private Double firstpay;
+
+    private Date admitbuydate;
 
     private static final long serialVersionUID = 1L;
 
@@ -59,20 +64,36 @@ public class Admitbuy implements Serializable {
         this.clientid = clientid;
     }
 
-    public String getMustprices() {
-        return mustprices;
-    }
-
-    public void setMustprices(String mustprices) {
-        this.mustprices = mustprices == null ? null : mustprices.trim();
-    }
-
     public Integer getPaywayid() {
         return paywayid;
     }
 
     public void setPaywayid(Integer paywayid) {
         this.paywayid = paywayid;
+    }
+
+    public Integer getHouseid() {
+        return houseid;
+    }
+
+    public void setHouseid(Integer houseid) {
+        this.houseid = houseid;
+    }
+
+    public Double getFirstpay() {
+        return firstpay;
+    }
+
+    public void setFirstpay(Double firstpay) {
+        this.firstpay = firstpay;
+    }
+
+    public Date getAdmitbuydate() {
+        return admitbuydate;
+    }
+
+    public void setAdmitbuydate(Date admitbuydate) {
+        this.admitbuydate = admitbuydate;
     }
 
     @Override
@@ -86,8 +107,10 @@ public class Admitbuy implements Serializable {
         sb.append(", manageperson=").append(manageperson);
         sb.append(", adviserid=").append(adviserid);
         sb.append(", clientid=").append(clientid);
-        sb.append(", mustprices=").append(mustprices);
         sb.append(", paywayid=").append(paywayid);
+        sb.append(", houseid=").append(houseid);
+        sb.append(", firstpay=").append(firstpay);
+        sb.append(", admitbuydate=").append(admitbuydate);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
