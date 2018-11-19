@@ -1,16 +1,24 @@
 package com.newer.sellhouse.mapper;
 
 import com.newer.sellhouse.domain.Item;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
+
 import java.util.List;
 
 public interface ItemMapper {
     int deleteByPrimaryKey(Integer itemid);
 
-    int insert(Item record);
+    @Insert("insert into item(itemName,itemCompanyName,itemLevel,notSettle) values (#{itemname},#{itemcompanyname},#{itemlevel},0 )")
+    int insert(Item item);
 
     Item selectByPrimaryKey(Integer itemid);
 
     List<Item> selectAll(String ItemName);
 
-    int updateByPrimaryKey(Item record);
+    @Update("update item set itemName=#{itemname},itemCompanyName=#{itemcompanyname},itemLevel=#{itemlevel},notSettle=0 where itemid = #{itemid}")
+    int updateByPrimaryKey(Item item);
+
+    int SettleChange(@Param("itemid") Integer itemid, @Param("notSettle") Integer notSettle);
 }

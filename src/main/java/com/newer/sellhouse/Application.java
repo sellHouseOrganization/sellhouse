@@ -8,8 +8,8 @@ import org.springframework.cache.annotation.EnableCaching;
 @SpringBootApplication
 @MapperScan("com.newer.sellhouse.mapper")
 @EnableCaching
-public class SellhouseApplication {
+public class Application {
     public static void main(String[] args) {
-        SpringApplication.run(SellhouseApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
