@@ -28,6 +28,7 @@ CREATE TABLE `admitbuy` (
   `clientid` int(11) DEFAULT NULL COMMENT '客户ID',
   `firstPay` double(50) DEFAULT NULL COMMENT '首付',
   `payWayid` int(11) DEFAULT NULL COMMENT '付款方式ID',
+  `admitbuyDate` date(30) DEFAULT NULL COMMENT '认购日期',
   PRIMARY KEY (`admitBuyid`),
   KEY `SC_ID` (`scheduleid`),
   KEY `ADV_ID` (`adviserid`),
