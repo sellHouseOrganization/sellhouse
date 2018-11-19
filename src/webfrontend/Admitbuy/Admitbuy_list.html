@@ -25,13 +25,13 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 认购管理 <span class="c-gray en">&gt;</span> 认购列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		<input type="text" class="input-text" style="width:250px" placeholder="输入客户信息" id="" name="">
+		<input type="text" class="input-text" style="width:250px" placeholder="" id="" name="">
 		<button type="submit" class="btn btn-success radius" id="" name="" onclick="Admitbuy_query()"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
         <a href="javascript:;" onclick="Admitbuy_del()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6e2;</i> 认购移除</a>
         <a href="javascript:;" onclick="Admitbuy_add()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 添加认购</a>
-         </span> <span class="r">共有数据：<strong></strong> 条</span> </div>
+         </span> <span class="r">共有数据：<strong>25</strong> 条</span> </div>
 	<table class="table table-border table-bordered table-hover table-bg table-sort">
 		<thead>
 		<tr>
@@ -43,15 +43,15 @@
 				<th width="90">客户姓名</th>
 				<th width="40">性别</th>
 				<th width="100">身份证号</th>
-				<th width="40">年龄</th>
 				<th width="90">电话号码</th>
-				<th width="40">定金</th>
-				<th width="40">经办人员</th>
+				<th width="60">定金</th>
+				<th width="60">首付</th>
+				<th width="60">经办人员</th>
+				<th width="60">成交总价</th>
 				<th width="90">置业顾问名称</th>
-				<th width="90">置业顾问电话</th>
-				<th width="40">厅室</th>
-				<th width="40">户型</th>
-				<th width="40">付款方式名称</th>
+				<th width="90">认购日期</th>
+				<th width="60">付款方式名称</th>
+				<th width="90">房源名称</th>
 				<th width="90">应交售价</th>
 				<th width="100">操作</th>
 			</tr>
@@ -73,14 +73,16 @@
 <script type="text/javascript" src="../lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript" src="../lib/jquery/1.9.1/jquery.js"></script>
 <script type="text/javascript">
-    /*
-           参数解释：
-           title	标题
-           url		请求的url
-           id		需要操作的数据id
-           w		弹出层宽度（缺省调默认值）
-           h		弹出层高度（缺省调默认值）
-       */
+    $(function () {
+        $('.table-sort').dataTable({
+            "aaSorting": [[1, "desc"]],//默认第几个排序
+            "bStateSave": true,//状态保存
+            "aoColumnDefs": [
+                //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+                {"orderable": false, "aTargets": [0, 8, 9]}// 制定列不参与排序
+            ]
+        });
+    });
 
     $(function () {
         Admitbuy_query();
@@ -90,7 +92,7 @@
     }
 /*认购-添加*/
 function Admitbuy_add(){
-	layer_show('添加认购','Admitbuy_edit.html','800','500');
+	layer_show('添加认购','Admitbuy_edit.html','800','800');
 }
 
 /*认购-移除*/

@@ -24,7 +24,6 @@
     <!--/meta 作为公共模版分离出去-->
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 认购管理 <span class="c-gray en">&gt;</span> 添加认购 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <article class="page-container">
     <form method="post" class="form form-horizontal" id="form-drug-add">
         <input type="hidden" name="AdmitbuyID" id="AdmitbuyID">
@@ -90,7 +89,17 @@
         </div>
 
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">经办人：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>首付:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <td><input type="text" class="input-text" placeholder="首付" id="firstPay" name="firstPay"
+                           style="width: 225px;"></td>
+                <span class="c-red">*</span>应交售价:
+                <td><input type="text" class="input-text" placeholder="应交售价" id="mustPrices" name="mustPrices"
+                           style="width: 225px;"></td>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>经办人：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:225px;">
 			<select class="select" name="managePerson" id="managePerson" size="1">
 				<option value="0">请选择</option>
@@ -98,18 +107,12 @@
 				<option value="2">李四</option>
 			</select>
 			</span>
-                <span class="c-red">*</span>应交售价:
-                <td><input type="text" class="input-text" placeholder="应交售价" id="mustPrices" name="mustPrices"
-                       style="width: 225px;"></td>
+                <span class="c-red">*</span>简要备注:
+                <td><input type="text" class="input-text" placeholder="简要备注" id="remake" name="remake"
+                           style="width: 225px;"></td>
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>简要备注:</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="简要备注" id="remake" name="remake"
-                       style="width: 225px;">
-            </div>
-        </div>
+
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                 <input class="btn btn-primary radius" type="button" id="btnSvn" value="&nbsp;&nbsp;认购确定&nbsp;&nbsp;">
