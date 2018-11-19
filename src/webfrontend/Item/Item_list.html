@@ -34,7 +34,7 @@
         <a href="javascript:;" onclick="Item_del()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6e2;</i> 报废项目</a>
         <a href="javascript:;" onclick="Item_add()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 添加项目</a>
         <a href="javascript:;" onclick="Item_upd()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6df;</i> 项目修改</a>
-        <a href="javascript:;" onclick="datadel()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe603;</i> 项目结案</a>
+        <a href="javascript:;" onclick="StopSettle(this)" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe603;</i> 项目结案</a>
          </span> <span class="r">共有数据：<strong></strong> 条</span> </div>
     <table class="table table-border table-bordered table-bg">
         <thead>
@@ -42,7 +42,7 @@
             <th scope="col" colspan="9">项目列表</th>
         </tr>
         <tr class="text-c">
-            <th width="25"><input type="checkbox" name="" value=""></th>
+            <th width="25"><input type="checkbox" name="ckID" value="0"></th>
             <th width="40">项目编号</th>
             <th width="150">项目名称</th>
             <th width="90">项目公司名称</th>
@@ -74,9 +74,6 @@
         query();
     })
 
-    function Ckbox() {
-
-    }
 
     function query() {
         var data={
@@ -90,8 +87,6 @@
             contentType: "application/json; charset=utf-8",
             success:function (result) {
                 var appendVal = '';
-                var itemID;
-                console.log(itemID);
                 $.each(result,function (index,item) {
                     console.log(item);
                     appendVal+=`
@@ -120,17 +115,18 @@
         w		弹出层宽度（缺省调默认值）
         h		弹出层高度（缺省调默认值）
     */
-    /*管理员-增加*/
+    /*项目-增加*/
     function Item_add(){
+        localStorage.setItem("itemid",0);
         layer_show('添加项目','Item_edit.html','400','500');
     }
 
     function Floors_add(){
         layer_show('添加楼栋','../Floor/Floor_edit.html','400','500');
     }
-    /*管理员-删除*/
 
-    function Item_del(){
+    /*项目-删除*/
+    function Item_del(obj){
         var ckid=[];
         $.each($('input:checkbox:checked'),function(index,c){
             ckid.push(c.value);
@@ -142,7 +138,7 @@
                 url: "http://127.0.0.1:9090/Item/Delete?ckid="+ckid,
                 dataType: 'json',
                 success: function(data){
-                    $(obj).parents("tr").remove();
+                    window.location.reload();
                     layer.msg('已删除!',{icon:1,time:1000});
                 },
                 error:function(data) {
@@ -152,32 +148,29 @@
         });
     }
 
-    /*管理员-编辑*/
+    /*项目-编辑*/
     function Item_upd(){
+        var ckid=[];
+        $.each($('input:checkbox:checked'),function(index,c){
+            ckid.push(c.value);
+        });
+        localStorage.setItem("itemid",ckid);
         layer_show('修改项目','Item_edit.html','400','500');
     }
-    /*管理员-停用*/
-    function admin_stop(obj,id){
-        layer.confirm('确认要停用吗？',function(index){
+    /*项目-结案*/
+    function StopSettle(obj){
+        layer.confirm('确认要结案吗？',function(index){
             //此处请求后台程序，下方是成功后的前台处理……
+
+            var ckid=[];
+            $.each($('input:checkbox:checked'),function(index,c){
+                ckid.push(c.value);
+            });
 
             $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_start(this,id)" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>');
             $(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">已禁用</span>');
             $(obj).remove();
             layer.msg('已停用!',{icon: 5,time:1000});
-        });
-    }
-
-    /*管理员-启用*/
-    function admin_start(obj,id){
-        layer.confirm('确认要启用吗？',function(index){
-            //此处请求后台程序，下方是成功后的前台处理……
-
-
-            $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_stop(this,id)" href="javascript:;" title="停用" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a>');
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
-            $(obj).remove();
-            layer.msg('已启用!', {icon: 6,time:1000});
         });
     }
 </script>

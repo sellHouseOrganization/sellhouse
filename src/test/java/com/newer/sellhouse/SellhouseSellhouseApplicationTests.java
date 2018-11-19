@@ -30,7 +30,6 @@ public class SellhouseSellhouseApplicationTests {
         item.setItemname("长房半岛蓝湾");
         item.setItemcompanyname("长房地产");
         item.setItemlevel("第一级");
-        item.setNotsettle(0);
         int ret = itemMapper.insert(item);
         System.out.println(ret);
     }
@@ -46,6 +45,18 @@ public class SellhouseSellhouseApplicationTests {
         item.setItemid(1);
         int ret = itemMapper.updateByPrimaryKey(item);
         System.out.println(ret);
+    }
+
+    @Test
+    public void SettleChange(){
+        int ret = itemMapper.SettleChange(59,1);
+        System.out.println(ret);
+    }
+
+    @Test
+    public void queryById(){
+        Item item = itemMapper.selectByPrimaryKey(59);
+        System.out.println(item);
     }
 
 }

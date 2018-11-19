@@ -14,12 +14,12 @@
     delete from item
     where itemid = #{itemid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.newer.sellhouse.domain.Item">
+  <!--<insert id="insert" parameterType="com.newer.sellhouse.domain.Item">
     insert into item (itemid, itemName, itemCompanyName, 
       itemLevel, notSettle, reserve1, 
       reserve2)
     values (#{itemid,jdbcType=INTEGER}, #{itemname,jdbcType=VARCHAR}, #{itemcompanyname,jdbcType=VARCHAR}, 
-      #{itemlevel,jdbcType=VARCHAR}, #{notsettle,jdbcType=INTEGER}, #{reserve1,jdbcType=INTEGER}, 
+      #{itemlevel,jdbcType=VARCHAR}, #{0,jdbcType=INTEGER}, #{reserve1,jdbcType=INTEGER},
       #{reserve2,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Item">
@@ -27,10 +27,13 @@
     set itemName = #{itemname,jdbcType=VARCHAR},
       itemCompanyName = #{itemcompanyname,jdbcType=VARCHAR},
       itemLevel = #{itemlevel,jdbcType=VARCHAR},
-      notSettle = #{notsettle,jdbcType=INTEGER},
+      notSettle = #{0,jdbcType=INTEGER},
       reserve1 = #{reserve1,jdbcType=INTEGER},
       reserve2 = #{reserve2,jdbcType=INTEGER}
     where itemid = #{itemid,jdbcType=INTEGER}
+  </update>-->
+  <update id="SettleChange" parameterType="java.lang.Integer">
+    update item set notSettle=#{notSettle,jdbcType=INTEGER} where itemid = #{itemid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select itemid, itemName, itemCompanyName, itemLevel, notSettle, reserve1, reserve2
