@@ -39,7 +39,7 @@
 			<th scope="col" colspan="9">认购列表</th>
 		</tr>
 			<tr class="text-c">
-				<th width="25"><input type="checkbox" name="" value=""></th>
+				<th width="25"><input type="checkbox" name="aid" value="0"></th>
 				<th width="40">认购ID</th>
 				<th width="90">客户姓名</th>
 				<th width="40">性别</th>
@@ -97,6 +97,7 @@
             type: "get",
             data: data,
             dataType: 'json',
+            contentType: "application/json; charset=utf-8",
             success: function (result) {
                 console.log(result);
                 var appendVal = '';
@@ -105,7 +106,7 @@
                     console.log(admitbuy);
                     appendVal += `
                       <tr class="text-c">
-                        <td><input type="checkbox" value="1" name=""></td>
+                        <td><input type="checkbox" value="${admitbuy.admitbuyid}" name="aid"></td>
                         <td>${admitbuy.admitbuyid}</td>
                         <td>${admitbuy.clientName}</td>
                         <td>${admitbuy.sex}</td>
@@ -139,19 +140,27 @@ function Admitbuy_edit(){
     layer_show('认购修改','Admitbuy_edit.html','800','800');
 }
 /*认购-移除*/
-function Admitbuy_del(obj,id){
+function Admitbuy_del(obj){
+    var aid = [];
+    $.each($('input:checkbox:checked'),function(index,admitbuy){
+        aid.push(admitbuy.value);
+    });
+    console.log(aid);
 	layer.confirm('确认要移除吗？',function(index){
 		$.ajax({
-			type: 'POST',
-			url: '',
+			type: 'delete',
+			url: ADMITBUY_URL + "delete?aid="+aid,
 			dataType: 'json',
-			success: function(data){
-				$(obj).parents("tr").remove();
-				layer.msg('已移除!',{icon:1,time:1000});
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
+            success: function (result) {
+                console.log(result);
+                if(result==1){
+                    $(obj).parents("tr").remove();
+                    layer.msg('已移除!', {icon: 1, time: 1000});
+                }
+            },
+            error: function (result) {
+                console.log(result);
+            },
 		});		
 	});
 }

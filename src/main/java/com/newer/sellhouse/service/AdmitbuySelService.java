@@ -16,6 +16,13 @@ public class AdmitbuySelService {
 
     public List<AdmitbuySel> selectAll(@Param("clientName") String clientName){
         return admitbuySelMapper.queryParam(clientName);
+    }
 
+    public int delAdmitbuySel(Integer admitbuyid){
+        return admitbuySelMapper.delAdmitbuySel(admitbuyid);
+    }
+
+    public AdmitbuySel queryById(Integer admitbuyid){
+        return admitbuySelMapper.queryById(admitbuyid);
     }
 }

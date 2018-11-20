@@ -23,9 +23,37 @@ public class AdmitbuyController {
      * @return
      */
     @RequestMapping(value = "list",method = RequestMethod.GET)
-    public ResponseEntity<?> paramDoctors(@RequestParam(name = "clientName",required = false)String clientName){
+    public ResponseEntity<?> paramAdmitbuySel(@RequestParam(name = "clientName",required = false)String clientName){
         List<AdmitbuySel> admitbuySelList = admitbuySelService.selectAll(clientName);
 
         return new ResponseEntity<>(admitbuySelList,HttpStatus.OK);
     }
+
+    @RequestMapping(value = "delete",method = RequestMethod.DELETE)
+    public ResponseEntity<?> delAdmitbuy(@RequestParam(name = "aid",required = true) String aid) {
+        String[] id = aid.split(",");
+        System.out.println(id.length);
+        int ret = 0;
+        for(int i=0;i<id.length;i++){
+            int AdmitbuyId = Integer.parseInt(id[i]);
+            ret = admitbuySelService.delAdmitbuySel(AdmitbuyId);
+            if(i==id.length){
+                break;
+            }
+        }
+        if(ret==1){
+            return new ResponseEntity<>(ret,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "queryById",method = RequestMethod.GET)
+    public ResponseEntity<?>queryById(Integer admitbuyid){
+        AdmitbuySel admitbuySel = admitbuySelService.queryById(admitbuyid);
+        if(admitbuySel!=null){
+            return new ResponseEntity<>(admitbuySel,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
+
