@@ -32,7 +32,7 @@ public class CorsConfig {
         return  new CorsFilter(source);
     }
 
-   /* private void addAllowOrigin(CorsConfiguration corsConfiguration) {
+   /*private void addAllowOrigin(CorsConfiguration corsConfiguration) {
         for(String origin:originVals){
             corsConfiguration.addAllowedOrigin("http://"+origin);
             corsConfiguration.addAllowedOrigin("https://"+origin);

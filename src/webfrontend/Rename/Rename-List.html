@@ -31,25 +31,26 @@
 
     <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l">
         <a href="javascript:;" onclick="PressMoney()"
-            class="btn btn-danger radius">报废</a> <a href="javascript:;" onclick="HousesChange()"
-                                                    class="btn btn-danger radius">更名</a> </span> <span class="r">共有数据：<strong>88</strong> 条</span></div>
+           class="btn btn-danger radius">报废</a> <a href="javascript:;" onclick="HousesChange()"
+                                                   class="btn btn-danger radius">更名</a> </span> <span
+            class="r">共有数据：<strong>88</strong> 条</span></div>
     <div class="mt-20">
         <table class="table table-border table-bordered table-hover table-bg table-sort">
             <thead>
             <tr class="text-c">
                 <th width="25"><input type="checkbox" name="" value=""></th>
-                <th width="20">序号</th>
+                <th width="20">编号</th>
                 <th width="100">订单号</th>
                 <th width="100">更名日期</th>
-                <th width="20">老客户名称</th>
-                <th width="20">老客户登记日期</th>
+                <th width="30">老客户名称</th>
+                <th width="120">老客户身份证</th>
+                <th width="100">老客户手机号</th>
                 <th width="30">新客户名字</th>
-                <th width="130">新客户登记日期</th>
-                <th width="110"></th>
-                <th width="50"></th>
+                <th width="100">新客户身份证</th>
+                <th width="100">新客户手机号</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody">
 
             </tbody>
         </table>
@@ -67,6 +68,37 @@
 <script type="text/javascript" src="../lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
     $(function () {
+        $.ajax({
+            url: "http://127.0.0.1:9090/renames/selall",
+            dataType: "json",
+            contentType: "application/json;charset=uft-8",
+            type: "get",
+            success: function (data) {
+                console.log(data);
+                if (data) {
+                    var Valap = '';
+                    $.each(data, function (index, re) {
+                        Valap += `
+                <tr class="text-c">
+                <td><input type="checkbox" name="" value=""></td>
+                <td>${re.renameid}</td>
+                <td>${re.admitbuyid}</td>
+                <td>${re.renamedate}</td>
+                <td >${re.client1.clientname}</td>
+                <td>${re.client1.cardnumber}</td>
+                 <td>${re.client1.phone}</td>
+                <td>${re.client2.clientname}</td>
+                <td>${re.client2.cardnumber}</td>
+                <td>${re.client2.phone}</td>
+
+            </tr>`
+                    })
+                    $("#tbody").html(Valap);
+
+                }
+            }
+        })
+
         $('.table-sort').dataTable({
             "aaSorting": [[1, "desc"]],//默认第几个排序
             "bStateSave": true,//状态保存
@@ -77,10 +109,11 @@
         });
 
     });
-function HousesChange() {
-    location.href="../Rename/Rename-Change.html";
-    
-}
+
+    function HousesChange() {
+        location.href = "../Rename/Rename-Change.html";
+
+    }
 
     /*用户-添加*/
     function member_add(title, url, w, h) {
