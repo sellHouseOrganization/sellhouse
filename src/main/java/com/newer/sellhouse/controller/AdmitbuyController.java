@@ -1,7 +1,7 @@
 package com.newer.sellhouse.controller;
 
 import com.newer.sellhouse.domain.AdmitbuySel;
-import com.newer.sellhouse.service.AdmitbuyService;
+import com.newer.sellhouse.service.AdmitbuySelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("admitbuy")
 public class AdmitbuyController {
     @Autowired
-    private AdmitbuyService admitbuyService;
+    private AdmitbuySelService admitbuySelService;
     /**
      * 姓名查询
      * @param clientName
@@ -24,10 +24,8 @@ public class AdmitbuyController {
      */
     @RequestMapping(value = "list",method = RequestMethod.GET)
     public ResponseEntity<?> paramDoctors(@RequestParam(name = "clientName",required = false)String clientName){
-        List<AdmitbuySel> admitbuySelList = admitbuyService.selectAll(clientName);
-        if(admitbuySelList.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+        List<AdmitbuySel> admitbuySelList = admitbuySelService.selectAll(clientName);
+
         return new ResponseEntity<>(admitbuySelList,HttpStatus.OK);
     }
 }

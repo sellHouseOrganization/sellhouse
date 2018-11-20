@@ -9,7 +9,7 @@ public class Admitbuy implements Serializable {
 
     private Integer scheduleid;//预定ID
 
-    private Integer manageperson;//经办人员
+    private String manageperson;//经办人员
 
     private Integer adviserid;//置业顾问ID
 
@@ -71,11 +71,11 @@ public class Admitbuy implements Serializable {
         this.scheduleid = scheduleid;
     }
 
-    public Integer getManageperson() {
+    public String getManageperson() {
         return manageperson;
     }
 
-    public void setManageperson(Integer manageperson) {
+    public void setManageperson(String manageperson) {
         this.manageperson = manageperson;
     }
 
