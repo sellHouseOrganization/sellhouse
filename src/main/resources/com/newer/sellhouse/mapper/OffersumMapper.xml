@@ -45,4 +45,10 @@
     offerSumTime, offerperiods
     from offersum
   </select>
+  <select id="findbyadmitbuyid" resultMap="BaseResultMap">
+    select offerSumid, offerSumDeadline, admitBuyid, `sum`, offerSumName, offerSumEvent,
+     offerperiods,offerSumTime,alreadyPay
+    from offersum where admitBuyid=#{admitbuyid}
+  </select>
+
 </mapper>

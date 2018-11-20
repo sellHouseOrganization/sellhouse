@@ -1,6 +1,7 @@
 package com.newer.sellhouse.controller;
 
 import com.newer.sellhouse.domain.Admitbuy;
+import com.newer.sellhouse.domain.Offersum;
 import com.newer.sellhouse.service.OffersumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,4 +25,10 @@ public class OffersumController {
         List<Admitbuy> admitbuyList = offersumService.selectAdmitBuyByClientNameHouseName(clientName, houseName);
         return new ResponseEntity<>(admitbuyList,HttpStatus.OK);
     }
+    @RequestMapping(value = "findbyadmitbuyid",method = RequestMethod.GET)
+    public ResponseEntity<?> findbyadmitbuyid(@RequestParam(value = "admitbuyid")Integer admitbuyid){
+        List<Offersum> offersumList = offersumService.findbyadmitbuyid(admitbuyid);
+        return new ResponseEntity<>(offersumList,HttpStatus.OK);
+    }
+
 }

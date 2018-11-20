@@ -32,54 +32,45 @@
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 单元名称</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<div>
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-　　　　　
+					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:250px"></td>
 					缴款人　　
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
+					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:250px"></td>
 				</div>
 			</div>
 		</div>
-		<div class="row cl"　>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">票据类型</label>
-			<div class="formControls col-xs-8 col-sm-9"　> <span class="select-box" style="width: 200px">
-				<select class="select" size="1" name="city">
+			<div class="formControls col-xs-8 col-sm-9">
+				<select class="select-box" style="width: 250px;margin-right: -160px" name="city">
 					<option value="" selected>发票</option>
-					<option value="1">北京</option>
-					<option value="2">上海</option>
-					<option value="3">广州</option>
-				</select>
-				</span>　　　　　　	　　　　　　　　　　
-					收款日期　<input type="text" class="input-text" value="" placeholder="收款日期"　 id="" name="" style="width:350px">
+				</select>　	　　　　　　　　　　
+				收款日期<input type="text"  class="input-text" value="" placeholder="收款日期"　 id="" name="" style="width:250px;margin-left: 20px">
 			</div>
 		</div>
 		<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 款项名称</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<div>
-				<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-				　　　　　
+				<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:250px"></td>
 				开票日期　
-				<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
+				<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:250px"></td>
 			</div>
 		</div>
 	</div>
 		<div class="row cl"　>
 			<label class="form-label col-xs-4 col-sm-3">付款方式</label>
-			<div class="formControls col-xs-8 col-sm-9"　> <span class="select-box" style="width: 200px">
-				<select class="select" size="1" name="city">
+			<div class="formControls col-xs-8 col-sm-9"　> <span class="select-box" style="width: 250px;margin-right: -210px">
+				<select class="select"  name="city">
 					<option value="" selected>发票</option>
-					<option value="1">北京</option>
-					<option value="2">上海</option>
-					<option value="3">广州</option>
 				</select>
 				</span>　　　　　　　　　　　　　　　　　
-				金额　　<input type="text" class="input-text" value="" placeholder="金额"　 id="" name="" style="width:350px">
+				金额<input type="text" class="input-text" value="" placeholder="金额"　 id="" name="" style="width:250px;margin-left: 20px">
 			</div>
 		</div>
 
 
 		<div class="row cl">
-			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+			<div class="col-sm-offset-3" style="margin-left: 40%">
 				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
 				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;返回&nbsp;&nbsp;">
 			</div>
@@ -93,7 +84,7 @@
 <script type="text/javascript" src="../static/h-ui/js/H-ui.min.js"></script>
 <script type="text/javascript" src="../static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
 
-<!--请在下方写此页面业务相关的脚本--> 
+<!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="../lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="../lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="../lib/jquery.validation/1.14.0/validate-methods.js"></script>
@@ -105,7 +96,7 @@ $(function(){
 		radioClass: 'iradio-blue',
 		increaseArea: '20%'
 	});
-	
+
 	$("#form-member-add").validate({
 		rules:{
 			username:{
@@ -127,7 +118,7 @@ $(function(){
 			uploadfile:{
 				required:true,
 			},
-			
+
 		},
 		onkeyup:false,
 		focusCleanup:true,
@@ -140,7 +131,7 @@ $(function(){
 		}
 	});
 });
-</script> 
+</script>
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
