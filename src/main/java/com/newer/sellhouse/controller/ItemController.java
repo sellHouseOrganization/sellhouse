@@ -24,8 +24,8 @@ public class ItemController {
      * @return
      */
     @RequestMapping(value = "listAll",method = RequestMethod.GET)
-    public ResponseEntity<?>listAll(@RequestParam(name = "ItemName",required = false)String ItemName){
-        List<Item>ItemList = itemService.itemList(ItemName);
+    public ResponseEntity<?>listAll(@RequestParam(name = "itemname",required = false)String itemname){
+        List<Item>ItemList = itemService.itemList(itemname);
         if(ItemList.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

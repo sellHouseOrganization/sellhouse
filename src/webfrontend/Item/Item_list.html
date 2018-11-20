@@ -27,7 +27,7 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 项目管理 <span class="c-gray en">&gt;</span> 项目列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
     <div class="text-c"> 项目搜索：
-        <input type="text" class="input-text" style="width:250px" placeholder="输入项目名称" id="ItemName" name="ItemName">
+        <input type="text" class="input-text" style="width:250px" placeholder="输入项目名称" id="itemname" name="itemname">
         <button type="button" class="btn btn-success" id="" name="" onclick="query()"><i class="Hui-iconfont">&#xe665;</i> 搜项目</button>
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
@@ -77,8 +77,9 @@
 
     function query() {
         var data={
-            "ItemName":$("#ItemName").val()
+            "itemname":$("#itemname").val()
         };
+        alert(data);
         $.ajax({
             url:"http://127.0.0.1:9090/Item/listAll",
             type:"get",

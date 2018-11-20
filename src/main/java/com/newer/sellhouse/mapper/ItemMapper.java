@@ -17,7 +17,7 @@ public interface ItemMapper {
 
     Item selectByPrimaryKey(Integer itemid);
 
-    List<Item> selectAll(String ItemName);
+    List<Item> selectAll(@Param("itemname") String itemname);
 
     @Update("update item set itemName=#{itemname},itemCompanyName=#{itemcompanyname},itemLevel=#{itemlevel},notSettle=0 where itemid = #{itemid}")
     int updateByPrimaryKey(Item item);
