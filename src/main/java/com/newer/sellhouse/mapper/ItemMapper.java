@@ -4,9 +4,11 @@ import com.newer.sellhouse.domain.Item;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface ItemMapper {
     int deleteByPrimaryKey(Integer itemid);
 

@@ -44,16 +44,9 @@
     from admitbuy
     where admitBuyid = #{admitbuyid,jdbcType=INTEGER}
   </select>
-  <select id="selectAdmitBuyByClientNameHouseName" resultType="com.newer.sellhouse.domain.OffersumAdmitbuy">
-    select a.admitBuyid,h.houseName,c.clientName
-    from admitbuy a left join house h on  a.houseid=h.houseid left join client c on a.clientid=c.clientid
-    <where>
-      <if test="clientName!='' and clientName!=null">
-        and a.clientid=(select clientid from client where clientName like "%"#{clientName}"%")
-      </if>
-      <if test="houseName!='' and houseName!=null">
-        and a.houseid=(select houseid from house where houseName like "%"#{houseName}"%")
-      </if>
-    </where>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select admitBuyid, scheduleid, managePerson, adviserid, clientid, payWayid, houseid, 
+    firstPay, admitbuyDate
+    from admitbuy
   </select>
 </mapper>

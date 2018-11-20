@@ -88,6 +88,10 @@
             success:function (result) {
                 var appendVal = '';
                 $.each(result,function (index,item) {
+                    var noSettleChange = `<span class="label label-defaunt radius">未结案</span>`
+                    if (item.notsettle == 1) {
+                        noSettleChange = `<span class="label label-success radius">已结案</span>`
+                    }
                     console.log(item);
                     appendVal+=`
                     <tr class="text-c">
@@ -96,7 +100,7 @@
                     <td>${item.itemname}</td>
                     <td>${item.itemcompanyname}</td>
                     <td>${item.itemlevel}</td>
-                    <td class="td-status"><span class="label label-success radius">未结案</span></td>
+                    <td class="td-status">${noSettleChange}</td>
                     <td class="td-manage"><a href="javascript:;" onclick="Floors_add()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 添加楼栋</a></td>
                     </tr>
                     `
@@ -160,17 +164,29 @@
     /*项目-结案*/
     function StopSettle(obj){
         layer.confirm('确认要结案吗？',function(index){
-            //此处请求后台程序，下方是成功后的前台处理……
-
             var ckid=[];
             $.each($('input:checkbox:checked'),function(index,c){
                 ckid.push(c.value);
             });
-
-            $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_start(this,id)" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>');
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">已禁用</span>');
-            $(obj).remove();
-            layer.msg('已停用!',{icon: 5,time:1000});
+            console.log(ckid);
+            $.ajax({
+                type: 'PUT',
+                url:"http://127.0.0.1:9090/Item/changeSettle?itemid="+ckid,
+                data: {notSettle: 1},
+                dataType: 'json',
+                success: function (data) {
+                    if (data == 1) {
+                        $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已结案</span>');
+                        window.location.reload();
+                        layer.msg('已结案!', {icon: 6, time: 1000});
+                    } else if (data.result == -1) {
+                        layer.msg('该药品的类型处于停用状态,无法启用!', {icon: 2, time: 1500});
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
         });
     }
 </script>
