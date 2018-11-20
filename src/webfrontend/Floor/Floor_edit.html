@@ -26,12 +26,11 @@
 <body>
 <article class="page-container">
     <form method="post" class="form form-horizontal" id="form-drug-add">
-        <input type="hidden" name="notSettle" id="notSettle">
-        <input type="hidden" name="FloorID" id="FloorID">
+        <input type="hidden" name="floorid" id="floorid">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>项目编号:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" id="itemID" name="itemID" placeholder="项目编号" style="width: 225px;">
+                <input type="text" class="input-text" id="itemid" name="itemid" placeholder="项目编号" style="width: 225px;">
             </div>
         </div>
         <div class="row cl">
@@ -52,9 +51,10 @@
             <label class="form-label col-xs-4 col-sm-3">开盘批次：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 			<select class="select" name="batch" id="batch" size="1">
-				<option value="0">第一批</option>
-				<option value="1">第二批</option>
-				<option value="2">第三批</option>
+                <option value="0">请选择</option>
+				<option value="1">第一批</option>
+				<option value="2">第二批</option>
+				<option value="3">第三批</option>
 			</select>
 			</span> </div>
         </div>
@@ -62,17 +62,23 @@
             <label class="form-label col-xs-4 col-sm-3">楼栋结构：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 			<select class="select" name="structure" id="structure" size="1">
-				<option value="0">住宅</option>
-				<option value="1">商用</option>
+                <option value="0">请选择</option>
+				<option value="1">住宅</option>
+				<option value="2">商用</option>
 			</select>
 			</span> </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;保存&nbsp;&nbsp;">
+            </div>
         </div>
     </form>
 </article>
 
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="../js/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="../static/h-ui/js/H-ui.min.js"></script>
 <script type="text/javascript" src="../static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
 
@@ -94,15 +100,15 @@
         // 表单提交
         $("#form-drug-add").validate({
             rules: {
-                drname: {
+                floornumber: {
                     required: true,
                     minlength: 2,
                     maxlength: 16
                 },
-                drsum: {
+                tier: {
                     required: true,
                 },
-                drprice: {
+                batch: {
                     required: true,
                 },
             },
@@ -110,21 +116,20 @@
             focusCleanup: true,
             success: "valid",
             submitHandler: function (form) {
-                var drid = $("#drid").val();
-                alert(drid);
+                var floorid = $("#floorid").val();
+                alert(floorid);
                 var type;
                 //判断sno是否有值  有值就给隐藏框act赋值upd，没值就赋值add
-                if(drid != undefined && drid != ""&& drid != 0){
+                if(floorid != undefined && floorid != ""&& floorid != 0){
                     type="put";
                 }else{
                     type="post";
                 }
                 console.log(type);
                 $(form).ajaxSubmit({
-                    url: HOST_URL3 + "edit",
+                    url: "http://127.0.0.1:9090/Floor/edit",
                     type: type,
                     dataType: "json",
-                    headers: createAuthorizationTokenHeader(),
                     success: function (result) {
                         console.log("新增结果"+result);
                         if(result==1){
@@ -143,33 +148,23 @@
         query();
     })
     function query() {
-        var drid = localStorage.getItem("drid");
-        alert(drid);
-        if(drid != undefined && drid != ""&& drid != 0){
-            $("#drid").val(drid);
+        var itemid = localStorage.getItem("itemid");
+        $("#itemid").val(itemid);
+        var floorid = localStorage.getItem("floorid");
+        alert(floorid);
+        if(floorid != undefined && floorid != ""&& floorid != 0){
+            $("#floorid").val(floorid);
             $.ajax({
                 type:"get",
-                url: HOST_URL3+"queryById?drid="+drid,
-                headers: createAuthorizationTokenHeader(),
+                url: "http://127.0.0.1:9090/Floor/queryId?floorid="+floorid,
                 dataType:'json',
                 success:function (result) {
-                    $("#drstate").val(result.drstate)
-                    $("#drname").val(result.drname)
-                    $("#drsum").val(result.drsum)
+                    console.log(result);
+                    $("#floornumber").val(result.floornumber)
+                    $("#tier").val(result.tier)
+                    $("#batch").val(result.batch)
                     $("#drprice").val(result.drprice)
-                    $("#dyid").val(result.dyid)
-                }
-            })
-            // 用该药的科室
-            $.ajax({
-                url: HOST_URL3+"drugdepart?drid="+drid,
-                dataType: "json",
-                headers: createAuthorizationTokenHeader(),
-                success: function (data) {
-                    $.each(data, (i, item) => {
-                        console.log($("input[name=deid][value=" + item.deid + "]").prop("checked", true));
-                        $("input[name=deid][value=" + item.deid + "]").prop("checked", true)
-                    })
+                    $("#structure").val(result.structure)
                 }
             })
         }

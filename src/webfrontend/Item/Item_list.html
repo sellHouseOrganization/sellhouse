@@ -102,7 +102,7 @@
                     <td>${item.itemcompanyname}</td>
                     <td>${item.itemlevel}</td>
                     <td class="td-status">${noSettleChange}</td>
-                    <td class="td-manage"><a href="javascript:;" onclick="Floors_add()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 添加楼栋</a></td>
+                    <td class="td-manage"><a href="javascript:;" onclick="Floors_add(${item.itemid})" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 添加楼栋</a></td>
                     </tr>
                     `
                 })
@@ -126,7 +126,9 @@
         layer_show('添加项目','Item_edit.html','400','500');
     }
 
-    function Floors_add(){
+    function Floors_add(itemid){
+        localStorage.setItem("itemid",itemid);
+        localStorage.setItem("floorid",0);
         layer_show('添加楼栋','../Floor/Floor_edit.html','400','500');
     }
 

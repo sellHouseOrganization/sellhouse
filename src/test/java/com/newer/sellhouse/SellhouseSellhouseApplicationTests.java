@@ -1,6 +1,8 @@
 package com.newer.sellhouse;
 
+import com.newer.sellhouse.domain.Floor;
 import com.newer.sellhouse.domain.Item;
+import com.newer.sellhouse.mapper.FloorMapper;
 import com.newer.sellhouse.domain.Renames;
 import com.newer.sellhouse.mapper.ItemMapper;
 import com.newer.sellhouse.mapper.RenameMapper;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -18,6 +21,8 @@ public class SellhouseSellhouseApplicationTests {
 
     @Autowired
     private ItemMapper itemMapper;
+    @Autowired
+    private FloorMapper floorMapper;
     @Test
     public void contextLoads() {
         List<Item>items = itemMapper.selectAll("荣盛花语城");
@@ -61,5 +66,12 @@ public class SellhouseSellhouseApplicationTests {
         System.out.println(item);
     }
 
+    @Test
+    public void FloorList(){
+        List<Floor>list = floorMapper.selectAll();
+        for(Floor floor:list){
+            System.out.println(floor);
+        }
+    }
 
 }

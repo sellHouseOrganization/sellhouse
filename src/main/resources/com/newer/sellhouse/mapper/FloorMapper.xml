@@ -8,53 +8,40 @@
     <result column="structure" jdbcType="VARCHAR" property="structure" />
     <result column="tier" jdbcType="INTEGER" property="tier" />
     <result column="batch" jdbcType="VARCHAR" property="batch" />
-    <result column="notout" jdbcType="VARCHAR" property="notout" />
-    <result column="notapertura" jdbcType="VARCHAR" property="notapertura" />
-    <result column="
-creationdate" jdbcType="DATE" property="
-creationdate" />
+    <result column="notout" jdbcType="INTEGER" property="notout" />
+    <result column="notapertura" jdbcType="INTEGER" property="notapertura" />
+    <result column="createtime" jdbcType="DATE" property="createtime" />
+    <association property="item" javaType="com.newer.sellhouse.domain.Item" column="itemid">
+      <result column="itemName" jdbcType="VARCHAR"  property="itemname"></result>
+    </association>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from floor
     where floorid = #{floorid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.newer.sellhouse.domain.Floor">
-    insert into floor (floorid, itemid, floornumber, 
-      `structure`, tier, batch, 
-      notout, notapertura, 
-creationdate
-      )
-    values (#{floorid,jdbcType=INTEGER}, #{itemid,jdbcType=INTEGER}, #{floornumber,jdbcType=INTEGER}, 
+  <!--<insert id="insert" parameterType="com.newer.sellhouse.domain.Floor">
+    insert into floor (floorid, itemid, floornumber, `structure`, tier, batch, notout, notapertura,creationdate)values (#{floorid,jdbcType=INTEGER}, #{itemid,jdbcType=INTEGER}, #{floornumber,jdbcType=INTEGER},
       #{structure,jdbcType=VARCHAR}, #{tier,jdbcType=INTEGER}, #{batch,jdbcType=VARCHAR}, 
-      #{notout,jdbcType=VARCHAR}, #{notapertura,jdbcType=VARCHAR}, #{
-creationdate,jdbcType=DATE}
-      )
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Floor">
+      #{notout,jdbcType=VARCHAR}, #{notapertura,jdbcType=VARCHAR}, #{creationdate,jdbcType=DATE})
+  </insert>-->
+  <!--<update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Floor">
     update floor
     set itemid = #{itemid,jdbcType=INTEGER},
       floornumber = #{floornumber,jdbcType=INTEGER},
-      `structure` = #{structure,jdbcType=VARCHAR},
+     `structure` = #{structure,jdbcType=VARCHAR},
       tier = #{tier,jdbcType=INTEGER},
       batch = #{batch,jdbcType=VARCHAR},
       notout = #{notout,jdbcType=VARCHAR},
-      notapertura = #{notapertura,jdbcType=VARCHAR},
-      
-creationdate = #{
-creationdate,jdbcType=DATE}
-    where floorid = #{floorid,jdbcType=INTEGER}
-  </update>
+      notapertura = #{notapertura,jdbcType=VARCHAR},creationdate = #{creationdate,jdbcType=DATE}
+      where floorid = #{floorid,jdbcType=INTEGER}
+  </update>-->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select floorid, itemid, floornumber, `structure`, tier, batch, notout, notapertura, 
-    
-creationdate
-    from floor
+    select floorid, itemid, floornumber,structure, tier, batch, notout, notapertura,createtime from floor
     where floorid = #{floorid,jdbcType=INTEGER}
   </select>
+
   <select id="selectAll" resultMap="BaseResultMap">
-    select floorid, itemid, floornumber, `structure`, tier, batch, notout, notapertura, 
-    
-creationdate
-    from floor
+    select f.floorid,i.itemName,f.floornumber,f.structure,f.tier,f.batch,f.notout,f.notapertura,f.createtime
+    from item i INNER JOIN floor f on i.itemid=f.itemid
   </select>
 </mapper>
