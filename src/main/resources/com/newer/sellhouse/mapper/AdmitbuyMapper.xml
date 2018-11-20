@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.newer.sellhouse.mapper.AdmitbuyMapper">
-  <!--<resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Admitbuy">
+ <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Admitbuy">
     <id column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />
     <result column="scheduleid" jdbcType="INTEGER" property="scheduleid" />
     <result column="managePerson" jdbcType="INTEGER" property="manageperson" />
@@ -11,7 +11,7 @@
     <result column="houseid" jdbcType="INTEGER" property="houseid" />
     <result column="firstPay" jdbcType="DOUBLE" property="firstpay" />
     <result column="admitbuyDate" jdbcType="DATE" property="admitbuydate" />
-  </resultMap>-->
+  </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from admitbuy
     where admitBuyid = #{admitbuyid,jdbcType=INTEGER}
@@ -49,10 +49,10 @@
     from admitbuy a left join house h on  a.houseid=h.houseid left join client c on a.clientid=c.clientid
     <where>
       <if test="clientName!='' and clientName!=null">
-        and clientid=(select clientid from client where clientName=#{clientName})
+        and a.clientid=(select clientid from client where clientName like "%"#{clientName}"%")
       </if>
       <if test="houseName!='' and houseName!=null">
-        and houseid=(select houseid from house where houseName=#{houseName})
+        and a.houseid=(select houseid from house where houseName like "%"#{houseName}"%")
       </if>
     </where>
   </select>
