@@ -33,7 +33,7 @@
     <table class="table table-border table-bordered table-bg">
         <thead>
         <tr>
-            <th scope="col" colspan="9">客户信息</th>
+            <th scope="col" colspan="19">客户信息</th>
         </tr>
         <tr class="text-c">
             <th ><input type="checkbox" name="" value=""></th>
@@ -79,7 +79,8 @@
             <td>2018-10-11</td>
             <br class="td-manage">
             <td>
-                <a href="javascript:;" onclick="Floors_add('添加楼栋','admin-add.html','800','500')" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 删除信息</a>
+                <a href="javascript:;" onclick="admin_del()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 删除信息</a><p></p>
+                <a href="javascript:;" onclick="Item_upd()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6df;</i> 修改信息</a>
             </td>
         </tr>
         </tbody>
@@ -114,7 +115,7 @@
 
     function admin_del(){
         var chexBV = $("#ckID").val();
-        alert("删除ID"+chexBV);
+        //alert("删除ID"+chexBV);
         layer.confirm('确认要删除吗？',function(index){
             $.ajax({
                 type: 'POST',
@@ -133,7 +134,7 @@
 
     /*管理员-编辑*/
     function Item_upd(){
-        layer_show('修改项目','Item_edit.html','400','500');
+        layer_show('修改信息','Client_upd.html','750','550');
     }
     /*管理员-停用*/
     function admin_stop(obj,id){
