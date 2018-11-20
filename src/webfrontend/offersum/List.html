@@ -31,7 +31,7 @@
     <div class="text-c">
         姓名：<input type="text" class="input-text" style="width:250px" placeholder="输入姓名" id="clientName" name="clientName">
         房源名称：<input type="text" class="input-text" style="width:250px" placeholder="输入房源名称" id="houseName" name="houseName">
-        <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+        <button type="submit" class="btn btn-success" onclick="selectAdmitBuyByClientNameHouseName()"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
         <table class="table table-border table-bordered table-hover table-bg table-sort" id="adtable" >
             <thead>
             <tr class="text-c">
@@ -141,6 +141,8 @@
                         "lengthMenu": [3],
                         "lengthChange": false,
                         "info": false,
+                        "destroy":true,
+                        "retrieve":true
                     });
                 }
             })

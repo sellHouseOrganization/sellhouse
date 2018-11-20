@@ -4,9 +4,11 @@ import com.newer.sellhouse.domain.Item;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface ItemMapper {
     int deleteByPrimaryKey(Integer itemid);
 
@@ -15,7 +17,8 @@ public interface ItemMapper {
 
     Item selectByPrimaryKey(Integer itemid);
 
-    List<Item> selectAll(String ItemName);
+    //查询全部
+    List<Item> selectAll(@Param("itemname") String itemname);
 
     @Update("update item set itemName=#{itemname},itemCompanyName=#{itemcompanyname},itemLevel=#{itemlevel},notSettle=0 where itemid = #{itemid}")
     int updateByPrimaryKey(Item item);

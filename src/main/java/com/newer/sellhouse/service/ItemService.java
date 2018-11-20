@@ -12,8 +12,8 @@ public class ItemService {
     @Autowired
     private ItemMapper itemMapper;
 
-    public List<Item> itemList(String itemName){
-        return itemMapper.selectAll(itemName);
+    public List<Item> itemList(String itemname){
+        return itemMapper.selectAll(itemname);
     }
 
     public int InsertItem(Item item){

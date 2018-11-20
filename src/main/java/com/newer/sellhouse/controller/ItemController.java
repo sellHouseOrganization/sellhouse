@@ -24,8 +24,8 @@ public class ItemController {
      * @return
      */
     @RequestMapping(value = "listAll",method = RequestMethod.GET)
-    public ResponseEntity<?>listAll(@RequestParam(name = "ItemName",required = false)String ItemName){
-        List<Item>ItemList = itemService.itemList(ItemName);
+    public ResponseEntity<?>listAll(@RequestParam(name = "itemname",required = false)String itemname){
+        List<Item>ItemList = itemService.itemList(itemname);
         if(ItemList.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -78,9 +78,17 @@ public class ItemController {
     }
 
     @RequestMapping(value = "changeSettle",method = RequestMethod.PUT)
-    public ResponseEntity<?>changeSettle(@RequestParam(name = "itemid")Integer itemid,
+    public ResponseEntity<?>changeSettle(@RequestParam(name = "itemid")String itemid,
                                          @RequestParam(name = "notSettle")Integer notSettle){
-        int ret = itemService.changeSettle(itemid, notSettle);
+        String[]itemid1 = itemid.split(",");
+        int ret=0;
+        for(int i=0;i<itemid1.length;i++){
+            int ItemId = Integer.parseInt(itemid1[i]);
+            ret = itemService.changeSettle(ItemId, notSettle);
+            if(i==itemid1.length){
+                break;
+            }
+        }
         if(ret==1){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
