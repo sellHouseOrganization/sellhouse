@@ -25,7 +25,8 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 认购管理 <span class="c-gray en">&gt;</span> 认购列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		<input type="text" class="input-text" style="width:250px" placeholder="" id="" name="">
+		<input type="text" class="input-text" style="width:250px" placeholder="" id="clientName" name="clientName">
+
 		<button type="submit" class="btn btn-success radius" id="" name="" onclick="Admitbuy_query()"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
@@ -38,7 +39,7 @@
 			<th scope="col" colspan="9">认购列表</th>
 		</tr>
 			<tr class="text-c">
-				<th width="25"><input type="checkbox" name="" value=""></th>
+				<th width="25"><input type="checkbox" name="aid" value="0"></th>
 				<th width="40">认购ID</th>
 				<th width="90">客户姓名</th>
 				<th width="40">性别</th>
@@ -71,7 +72,7 @@
 <script type="text/javascript" src="../lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="../lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="../lib/laypage/1.2/laypage.js"></script>
-<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.js"></script>
+<script src="../js/sellHouse.js"></script>
 <script type="text/javascript">
     $(function () {
         $('.table-sort').dataTable({
@@ -82,33 +83,84 @@
                 {"orderable": false, "aTargets": [0, 8, 9]}// 制定列不参与排序
             ]
         });
-    });
 
+    });
     $(function () {
         Admitbuy_query();
     });
     function Admitbuy_query() {
-		
+        var data = {
+            "clientName": $("#clientName").val()
+        };
+        $.ajax({
+            url: ADMITBUY_URL + "list",
+            type: "get",
+            data: data,
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                console.log(result);
+                var appendVal = '';
+                $.each(result, function (index, admitbuy) {
+                    console.log(index);
+                    console.log(admitbuy);
+                    appendVal += `
+                      <tr class="text-c">
+                        <td><input type="checkbox" value="${admitbuy.admitbuyid}" name="aid"></td>
+                        <td>${admitbuy.admitbuyid}</td>
+                        <td>${admitbuy.clientName}</td>
+                        <td>${admitbuy.sex}</td>
+                        <td>${admitbuy.cardnumber}</td>
+                        <td>${admitbuy.phone}</td>
+                        <td>${admitbuy.fromtmoney}</td>
+                        <td>${admitbuy.firstpay}</td>
+                        <td>${admitbuy.manageperson}</td>
+                        <td>${admitbuy.sumprices}</td>
+                        <td>${admitbuy.adviserName}</td>
+                        <td>${admitbuy.admitbuydate}</td>
+                        <td>${admitbuy.payWayName}</td>
+                        <td>${admitbuy.houseName}</td>
+						<td>${admitbuy.mustprices}</td>
+                        <td class="td-manage">
+                         <a title="编辑" href="javascript:;" onclick="Admitbuy_edit(${admitbuy.admitbuyid})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                         <a title="删除" href="javascript:;" onclick="Admitbuy_del(this,${admitbuy.admitbuyid})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                      </tr>
+                        `;
+                })
+                $("#tbody1").html(appendVal);
+            }
+        })
     }
 /*认购-添加*/
 function Admitbuy_add(){
 	layer_show('添加认购','Admitbuy_edit.html','800','800');
 }
-
+/*认购-编辑*/
+function Admitbuy_edit(){
+    layer_show('认购修改','Admitbuy_edit.html','800','800');
+}
 /*认购-移除*/
-function Admitbuy_del(obj,id){
+function Admitbuy_del(obj){
+    var aid = [];
+    $.each($('input:checkbox:checked'),function(index,admitbuy){
+        aid.push(admitbuy.value);
+    });
+    console.log(aid);
 	layer.confirm('确认要移除吗？',function(index){
 		$.ajax({
-			type: 'POST',
-			url: '',
+			type: 'delete',
+			url: ADMITBUY_URL + "delete?aid="+aid,
 			dataType: 'json',
-			success: function(data){
-				$(obj).parents("tr").remove();
-				layer.msg('已移除!',{icon:1,time:1000});
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
+            success: function (result) {
+                console.log(result);
+                if(result==1){
+                    $(obj).parents("tr").remove();
+                    layer.msg('已移除!', {icon: 1, time: 1000});
+                }
+            },
+            error: function (result) {
+                console.log(result);
+            },
 		});		
 	});
 }

@@ -1,11 +1,12 @@
 package com.newer.sellhouse.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Client implements Serializable {
     private Integer clientid;
 
-    private String clientname;
+    private String clientName;
 
     private String sex;
 
@@ -14,6 +15,8 @@ public class Client implements Serializable {
     private String age;
 
     private String phone;
+
+    private List<Clientcontactcareful> clientcontactcarefulList;
 
     private static final long serialVersionUID = 1L;
 
@@ -25,12 +28,12 @@ public class Client implements Serializable {
         this.clientid = clientid;
     }
 
-    public String getClientname() {
-        return clientname;
+    public String getClientName() {
+        return clientName;
     }
 
-    public void setClientname(String clientname) {
-        this.clientname = clientname == null ? null : clientname.trim();
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
     public String getSex() {
@@ -38,7 +41,7 @@ public class Client implements Serializable {
     }
 
     public void setSex(String sex) {
-        this.sex = sex == null ? null : sex.trim();
+        this.sex = sex;
     }
 
     public String getCardnumber() {
@@ -46,7 +49,7 @@ public class Client implements Serializable {
     }
 
     public void setCardnumber(String cardnumber) {
-        this.cardnumber = cardnumber == null ? null : cardnumber.trim();
+        this.cardnumber = cardnumber;
     }
 
     public String getAge() {
@@ -54,7 +57,7 @@ public class Client implements Serializable {
     }
 
     public void setAge(String age) {
-        this.age = age == null ? null : age.trim();
+        this.age = age;
     }
 
     public String getPhone() {
@@ -62,23 +65,27 @@ public class Client implements Serializable {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+        this.phone = phone;
+    }
+
+    public List<Clientcontactcareful> getClientcontactcarefulList() {
+        return clientcontactcarefulList;
+    }
+
+    public void setClientcontactcarefulList(List<Clientcontactcareful> clientcontactcarefulList) {
+        this.clientcontactcarefulList = clientcontactcarefulList;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", clientid=").append(clientid);
-        sb.append(", clientname=").append(clientname);
-        sb.append(", sex=").append(sex);
-        sb.append(", cardnumber=").append(cardnumber);
-        sb.append(", age=").append(age);
-        sb.append(", phone=").append(phone);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return "Client{" +
+                "clientid=" + clientid +
+                ", clientName='" + clientName + '\'' +
+                ", sex='" + sex + '\'' +
+                ", cardnumber='" + cardnumber + '\'' +
+                ", age='" + age + '\'' +
+                ", phone='" + phone + '\'' +
+                ", clientcontactcarefulList=" + clientcontactcarefulList +
+                '}';
     }
 }

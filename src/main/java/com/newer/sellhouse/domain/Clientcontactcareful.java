@@ -4,64 +4,64 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Clientcontactcareful implements Serializable {
-    private Integer clientcontactcarefulid;
+    private Integer clientContactCarefulid;
 
-    private String purposedegree;
+    private String purposeDegree;
 
-    private Date interviewdate;
+    private Date interviewDate;
 
-    private String messageaddress;
+    private String messageAddress;
 
     private String email;
 
-    private String housemortgageloan;
+    private String houseMortgageLoan;
 
     private String aim;
 
-    private String projectprice;
+    private String projectPrice;
 
-    private String needarea;
+    private String needArea;
 
-    private String payway;
+    private String payWay;
 
-    private String considerfactor;
+    private String considerFactor;
 
-    private String contactway;
+    private String contactWay;
 
     private Integer clientid;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getClientcontactcarefulid() {
-        return clientcontactcarefulid;
+    public Integer getClientContactCarefulid() {
+        return clientContactCarefulid;
     }
 
-    public void setClientcontactcarefulid(Integer clientcontactcarefulid) {
-        this.clientcontactcarefulid = clientcontactcarefulid;
+    public void setClientContactCarefulid(Integer clientContactCarefulid) {
+        this.clientContactCarefulid = clientContactCarefulid;
     }
 
-    public String getPurposedegree() {
-        return purposedegree;
+    public String getPurposeDegree() {
+        return purposeDegree;
     }
 
-    public void setPurposedegree(String purposedegree) {
-        this.purposedegree = purposedegree == null ? null : purposedegree.trim();
+    public void setPurposeDegree(String purposeDegree) {
+        this.purposeDegree = purposeDegree;
     }
 
-    public Date getInterviewdate() {
-        return interviewdate;
+    public Date getInterviewDate() {
+        return interviewDate;
     }
 
-    public void setInterviewdate(Date interviewdate) {
-        this.interviewdate = interviewdate;
+    public void setInterviewDate(Date interviewDate) {
+        this.interviewDate = interviewDate;
     }
 
-    public String getMessageaddress() {
-        return messageaddress;
+    public String getMessageAddress() {
+        return messageAddress;
     }
 
-    public void setMessageaddress(String messageaddress) {
-        this.messageaddress = messageaddress == null ? null : messageaddress.trim();
+    public void setMessageAddress(String messageAddress) {
+        this.messageAddress = messageAddress;
     }
 
     public String getEmail() {
@@ -69,15 +69,15 @@ public class Clientcontactcareful implements Serializable {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
-    public String getHousemortgageloan() {
-        return housemortgageloan;
+    public String getHouseMortgageLoan() {
+        return houseMortgageLoan;
     }
 
-    public void setHousemortgageloan(String housemortgageloan) {
-        this.housemortgageloan = housemortgageloan == null ? null : housemortgageloan.trim();
+    public void setHouseMortgageLoan(String houseMortgageLoan) {
+        this.houseMortgageLoan = houseMortgageLoan;
     }
 
     public String getAim() {
@@ -85,47 +85,47 @@ public class Clientcontactcareful implements Serializable {
     }
 
     public void setAim(String aim) {
-        this.aim = aim == null ? null : aim.trim();
+        this.aim = aim;
     }
 
-    public String getProjectprice() {
-        return projectprice;
+    public String getProjectPrice() {
+        return projectPrice;
     }
 
-    public void setProjectprice(String projectprice) {
-        this.projectprice = projectprice == null ? null : projectprice.trim();
+    public void setProjectPrice(String projectPrice) {
+        this.projectPrice = projectPrice;
     }
 
-    public String getNeedarea() {
-        return needarea;
+    public String getNeedArea() {
+        return needArea;
     }
 
-    public void setNeedarea(String needarea) {
-        this.needarea = needarea == null ? null : needarea.trim();
+    public void setNeedArea(String needArea) {
+        this.needArea = needArea;
     }
 
-    public String getPayway() {
-        return payway;
+    public String getPayWay() {
+        return payWay;
     }
 
-    public void setPayway(String payway) {
-        this.payway = payway == null ? null : payway.trim();
+    public void setPayWay(String payWay) {
+        this.payWay = payWay;
     }
 
-    public String getConsiderfactor() {
-        return considerfactor;
+    public String getConsiderFactor() {
+        return considerFactor;
     }
 
-    public void setConsiderfactor(String considerfactor) {
-        this.considerfactor = considerfactor == null ? null : considerfactor.trim();
+    public void setConsiderFactor(String considerFactor) {
+        this.considerFactor = considerFactor;
     }
 
-    public String getContactway() {
-        return contactway;
+    public String getContactWay() {
+        return contactWay;
     }
 
-    public void setContactway(String contactway) {
-        this.contactway = contactway == null ? null : contactway.trim();
+    public void setContactWay(String contactWay) {
+        this.contactWay = contactWay;
     }
 
     public Integer getClientid() {
@@ -138,25 +138,20 @@ public class Clientcontactcareful implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", clientcontactcarefulid=").append(clientcontactcarefulid);
-        sb.append(", purposedegree=").append(purposedegree);
-        sb.append(", interviewdate=").append(interviewdate);
-        sb.append(", messageaddress=").append(messageaddress);
-        sb.append(", email=").append(email);
-        sb.append(", housemortgageloan=").append(housemortgageloan);
-        sb.append(", aim=").append(aim);
-        sb.append(", projectprice=").append(projectprice);
-        sb.append(", needarea=").append(needarea);
-        sb.append(", payway=").append(payway);
-        sb.append(", considerfactor=").append(considerfactor);
-        sb.append(", contactway=").append(contactway);
-        sb.append(", clientid=").append(clientid);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return "Clientcontactcareful{" +
+                "clientContactCarefulid=" + clientContactCarefulid +
+                ", purposeDegree='" + purposeDegree + '\'' +
+                ", interviewDate=" + interviewDate +
+                ", messageAddress='" + messageAddress + '\'' +
+                ", email='" + email + '\'' +
+                ", houseMortgageLoan='" + houseMortgageLoan + '\'' +
+                ", aim='" + aim + '\'' +
+                ", projectPrice='" + projectPrice + '\'' +
+                ", needArea='" + needArea + '\'' +
+                ", payWay='" + payWay + '\'' +
+                ", considerFactor='" + considerFactor + '\'' +
+                ", contactWay='" + contactWay + '\'' +
+                ", clientid=" + clientid +
+                '}';
     }
 }

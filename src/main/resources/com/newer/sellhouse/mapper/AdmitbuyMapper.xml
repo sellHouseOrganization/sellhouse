@@ -49,11 +49,15 @@
     from admitbuy a left join house h on  a.houseid=h.houseid left join client c on a.clientid=c.clientid
     <where>
       <if test="clientName!='' and clientName!=null">
-        and a.clientid=(select clientid from client where clientName like "%"#{clientName}"%")
+        and clientid=(select clientid from client where clientName=#{clientName})
       </if>
       <if test="houseName!='' and houseName!=null">
-        and a.houseid=(select houseid from house where houseName like "%"#{houseName}"%")
+        and houseid=(select houseid from house where houseName=#{houseName})
       </if>
     </where>
   </select>
+
+  <update id="updRename" parameterType="com.newer.sellhouse.domain.Admitbuy">
+        update admitbuy  set clientid=#{clientid} where admitbuyid=#{admitbuyid}
+    </update>
 </mapper>

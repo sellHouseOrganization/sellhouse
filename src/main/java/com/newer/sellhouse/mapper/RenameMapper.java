@@ -1,16 +1,20 @@
 package com.newer.sellhouse.mapper;
 
-import com.newer.sellhouse.domain.Rename;
+import com.newer.sellhouse.domain.Renames;
 import java.util.List;
 
 public interface RenameMapper {
     int deleteByPrimaryKey(Integer renameid);
 
-    int insert(Rename record);
+    int insert(Renames record);
 
-    Rename selectByPrimaryKey(Integer renameid);
+    Renames selectByPrimaryKey(Integer renameid);
 
-    List<Rename> selectAll();
+    List<Renames> selectAll();
 
-    int updateByPrimaryKey(Rename record);
+    int updateByPrimaryKey(Renames record);
+
+    List<Renames> selAll();
+
+
 }

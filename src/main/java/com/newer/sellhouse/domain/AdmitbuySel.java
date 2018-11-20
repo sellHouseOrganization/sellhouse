@@ -8,7 +8,7 @@ public class AdmitbuySel implements Serializable {
 
     private Integer admitbuyid;//认购ID
 
-    private Integer manageperson;//经办人员
+    private String manageperson;//经办人员
 
     private Double firstpay;//首付
 
@@ -42,11 +42,11 @@ public class AdmitbuySel implements Serializable {
         this.admitbuyid = admitbuyid;
     }
 
-    public Integer getManageperson() {
+    public String getManageperson() {
         return manageperson;
     }
 
-    public void setManageperson(Integer manageperson) {
+    public void setManageperson(String manageperson) {
         this.manageperson = manageperson;
     }
 
