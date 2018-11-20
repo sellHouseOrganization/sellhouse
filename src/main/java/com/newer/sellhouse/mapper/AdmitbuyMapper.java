@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.newer.sellhouse.domain.Renames;
+
 import java.util.List;
 @Repository
 public interface AdmitbuyMapper {
@@ -18,4 +20,12 @@ public interface AdmitbuyMapper {
                                                        @Param("houseName")String houseName);
 
     int updateByPrimaryKey(Admitbuy record);
+
+    /***
+     * 更名操作
+     * @param admitbuy
+     * @return
+     */
+    int updRename(Admitbuy admitbuy);
+
 }
