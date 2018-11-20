@@ -17,6 +17,7 @@ public interface ItemMapper {
 
     Item selectByPrimaryKey(Integer itemid);
 
+    //查询全部
     List<Item> selectAll(@Param("itemname") String itemname);
 
     @Update("update item set itemName=#{itemname},itemCompanyName=#{itemcompanyname},itemLevel=#{itemlevel},notSettle=0 where itemid = #{itemid}")
