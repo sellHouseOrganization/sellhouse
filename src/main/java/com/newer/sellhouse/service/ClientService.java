@@ -4,6 +4,7 @@ import com.newer.sellhouse.domain.Client;
 import com.newer.sellhouse.domain.Clientcontactcareful;
 import com.newer.sellhouse.mapper.ClientMapper;
 import com.newer.sellhouse.mapper.ClientcontactcarefulMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +26,8 @@ public class ClientService {
      * 查询所有信息
      * @return
      */
-    public List<Clientcontactcareful> findAll(){
-        return clientcontactcarefulMapper.selectAll();
+    public List<Clientcontactcareful> findAll(@Param("cardnumber")String cardnumber){
+        return clientcontactcarefulMapper.selectAll(cardnumber);
     }
 
     /**
