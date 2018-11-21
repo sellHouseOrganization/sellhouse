@@ -15,5 +15,4 @@ public interface ClientcontactcarefulMapper {
 
     List<Clientcontactcareful> selectAll(@Param("cardnumber")String cardnumber);
 
-    int updateByPrimaryKey(Clientcontactcareful record);
 }
