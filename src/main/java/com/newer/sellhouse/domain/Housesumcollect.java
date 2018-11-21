@@ -1,5 +1,8 @@
 package com.newer.sellhouse.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,13 +13,21 @@ public class Housesumcollect implements Serializable {
 
     private String bill;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date collectiondate;
 
     private Double money;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date billdate;
 
     private String payway;
+
+    private Integer offertime;
+
+    private String payer;
 
     private static final long serialVersionUID = 1L;
 
@@ -74,6 +85,22 @@ public class Housesumcollect implements Serializable {
 
     public void setPayway(String payway) {
         this.payway = payway == null ? null : payway.trim();
+    }
+
+    public Integer getOffertime() {
+        return offertime;
+    }
+
+    public void setOffertime(Integer offertime) {
+        this.offertime = offertime;
+    }
+
+    public String getPayer() {
+        return payer;
+    }
+
+    public void setPayer(String payer) {
+        this.payer = payer;
     }
 
     @Override

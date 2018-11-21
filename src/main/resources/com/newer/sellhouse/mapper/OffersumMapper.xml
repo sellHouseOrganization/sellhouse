@@ -50,5 +50,7 @@
      offerperiods,offerSumTime,alreadyPay
     from offersum where admitBuyid=#{admitbuyid}
   </select>
-
+  <update id="updatealreadypayaddone">
+    update offersum set alreadyPay=alreadyPay+1 where offerSumid=#{offersumid}
+  </update>
 </mapper>

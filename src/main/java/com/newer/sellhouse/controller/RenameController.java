@@ -46,7 +46,7 @@ public class RenameController {
         int ret=0;
         Admitbuy admitbuy=new Admitbuy();
         if(oldclient!=null&&newclient!=null){
-            if(oldclient.getClientname().equals(oldname)&&oldclient.getCardnumber().equals(oldcardnumber)&&newclient.getClientname().equals(newname)&&newclient.getCardnumber().equals(newcardnumber)) {
+            if(oldclient.getClientName().equals(oldname)&&oldclient.getCardnumber().equals(oldcardnumber)&&newclient.getClientName().equals(newname)&&newclient.getCardnumber().equals(newcardnumber)) {
                 admitbuy.setAdmitbuyid(admitbuyid);
                 admitbuy.setClientid(newclientid);
                 ret=renameService.updRename(admitbuy,oldclientid);

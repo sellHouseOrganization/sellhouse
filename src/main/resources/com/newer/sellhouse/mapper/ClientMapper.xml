@@ -13,14 +13,7 @@
     delete from client
     where clientid = #{clientid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.newer.sellhouse.domain.Client">
-    insert into client (clientid, clientName, sex, 
-      cardnumber, age, phone
-      )
-    values (#{clientid,jdbcType=INTEGER}, #{clientname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
-      #{cardnumber,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}
-      )
-  </insert>
+
   <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Client">
     update client
     set clientName = #{clientname,jdbcType=VARCHAR},

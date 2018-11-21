@@ -36,6 +36,6 @@ public class ClientController {
         }
         return new ResponseEntity<>(clientList,HttpStatus.OK);
     }
-    public ResponseEntity<> delClient(@RequestParam(name=""))
+    //public ResponseEntity<> delClient(@RequestParam(name=""))
 
 }
