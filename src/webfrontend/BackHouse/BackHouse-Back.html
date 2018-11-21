@@ -32,68 +32,23 @@
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 订单号</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<div>
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
+					<td><input type="text" class="input-text" value="" placeholder="" id="admitbuyid" name="admitbuyid" style="width:350px"></td>
 　　　　　
-					单元名称　
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
+					客户姓名　
+					<td><input type="text" class="input-text" value="" placeholder="" id="clientname" name="clientname" style="width:350px"></td>
 				</div>
 			</div>
 		</div>
+
+
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 因素权重</label>
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 退还百分比</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<div>
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-					　　　　　
-					预约金　
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-				</div>
-			</div>
-		</div>
-		<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 预约单价</label>
-		<div class="formControls col-xs-8 col-sm-9">
-			<div>
-				<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-				　　　　　
-				预约总价　
-				<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-			</div>
-		</div>
-	</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 认购日期</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<div>
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-					　　　　　预定签约日期
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-				</div>
-			</div>
-		</div>
-		<div class="row cl"　>
-			<label class="form-label col-xs-4 col-sm-3">面积</label>
-			<div class="formControls col-xs-8 col-sm-9"　>
-				<input type="text" class="input-text" value="" placeholder="收款日期"　 id="" name="" style="width:350px">　　　　　
-				付款方式　
-				<span class="select-box" style="width: 200px">
-				<select class="select" size="1" name="city">
-					<option value="" selected>分期</option>
-					<option value="1">北京</option>
-					<option value="2">上海</option>
-					<option value="3">广州</option>
-				</select>
-				</span>　　　　　　　　　　　　　　　　
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 折扣%</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<div>
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-					　　　　　
-					成交总价　
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
+					<td><input type="text" class="input-text" value="70" placeholder="" id="discount" name="discount" style="width:350px"></td>　　　　　
+
+					客户身份证　<td><input type="text" class="input-text" value="" placeholder="" id="cardnumber" name="cardnumber" style="width:350px"></td>
+
 				</div>
 			</div>
 		</div>
@@ -101,10 +56,9 @@
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 已收取金额</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<div>
-					<td><input type="text" class="input-text" value="" placeholder="0" id="" name="" style="width:350px"></td>
+					<td><input type="text" class="input-text" value="" placeholder="0" id="takesum" name="takesum" style="width:350px"></td>
 					　　　　　
-					收取费用　
-					<td><input type="text" class="input-text" value="" placeholder="收取费用" id="" name="" style="width:350px"></td>
+					　
 				</div>
 			</div>
 		</div>
@@ -112,16 +66,16 @@
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 退还金额</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<div>
-					<td><input type="text" class="input-text" value="" placeholder="0" id="" name="" style="width:350px"></td>
+			<td><input type="text" class="input-text" value="" placeholder="0" id="refundsum" name="refundsum" style="width:350px"></td>
 					　　　　　
 					退款说明　
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px;height: 80px"></td>
+					<td><input type="text" class="input-text" value="" placeholder="" id="refundexplain" name="refundexplain" style="width:350px;height: 80px"></td>
 				</div>
 			</div>
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+				<input class="btn btn-primary radius" id="comit" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
 				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;返回&nbsp;&nbsp;">
 			</div>
 		</div>
@@ -141,6 +95,43 @@
 <script type="text/javascript" src="../lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript">
 $(function(){
+    $("#comit").click(function () {
+        alert(2222222);
+        $.ajax({
+            url: "http://127.0.0.1:9090/refund/ins",
+            dataType: "json",
+            data:{
+                "admitbuyid":$("#admitbuyid").val(),
+                "takesum":$("#takesum").val(),
+                "refundsum":$("#refundsum").val(),
+                "refundexplain":$("#refundexplain").val(),
+                "clientname":$("#clientname").val(),
+                "cardnumber":$("#cardnumber").val()
+
+            },
+            contentType: "application/json;charset=uft-8",
+            type: "get",
+            success: function (data) {
+                if(data){
+                    alert("退房成功");
+                    location.href="BackHouse-List.html";
+                }
+
+            }
+        })
+    })
+
+
+
+
+
+
+
+
+
+
+
+
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',

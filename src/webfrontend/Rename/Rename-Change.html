@@ -54,10 +54,11 @@
 			<div class="formControls col-xs-8 col-sm-9">
 				<div>
 					<td><input type="text" class="input-text" value="" placeholder="" id="oldname" name="oldname" style="width:200px"></td>
-					　　
-					编号　
-					<td><input type="text" class="input-text" value="" placeholder="" id="oldclientid" name="oldclientid" style="width:250px"></td>　　
-					电话　
+					　　　
+					　编号　
+					<td><input type="text" class="input-text" value="" placeholder="" id="oldclientid" name="oldclientid" style="width:250px"></td>　
+
+					　电话　
 					<td><input type="text" class="input-text" value="" placeholder="" id="oldphone" name="oldphone" style="width:200px"></td>
 				</div>
 			</div>
@@ -68,7 +69,7 @@
 				<div>
 					<td><input type="text" class="input-text" value="" placeholder="" id="oldcardnumber" name="oldcardnumber" style="width:200px"></td>
 					　　
-					地址　
+					　　地址　
 					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:250px"></td>　　
 					邮箱　
 					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:200px"></td>
@@ -90,9 +91,9 @@
 				<div>
 					<td><input type="text" class="input-text" value="" placeholder="" id="newname" name="newname" style="width:200px"></td>
 					　　
-					编号　
+				　	编号　
 					<td><input type="text" class="input-text" value="" placeholder="" id="newclientid" name="newclientid" style="width:250px"></td>　　
-					电话　
+			　	电话　
 					<td><input type="text" class="input-text" value="" placeholder="" id="newphone" name="newphone" style="width:200px"></td>
 				</div>
 			</div>
@@ -103,9 +104,9 @@
 				<div>
 					<td><input type="text" class="input-text" value="" placeholder="" id="newcardnumber" name="newcardnumber" style="width:200px"></td>
 					　　
-					地址　
+				　	地址　
 					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:250px"></td>　　
-					邮箱　
+				　	邮箱　
 					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:200px"></td>
 				</div>
 			</div>
@@ -153,8 +154,9 @@ $(function(){
             type: "get",
             success: function (data) {
                 if(data){
-                    alert(data);
-				}
+                    alert("更名成功");
+                location.href="Rename-List.html";
+            }
 
             }
         })
