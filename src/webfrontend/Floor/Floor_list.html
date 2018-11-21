@@ -27,22 +27,22 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 楼栋管理 <span class="c-gray en">&gt;</span> 项目列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
     <div class="text-c"> 楼栋搜索：
-        <input type="text" class="input-text" style="width:250px" placeholder="输入楼栋名称" id="" name="">
-        <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜楼栋</button>
+        <input type="text" class="input-text" style="width:250px" placeholder="输入项目名称" id="itemname" name="itemname">
+        <button type="submit" class="btn btn-success" id="" name="" onclick="query()"><i class="Hui-iconfont">&#xe665;</i> 搜项目+楼栋</button>
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
-        <a href="javascript:;" onclick="admin_del()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6e2;</i> 报废项目</a>
-        <a href="javascript:;" onclick="Item_add()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 添加项目</a>
-        <a href="javascript:;" onclick="Item_upd()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6df;</i> 项目修改</a>
-        <a href="javascript:;" onclick="datadel()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe603;</i> 项目结案</a>
+        <a href="javascript:;" onclick="upd_Floor()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6df;</i> 更改楼栋</a>
+        <a href="javascript:;" onclick="open_Floor()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe6a7;</i> 推出楼栋</a>
+        <a href="javascript:;" onclick="Introduction_Floor()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe603;</i> 楼栋开盘</a>
+        <a href="javascript:;" onclick="del_Floor()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6e2;</i> 删除楼栋</a>
          </span> <span class="r">共有数据：<strong></strong> 条</span> </div>
     <table class="table table-border table-bordered table-bg">
         <thead>
         <tr>
-            <th scope="col" colspan="9">项目列表</th>
+            <th scope="col" colspan="9">楼栋列表</th>
         </tr>
         <tr class="text-c">
-            <th width="25"><input type="checkbox" name="" value=""></th>
+            <th width="25"><input type="checkbox" name="ckID" value="0"></th>
             <th width="40">楼栋编号</th>
             <th width="150">项目名称</th>
             <th width="90">楼号</th>
@@ -55,20 +55,7 @@
             <th width="50">操作</th>
         </tr>
         </thead>
-        <tbody>
-        <tr class="text-c">
-            <td><input type="checkbox" id="ckID" value="1" name=""></td>
-            <td>1</td>
-            <td>admin</td>
-            <td>13000000000</td>
-            <td>admin@mail.com</td>
-            <td>admin@mail.com</td>
-            <td>admin@mail.com</td>
-            <td>admin@mail.com</td>
-            <td>admin@mail.com</td>
-            <td class="td-status"><span class="label label-success radius">未结案</span></td>
-            <td class="td-manage"><a href="javascript:;" onclick="Floors_add('添加楼栋','admin-add.html','800','500')" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 添加楼栋</a></td>
-        </tr>
+        <tbody id="tbody">
         </tbody>
     </table>
 </div>
@@ -82,7 +69,7 @@
 <script type="text/javascript" src="../lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="../lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="../lib/laypage/1.2/laypage.js"></script>
-<script src="js/client.js"></script>
+<script type="text/javascript" src="../js/sellHouse.js"></script>
 <script type="text/javascript">
 
     /*
@@ -93,22 +80,69 @@
         w		弹出层宽度（缺省调默认值）
         h		弹出层高度（缺省调默认值）
     */
-    /*管理员-增加*/
-    function Item_add(){
-        layer_show('添加项目','Item_edit.html','400','500');
+    $(function () {
+        query();
+    })
+    function query() {
+        $.ajax({
+            url:"http://127.0.0.1:9090/Floor/listAll",
+            type:"get",
+            /*data:data,*/
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success:function (result) {
+                var appendVal = '';
+                $.each(result,function (index,Floor) {
+                    var notout = `<span class="label label-defaunt radius">未推出</span>`
+                    if (Floor.notout == 1) {
+                        notout = `<span class="label label-success radius">已推出</span>`
+                    }
+                    var notapertura = `<span class="label label-defaunt radius">未开盘</span>`
+                    if (Floor.notapertura == 1) {
+                        notapertura = `<span class="label label-success radius">已开盘</span>`
+                    }
+                    console.log(Floor);
+                    appendVal+=`
+                    <tr class="text-c">
+                    <td><input type="checkbox" id="ckID" value="${Floor.floorid}" name=""></td>
+                    <td>${Floor.floorid}</td>
+                    <td>${Floor.item.itemname}</td>
+                    <td>${Floor.floornumber}</td>
+                    <td>${Floor.structure}</td>
+                    <td>${Floor.tier}</td>
+                    <td>${Floor.batch}</td>
+                    <td>${notout}</td>
+                    <td>${notapertura}</td>
+                    <td>${Floor.createtime}</td>
+                    <td class="td-manage"><a href="javascript:;" onclick="House_add()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 添加房源</a></td>
+                    </tr>
+                    `
+                })
+                $("#tbody").html(appendVal);
+            }
+        })
+    }
+
+    /*房源-增加*/
+    function House_add(){
+        layer_show('新增房源','../House/House_edit.html','400','500');
     }
     /*管理员-删除*/
 
-    function admin_del(){
-        var chexBV = $("#ckID").val();
-        alert("删除ID"+chexBV);
+    function del_Floor(){
+        var ckid=[];
+        $.each($('input:checkbox:checked'),function(index,c){
+            ckid.push(c.value);
+        });
+        console.log(ckid);
+        alert("删除ID"+ckid);
         layer.confirm('确认要删除吗？',function(index){
             $.ajax({
-                type: 'POST',
-                url: '',
+                type: 'DELETE',
+                url: "http://127.0.0.1:9090/Floor/Delete?ckid="+ckid,
                 dataType: 'json',
                 success: function(data){
-                    $(obj).parents("tr").remove();
+                    window.location.reload();
                     layer.msg('已删除!',{icon:1,time:1000});
                 },
                 error:function(data) {
@@ -118,32 +152,74 @@
         });
     }
 
-    /*管理员-编辑*/
-    function Item_upd(){
-        layer_show('修改项目','Item_edit.html','400','500');
+    /*楼栋-编辑*/
+    function upd_Floor(){
+        var ckid=[];
+        $.each($('input:checkbox:checked'),function(index,c){
+            ckid.push(c.value);
+        });
+        localStorage.setItem("floorid",ckid);
+        layer_show('修改项目','../Floor/Floor_edit.html','400','500');
     }
-    /*管理员-停用*/
-    function admin_stop(obj,id){
-        layer.confirm('确认要停用吗？',function(index){
-            //此处请求后台程序，下方是成功后的前台处理……
-
-            $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_start(this,id)" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>');
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">已禁用</span>');
-            $(obj).remove();
-            layer.msg('已停用!',{icon: 5,time:1000});
+    /*楼栋推出*/
+    function open_Floor(){
+        layer.confirm('确认要推出吗？',function(index){
+            var ckid=[];
+            $.each($('input:checkbox:checked'),function(index,c){
+                ckid.push(c.value);
+            });
+            console.log(ckid);
+            $.ajax({
+                type: 'PUT',
+                url:"http://127.0.0.1:9090/Floor/changeNotOut?floorid="+ckid,
+                data: {notout: 1},
+                dataType: 'json',
+                success: function (data) {
+                    if (data == 1) {
+/*
+                        $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已开盘</span>');
+*/
+                        window.location.reload();
+                        layer.msg('已推出!', {icon: 6, time: 1000});
+                    } else if (data.result == -1) {
+                        layer.msg('该状态处于已推出状态,无法推出!', {icon: 2, time: 1500});
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
         });
     }
 
-    /*管理员-启用*/
-    function admin_start(obj,id){
-        layer.confirm('确认要启用吗？',function(index){
-            //此处请求后台程序，下方是成功后的前台处理……
-
-
-            $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_stop(this,id)" href="javascript:;" title="停用" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a>');
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
-            $(obj).remove();
-            layer.msg('已启用!', {icon: 6,time:1000});
+    /*楼栋开盘*/
+    function Introduction_Floor(){
+        layer.confirm('确认要开盘吗？',function(index){
+            var ckid=[];
+            $.each($('input:checkbox:checked'),function(index,c){
+                ckid.push(c.value);
+            });
+            console.log(ckid);
+            $.ajax({
+                type: 'PUT',
+                url:"http://127.0.0.1:9090/Floor/changeNotApertura?floorid="+ckid,
+                data: {notapertura: 1},
+                dataType: 'json',
+                success: function (data) {
+                    if (data == 1) {
+/*
+                        $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已推出</span>');
+*/
+                        window.location.reload();
+                        layer.msg('已开盘!', {icon: 6, time: 1000});
+                    } else if (data.result == -1) {
+                        layer.msg('该状态处于开盘状态,无法开盘!', {icon: 2, time: 1500});
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
         });
     }
 </script>

@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newer.sellhouse.mapper.RefundMapper">
-  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Refund">
-    <id column="refundid" jdbcType="INTEGER" property="refundid" />
-    <result column="refundSum" jdbcType="DOUBLE" property="refundsum" />
-    <result column="refundDate" jdbcType="TIMESTAMP" property="refunddate" />
-    <result column="refundExplain" jdbcType="VARCHAR" property="refundexplain" />
-    <result column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />
-    <result column="takesum" jdbcType="DOUBLE" property="takesum" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Refund">
+        <id column="refundid" jdbcType="INTEGER" property="refundid"/>
+        <result column="refundSum" jdbcType="DOUBLE" property="refundsum"/>
+        <result column="refundDate" jdbcType="TIMESTAMP" property="refunddate"/>
+        <result column="refundExplain" jdbcType="VARCHAR" property="refundexplain"/>
+        <result column="admitBuyid" jdbcType="INTEGER" property="admitbuyid"/>
+        <result column="takesum" jdbcType="DOUBLE" property="takesum"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from refund
     where refundid = #{refundid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.newer.sellhouse.domain.Refund">
-    insert into refund (refundid, refundSum, refundDate, 
+    <insert id="insert" parameterType="com.newer.sellhouse.domain.Refund">
+    insert into refund ( refundSum, refundDate,
       refundExplain, admitBuyid, takesum
       )
-    values (#{refundid,jdbcType=INTEGER}, #{refundsum,jdbcType=DOUBLE}, #{refunddate,jdbcType=TIMESTAMP}, 
+    values ( #{refundsum,jdbcType=DOUBLE}, #{refunddate,jdbcType=TIMESTAMP},
       #{refundexplain,jdbcType=VARCHAR}, #{admitbuyid,jdbcType=INTEGER}, #{takesum,jdbcType=DOUBLE}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Refund">
+    <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Refund">
     update refund
     set refundSum = #{refundsum,jdbcType=DOUBLE},
       refundDate = #{refunddate,jdbcType=TIMESTAMP},
@@ -30,13 +30,69 @@
       takesum = #{takesum,jdbcType=DOUBLE}
     where refundid = #{refundid,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select refundid, refundSum, refundDate, refundExplain, admitBuyid, takesum
-    from refund
-    where refundid = #{refundid,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select refundid, refundSum, refundDate, refundExplain, admitBuyid, takesum
-    from refund
-  </select>
+
+    <!--用于跟client admitbuy表做连接-->
+    <resultMap id="selAllMap" type="com.newer.sellhouse.domain.Refund">
+        <id column="refundid" jdbcType="INTEGER" property="refundid"/>
+        <result column="refundSum" jdbcType="DOUBLE" property="refundsum"/>
+        <result column="refundDate" jdbcType="TIMESTAMP" property="refunddate"/>
+        <result column="refundExplain" jdbcType="VARCHAR" property="refundexplain"/>
+        <result column="admitBuyid" jdbcType="INTEGER" property="admitbuyid"/>
+        <result column="takesum" jdbcType="DOUBLE" property="takesum"/>
+
+        <association property="client" javaType="com.newer.sellhouse.domain.Client">
+            <id column="clientid" jdbcType="INTEGER" property="clientid" />
+            <result column="clientName" jdbcType="VARCHAR" property="clientName" />
+            <result column="sex" jdbcType="VARCHAR" property="sex" />
+            <result column="cardnumber" jdbcType="VARCHAR" property="cardnumber" />
+            <result column="age" jdbcType="VARCHAR" property="age" />
+            <result column="phone" jdbcType="VARCHAR" property="phone" />
+        </association>
+        <association property="admitbuy" javaType="com.newer.sellhouse.domain.Admitbuy">
+            <id column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />
+            <result column="scheduleid" jdbcType="INTEGER" property="scheduleid" />
+            <result column="managePerson" jdbcType="VARCHAR" property="manageperson" />
+            <result column="adviserid" jdbcType="INTEGER" property="adviserid" />
+            <result column="clientid" jdbcType="INTEGER" property="clientid" />
+            <result column="payWayid" jdbcType="INTEGER" property="paywayid" />
+            <result column="houseid" jdbcType="INTEGER" property="houseid" />
+            <result column="firstPay" jdbcType="DOUBLE" property="firstpay" />
+            <result column="admitbuyDate" jdbcType="DATE" property="admitbuydate" />
+        </association>
+        <association property="floor" javaType="com.newer.sellhouse.domain.Floor">
+            <id column="floorid" jdbcType="INTEGER" property="floorid" />
+            <result column="itemid" jdbcType="INTEGER" property="itemid" />
+            <result column="floornumber" jdbcType="VARCHAR" property="floornumber" />
+            <result column="structure" jdbcType="VARCHAR" property="structure" />
+            <result column="tier" jdbcType="INTEGER" property="tier" />
+            <result column="batch" jdbcType="VARCHAR" property="batch" />
+            <result column="notout" jdbcType="VARCHAR" property="notout" />
+            <result column="notapertura" jdbcType="VARCHAR" property="notapertura" />
+            <result column="
+creationdate" jdbcType="DATE" property="
+creationdate" />
+        </association>
+        <association property="house" javaType="com.newer.sellhouse.domain.House">
+            <id column="houseid" jdbcType="INTEGER" property="houseid" />
+            <result column="floorid" jdbcType="INTEGER" property="floorid" />
+            <result column="tiernumber" jdbcType="INTEGER" property="tiernumber" />
+            <result column="housedate" jdbcType="DATE" property="housedate" />
+            <result column="houseTypeid" jdbcType="INTEGER" property="housetypeid" />
+            <result column="marketState" jdbcType="INTEGER" property="marketstate" />
+            <result column="houseStateid" jdbcType="INTEGER" property="housestateid" />
+            <result column="houseNumber" jdbcType="INTEGER" property="housenumber" />
+        </association>
+        <association property="item" javaType="com.newer.sellhouse.domain.Item">
+            <id column="itemid" jdbcType="INTEGER" property="itemid" />
+            <result column="itemName" jdbcType="VARCHAR" property="itemname" />
+            <result column="itemCompanyName" jdbcType="VARCHAR" property="itemcompanyname" />
+            <result column="itemLevel" jdbcType="VARCHAR" property="itemlevel" />
+            <result column="notSettle" jdbcType="INTEGER" property="notsettle" />
+            <result column="reserve1" jdbcType="INTEGER" property="reserve1" />
+            <result column="reserve2" jdbcType="INTEGER" property="reserve2" />
+        </association>
+    </resultMap>
+    <select id="selAll" resultMap="selAllMap">
+       select * from (select r.refundid,r.refundSum,r.takesum,r.refundDate,r.refundExplain,c.clientName,c.phone,a.houseid from refund r,client c,admitbuy a where r.admitBuyid=a.admitBuyid and c.clientid=a.clientid) cc,(select h.houseid,i.itemName,f.floornumber,h.tiernumber,h.houseNumber from house h,floor f,item i where h.floorid=f.floorid and f.itemid=i.itemid) hh where cc.houseid=hh.houseid
+    </select>
 </mapper>

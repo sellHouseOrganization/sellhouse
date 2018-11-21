@@ -142,14 +142,14 @@ DROP TABLE IF EXISTS `floor`;
 CREATE TABLE `floor` (
   `floorid` int(11) NOT NULL AUTO_INCREMENT COMMENT '楼栋ID',
   `itemid` int(11) DEFAULT NULL COMMENT '项目ID',
-  `floornumber` int(11) DEFAULT NULL COMMENT '楼号',
+  `floornumber` varchar(50) DEFAULT NULL COMMENT '楼号',
   `structure` varchar(50) DEFAULT NULL COMMENT '楼栋结构',
   `tier` int(11) DEFAULT NULL COMMENT '层数',
   `batch` varchar(20) DEFAULT NULL COMMENT '批次',
-  `notout` varchar(20) DEFAULT NULL COMMENT '是否推出',
-  `notapertura` varchar(20) DEFAULT NULL COMMENT '是否开盘',
+  `notout` int(11) DEFAULT NULL COMMENT '是否推出',
+  `notapertura` int(11) DEFAULT NULL COMMENT '是否开盘',
   `
-creationdate` date DEFAULT NULL COMMENT '建立日期',
+createtime` date DEFAULT NULL COMMENT '建立日期',
   PRIMARY KEY (`floorid`),
   KEY `ITEM_ID` (`itemid`),
   CONSTRAINT `ITEM_ID` FOREIGN KEY (`itemid`) REFERENCES `item` (`itemid`)

@@ -3,7 +3,7 @@
 <mapper namespace="com.newer.sellhouse.mapper.ClientMapper">
   <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Client">
     <id column="clientid" jdbcType="INTEGER" property="clientid" />
-    <result column="clientName" jdbcType="VARCHAR" property="clientname" />
+    <result column="clientName" jdbcType="VARCHAR" property="clientName" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
     <result column="cardnumber" jdbcType="VARCHAR" property="cardnumber" />
     <result column="age" jdbcType="VARCHAR" property="age" />
@@ -16,7 +16,7 @@
 
   <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Client">
     update client
-    set clientName = #{clientname,jdbcType=VARCHAR},
+    set clientName = #{clientName,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
       cardnumber = #{cardnumber,jdbcType=VARCHAR},
       age = #{age,jdbcType=VARCHAR},

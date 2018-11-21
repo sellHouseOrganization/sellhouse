@@ -1,14 +1,19 @@
 package com.newer.sellhouse.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class Floor implements Serializable {
     private Integer floorid;
 
+    private Item item;
+
     private Integer itemid;
 
-    private Integer floornumber;
+    private String floornumber;
 
     private String structure;
 
@@ -20,8 +25,9 @@ public class Floor implements Serializable {
 
     private String notapertura;
 
-    private Date 
-creationdate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    private Date createtime;
 
     private static final long serialVersionUID = 1L;
 
@@ -33,6 +39,14 @@ creationdate;
         this.floorid = floorid;
     }
 
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
     public Integer getItemid() {
         return itemid;
     }
@@ -41,11 +55,11 @@ creationdate;
         this.itemid = itemid;
     }
 
-    public Integer getFloornumber() {
+    public String getFloornumber() {
         return floornumber;
     }
 
-    public void setFloornumber(Integer floornumber) {
+    public void setFloornumber(String floornumber) {
         this.floornumber = floornumber;
     }
 
@@ -89,12 +103,12 @@ creationdate;
         this.notapertura = notapertura == null ? null : notapertura.trim();
     }
 
-    public Date getCreationdate() {
-        return creationdate;
+    public Date getcreatetime() {
+        return createtime;
     }
 
-    public void setCreationdate(Date creationdate) {
-        this.creationdate = creationdate;
+    public void setcreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
     @Override
@@ -104,6 +118,7 @@ creationdate;
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", floorid=").append(floorid);
+        sb.append(", item=").append(item);
         sb.append(", itemid=").append(itemid);
         sb.append(", floornumber=").append(floornumber);
         sb.append(", structure=").append(structure);
@@ -111,7 +126,7 @@ creationdate;
         sb.append(", batch=").append(batch);
         sb.append(", notout=").append(notout);
         sb.append(", notapertura=").append(notapertura);
-        sb.append(", creationdate=").append(creationdate);
+        sb.append(", createtime=").append(createtime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
