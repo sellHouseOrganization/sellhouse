@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by Administrator on 2018/11/21 0021.
  */
 @Service
-@Transactional(propagation = Propagation.NOT_SUPPORTED,readOnly = true,rollbackFor = Exception.class)
 public class ClientContactCarefulService {
 
     @Autowired
