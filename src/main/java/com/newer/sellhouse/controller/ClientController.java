@@ -74,7 +74,7 @@ public class ClientController {
      * @param client
      * @return
      */
-    @RequestMapping(value = "addClient",method =RequestMethod.POST)
+    @RequestMapping(value = "addClient",method =RequestMethod.PUT)
     public ResponseEntity<?> updClient(@RequestBody Client client){
         int ret=clientService.updClient(client);
         if(ret>0){
