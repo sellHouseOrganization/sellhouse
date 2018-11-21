@@ -2,12 +2,11 @@ package com.newer.sellhouse.controller;
 
 import com.newer.sellhouse.domain.Client;
 import com.newer.sellhouse.domain.Clientcontactcareful;
-//import com.newer.sellhouse.service.ClientContactCarefulService;
+import com.newer.sellhouse.service.ClientContactCarefulService;
 import com.newer.sellhouse.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +20,8 @@ public class ClientController {
 
     @Autowired
     private ClientService clientService;
-    /*@Autowired
-    private ClientContactCarefulService clientContactCarefulService;*/
+    @Autowired
+    private ClientContactCarefulService clientContactCarefulService;
 
     /**
      * 模糊查询and查询两表信息
@@ -86,11 +85,11 @@ public class ClientController {
         }
     }
 
-   /* *//**
+    /**
      * 添加客户明细信息
      * @param clientcontactcareful
      * @return
-     *//*
+     */
     @RequestMapping(value = "AddClients",method = RequestMethod.POST)
     public ResponseEntity<?> AddClients(@RequestBody Clientcontactcareful clientcontactcareful){
         int ret=clientContactCarefulService.addClientSh(clientcontactcareful);
@@ -102,11 +101,11 @@ public class ClientController {
         }
     }
 
-    *//**
+    /**
      * 修改客户明细信息
      * @param clientcontactcareful
      * @return
-     *//*
+     */
     @RequestMapping(value = "updClients",method = RequestMethod.PUT)
     public ResponseEntity<?> updClients(@RequestBody Clientcontactcareful clientcontactcareful){
         int ret=clientContactCarefulService.updClientSh(clientcontactcareful);
@@ -116,6 +115,6 @@ public class ClientController {
         else{
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-    }*/
+    }
 
 }
