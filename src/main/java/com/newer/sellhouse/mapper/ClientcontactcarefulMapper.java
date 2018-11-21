@@ -1,6 +1,7 @@
 package com.newer.sellhouse.mapper;
 
 import com.newer.sellhouse.domain.Clientcontactcareful;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface ClientcontactcarefulMapper {
 
     Clientcontactcareful selectByPrimaryKey(Integer clientcontactcarefulid);
 
-    List<Clientcontactcareful> selectAll();
+    List<Clientcontactcareful> selectAll(@Param("cardnumber")String cardnumber);
 
     int updateByPrimaryKey(Clientcontactcareful record);
 }
