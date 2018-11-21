@@ -3,6 +3,10 @@
 <mapper namespace="com.newer.sellhouse.mapper.HouseMapper">
   <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.House">
     <id column="houseid" jdbcType="INTEGER" property="houseid" />
+    <result column="itemCompanyName" jdbcType="VARCHAR" property="itemcompanyname" />
+    <result column="appendmode" jdbcType="VARCHAR" property="appendmode" />
+    <result column="houseType" jdbcType="VARCHAR" property="housetype" />
+    <result column="orientation" jdbcType="VARCHAR" property="orientation" />
     <result column="floorid" jdbcType="INTEGER" property="floorid" />
     <result column="tiernumber" jdbcType="INTEGER" property="tiernumber" />
     <result column="housedate" jdbcType="DATE" property="housedate" />
@@ -10,20 +14,23 @@
     <result column="marketState" jdbcType="INTEGER" property="marketstate" />
     <result column="houseStateid" jdbcType="INTEGER" property="housestateid" />
     <result column="houseNumber" jdbcType="INTEGER" property="housenumber" />
+    <association property="floor" javaType="com.newer.sellhouse.domain.Floor" column="floorid">
+      <result column="floornumber" property="floornumber"></result>
+    </association>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from house
     where houseid = #{houseid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.newer.sellhouse.domain.House">
+  <!--<insert id="insert" parameterType="com.newer.sellhouse.domain.House">
     insert into house (houseid, floorid, tiernumber, 
       housedate, houseTypeid, marketState, 
       houseStateid, houseNumber)
     values (#{houseid,jdbcType=INTEGER}, #{floorid,jdbcType=INTEGER}, #{tiernumber,jdbcType=INTEGER}, 
       #{housedate,jdbcType=DATE}, #{housetypeid,jdbcType=INTEGER}, #{marketstate,jdbcType=INTEGER}, 
       #{housestateid,jdbcType=INTEGER}, #{housenumber,jdbcType=INTEGER})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.House">
+  </insert>-->
+  <!--<update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.House">
     update house
     set floorid = #{floorid,jdbcType=INTEGER},
       tiernumber = #{tiernumber,jdbcType=INTEGER},
@@ -33,7 +40,7 @@
       houseStateid = #{housestateid,jdbcType=INTEGER},
       houseNumber = #{housenumber,jdbcType=INTEGER}
     where houseid = #{houseid,jdbcType=INTEGER}
-  </update>
+  </update>-->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select houseid, floorid, tiernumber, housedate, houseTypeid, marketState, houseStateid, 
     houseNumber
@@ -41,8 +48,10 @@
     where houseid = #{houseid,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select houseid, floorid, tiernumber, housedate, houseTypeid, marketState, houseStateid, 
-    houseNumber
-    from house
+
+select h.houseid,CONCAT(i.itemName,f.floornumber,h.houseNumber) as appendmode,i.itemCompanyName,f.floornumber,h.housenumber
+,h.tiernumber,r.orientation,h.housedate,r.houseType,h.marketState,h.houseStateid
+from item i INNER JOIN floor f on i.itemid = f.itemid INNER JOIN house h on h.floorid = f.floorid
+INNER JOIN roomtype r on r.houseTypeid=h.houseTypeid
   </select>
 </mapper>

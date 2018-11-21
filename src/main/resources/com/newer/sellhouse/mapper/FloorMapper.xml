@@ -12,6 +12,7 @@
     <result column="notapertura" jdbcType="INTEGER" property="notapertura" />
     <result column="createtime" jdbcType="DATE" property="createtime" />
     <association property="item" javaType="com.newer.sellhouse.domain.Item" column="itemid">
+      <id column="itemid" jdbcType="INTEGER" property="itemid" />
       <result column="itemName" jdbcType="VARCHAR"  property="itemname"></result>
     </association>
   </resultMap>
@@ -41,7 +42,7 @@
   </select>
 
   <select id="selectAll" resultMap="BaseResultMap">
-    select f.floorid,i.itemName,f.floornumber,f.structure,f.tier,f.batch,f.notout,f.notapertura,f.createtime
+    select f.floorid,i.itemid,i.itemName,f.floornumber,f.structure,f.tier,f.batch,f.notout,f.notapertura,f.createtime
     from item i INNER JOIN floor f on i.itemid=f.itemid
   </select>
 </mapper>

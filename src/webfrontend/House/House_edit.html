@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <title>301医院门诊管理系统 药品列表</title>
+    <title></title>
     <!--[if lt IE 9]>
     <script type="text/javascript" src="../lib/html5shiv.js"></script>
     <script type="text/javascript" src="../lib/respond.min.js"></script>
@@ -26,53 +26,52 @@
 <body>
 <article class="page-container">
     <form method="post" class="form form-horizontal" id="form-drug-add">
-        <input type="hidden" name="notSettle" id="notSettle">
-        <input type="hidden" name="FloorID" id="FloorID">
+        <input type="hidden" name="houseid" id="houseid">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>项目编号:</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>楼栋编号:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" id="itemID" name="itemID" placeholder="项目编号" style="width: 225px;">
+                <input type="text" class="input-text" id="floorid" name="floorid" placeholder="楼栋编号" readonly="true" style="width: 225px;">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>楼号:</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>代码模式:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text"  class="input-text" placeholder="楼号名称" id="floornumber" name="floornumber"
+                <input type="text"  class="input-text" placeholder="代码模式" id="appendmode" name="appendmode" readonly="true" style="width: 225px;">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>房间层数:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" placeholder="房间层数" id="tiernumber" name="tiernumber"
                        style="width: 225px;">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>楼栋层数:</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>每层房间数:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="楼栋层数" id="tier" name="tier"
+                <input type="text" class="input-text" placeholder="每层房间数" id="housenumber" name="housenumber"
                        style="width: 225px;">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">开盘批次：</label>
+            <label class="form-label col-xs-4 col-sm-3">房型：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-			<select class="select" name="batch" id="batch" size="1">
-				<option value="0">第一批</option>
-				<option value="1">第二批</option>
-				<option value="2">第三批</option>
+			<select class="select" name="housetypeid" id="housetypeid" size="1" >
+				<option value="0">请选择</option>
 			</select>
 			</span> </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">楼栋结构：</label>
-            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-			<select class="select" name="structure" id="structure" size="1">
-				<option value="0">住宅</option>
-				<option value="1">商用</option>
-			</select>
-			</span> </div>
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;保存&nbsp;&nbsp;">
+            </div>
         </div>
     </form>
 </article>
 
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="../js/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="../static/h-ui/js/H-ui.min.js"></script>
 <script type="text/javascript" src="../static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
 
@@ -85,6 +84,18 @@
 
 <script>
     $(window).on('load', () => {
+        $.ajax({
+            url:"http://127.0.0.1:9090/House/listRoom",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                $.each(data, (i, roomtype) => {
+                    var text = `<option value="${roomtype.housetypeid}">${roomtype.housetype}</option>`
+                    $("#housetypeid").append(text)
+                })
+            }
+        })
+
         $('.skin-minimal input').iCheck({
             checkboxClass: 'icheckbox-blue',
             radioClass: 'iradio-blue',
@@ -110,21 +121,20 @@
             focusCleanup: true,
             success: "valid",
             submitHandler: function (form) {
-                var drid = $("#drid").val();
-                alert(drid);
+                var houseid = $("#houseid").val();
+                alert(houseid);
                 var type;
                 //判断sno是否有值  有值就给隐藏框act赋值upd，没值就赋值add
-                if(drid != undefined && drid != ""&& drid != 0){
+                if(houseid != undefined && houseid != ""&& houseid != 0){
                     type="put";
                 }else{
                     type="post";
                 }
                 console.log(type);
                 $(form).ajaxSubmit({
-                    url: HOST_URL3 + "edit",
+                    url: "http://127.0.0.1:9090/House/edit",
                     type: type,
                     dataType: "json",
-                    headers: createAuthorizationTokenHeader(),
                     success: function (result) {
                         console.log("新增结果"+result);
                         if(result==1){
@@ -143,33 +153,27 @@
         query();
     })
     function query() {
-        var drid = localStorage.getItem("drid");
-        alert(drid);
-        if(drid != undefined && drid != ""&& drid != 0){
-            $("#drid").val(drid);
+        //楼栋ID
+        var floorid = localStorage.getItem("floorid");
+        //项目名称
+        var itemname = localStorage.getItem("itemname");
+        //楼栋号
+        var floornumber = localStorage.getItem("floornumber");
+        $("#floorid").val(floorid);
+        $("#appendmode").val(itemname+floornumber);
+        var houseid = localStorage.getItem("houseid");
+        alert(houseid);
+        if(houseid != undefined && houseid != ""&& houseid != 0){
+            $("#houseid").val(houseid);
             $.ajax({
                 type:"get",
-                url: HOST_URL3+"queryById?drid="+drid,
-                headers: createAuthorizationTokenHeader(),
+                url: "http://127.0.0.1:9090/House/queryId?houseid="+houseid,
                 dataType:'json',
                 success:function (result) {
-                    $("#drstate").val(result.drstate)
-                    $("#drname").val(result.drname)
-                    $("#drsum").val(result.drsum)
-                    $("#drprice").val(result.drprice)
-                    $("#dyid").val(result.dyid)
-                }
-            })
-            // 用该药的科室
-            $.ajax({
-                url: HOST_URL3+"drugdepart?drid="+drid,
-                dataType: "json",
-                headers: createAuthorizationTokenHeader(),
-                success: function (data) {
-                    $.each(data, (i, item) => {
-                        console.log($("input[name=deid][value=" + item.deid + "]").prop("checked", true));
-                        $("input[name=deid][value=" + item.deid + "]").prop("checked", true)
-                    })
+                    console.log(result);
+                    $("#tiernumber").val(result.tiernumber)
+                    $("#housenumber").val(result.housenumber)
+                    $("#housetypeid").val(result.housetypeid)
                 }
             })
         }

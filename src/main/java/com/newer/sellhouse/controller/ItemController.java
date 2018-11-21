@@ -57,6 +57,7 @@ public class ItemController {
         int ret = 0;
         for(int i=0;i<ckid1.length;i++){
             int ItemId = Integer.parseInt(ckid1[i]);
+            int retFloor = itemService.ItemAndFloor(ItemId);
             ret = itemService.DeleteItem(ItemId);
             if(i==ckid1.length){
                 break;

@@ -39,7 +39,7 @@
     <table class="table table-border table-bordered table-bg">
         <thead>
         <tr>
-            <th scope="col" colspan="9">楼栋列表</th>
+            <th scope="col" colspan="11">楼栋列表</th>
         </tr>
         <tr class="text-c">
             <th width="25"><input type="checkbox" name="ckID" value="0"></th>
@@ -114,7 +114,7 @@
                     <td>${notout}</td>
                     <td>${notapertura}</td>
                     <td>${Floor.createtime}</td>
-                    <td class="td-manage"><a href="javascript:;" onclick="House_add()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 添加房源</a></td>
+                    <td class="td-manage"><a href="javascript:;" class="btn btn-primary size-MINI radius" onclick=House_add(${Floor.floorid},'${Floor.item.itemname}','${Floor.floornumber}') ><i class="Hui-iconfont">&#xe600;</i> 添加房源</a></td>
                     </tr>
                     `
                 })
@@ -124,10 +124,14 @@
     }
 
     /*房源-增加*/
-    function House_add(){
+    function House_add(floorid,itemname,floornumber){
+        localStorage.setItem("floorid",floorid);
+        localStorage.setItem("itemname",itemname);
+        localStorage.setItem("floornumber",floornumber);
+        localStorage.setItem("houseid",0);
         layer_show('新增房源','../House/House_edit.html','400','500');
     }
-    /*管理员-删除*/
+    /*楼栋-删除*/
 
     function del_Floor(){
         var ckid=[];
