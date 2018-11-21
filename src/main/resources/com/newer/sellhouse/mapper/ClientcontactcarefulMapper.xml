@@ -20,18 +20,7 @@
     delete from clientcontactcareful
     where clientContactCarefulid = #{clientcontactcarefulid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.newer.sellhouse.domain.Clientcontactcareful">
-    insert into clientcontactcareful (clientContactCarefulid, purposeDegree, 
-      interviewDate, messageAddress, email, 
-      houseMortgageLoan, aim, projectPrice, 
-      needArea, payWay, considerFactor, 
-      contactWay, clientid)
-    values (#{clientcontactcarefulid,jdbcType=INTEGER}, #{purposedegree,jdbcType=VARCHAR}, 
-      #{interviewdate,jdbcType=DATE}, #{messageaddress,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{housemortgageloan,jdbcType=VARCHAR}, #{aim,jdbcType=VARCHAR}, #{projectprice,jdbcType=VARCHAR}, 
-      #{needarea,jdbcType=VARCHAR}, #{payway,jdbcType=VARCHAR}, #{considerfactor,jdbcType=VARCHAR}, 
-      #{contactway,jdbcType=VARCHAR}, #{clientid,jdbcType=INTEGER})
-  </insert>
+
   <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Clientcontactcareful">
     update clientcontactcareful
     set purposeDegree = #{purposedegree,jdbcType=VARCHAR},
