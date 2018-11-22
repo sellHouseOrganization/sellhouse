@@ -1,5 +1,8 @@
 package com.newer.sellhouse.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,8 +11,20 @@ public class House implements Serializable {
 
     private Integer floorid;
 
+    private Floor floor;
+
+    private String itemcompanyname;
+
+    private String appendmode;
+
+    private String housetype;
+
+    private String orientation;
+
     private Integer tiernumber;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date housedate;
 
     private Integer housetypeid;
@@ -28,6 +43,45 @@ public class House implements Serializable {
 
     public void setHouseid(Integer houseid) {
         this.houseid = houseid;
+    }
+
+    public String gethousetype() {
+        return housetype;
+    }
+
+    public void sethousetype(String housetype) {
+        this.housetype = housetype;
+    }
+
+    public Floor getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Floor floor) {
+        this.floor = floor;
+    }
+    public String getitemcompanyname() {
+        return itemcompanyname;
+    }
+
+    public void setitemcompanyname(String itemcompanyname) {
+        this.itemcompanyname = itemcompanyname;
+    }
+
+    public void setAppendmode(String appendmode) {
+        this.appendmode = appendmode;
+    }
+
+    public String getAppendmode() {
+        return appendmode;
+    }
+
+    public String getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(String orientation) {
+        this.orientation = orientation;
     }
 
     public Integer getFloorid() {
@@ -54,11 +108,11 @@ public class House implements Serializable {
         this.housedate = housedate;
     }
 
-    public Integer getHousetypeid() {
+    public Integer gethousetypeid() {
         return housetypeid;
     }
 
-    public void setHousetypeid(Integer housetypeid) {
+    public void sethousetypeid(Integer housetypeid) {
         this.housetypeid = housetypeid;
     }
 
@@ -93,9 +147,14 @@ public class House implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", houseid=").append(houseid);
+        sb.append(", itemcompanyname=").append(itemcompanyname);
+        sb.append(", appendmode=").append(appendmode);
+        sb.append(", floor=").append(floor);
         sb.append(", floorid=").append(floorid);
         sb.append(", tiernumber=").append(tiernumber);
         sb.append(", housedate=").append(housedate);
+        sb.append(", housetype=").append(housetype);
+        sb.append(", orientation=").append(orientation);
         sb.append(", housetypeid=").append(housetypeid);
         sb.append(", marketstate=").append(marketstate);
         sb.append(", housestateid=").append(housestateid);

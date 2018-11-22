@@ -1,15 +1,13 @@
 package com.newer.sellhouse.controller;
 
 import com.newer.sellhouse.domain.Admitbuy;
+import com.newer.sellhouse.domain.Housesumcollect;
 import com.newer.sellhouse.domain.Offersum;
 import com.newer.sellhouse.service.OffersumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,10 +23,27 @@ public class OffersumController {
         List<Admitbuy> admitbuyList = offersumService.selectAdmitBuyByClientNameHouseName(clientName, houseName);
         return new ResponseEntity<>(admitbuyList,HttpStatus.OK);
     }
+
     @RequestMapping(value = "findbyadmitbuyid",method = RequestMethod.GET)
     public ResponseEntity<?> findbyadmitbuyid(@RequestParam(value = "admitbuyid")Integer admitbuyid){
         List<Offersum> offersumList = offersumService.findbyadmitbuyid(admitbuyid);
         return new ResponseEntity<>(offersumList,HttpStatus.OK);
     }
 
+    @RequestMapping(value = "addhousesumcollect",method = RequestMethod.POST)
+    public ResponseEntity<?> addhousesumcollect(@RequestBody Housesumcollect housesumcollect){
+        int i = offersumService.addhousesumcollect(housesumcollect);
+        return new ResponseEntity<>(i,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "findByoffersumidoffertime",method = RequestMethod.GET)
+    public ResponseEntity<?> findByoffersumidoffertime(@RequestParam(value = "offersumid") Integer offersumid,
+                                                       @RequestParam(value = "offertime")Integer offertime){
+        Housesumcollect housesumcollect = offersumService.findByoffersumidoffertime(offersumid, offertime);
+//        if (housesumcollect==null){
+//            return new ResponseEntity<>("false",HttpStatus.OK);
+//        }else {
+            return new ResponseEntity<>(housesumcollect,HttpStatus.OK);
+//        }
+    }
 }

@@ -38,7 +38,7 @@
             <thead>
             <tr class="text-c">
                 <th width="25"><input type="checkbox" name="" value=""></th>
-                <th width="20">序号</th>
+                <th width="20">退房编号</th>
                 <th width="130">单元名称</th>
                 <th width="40">客户姓名</th>
                 <th width="120">客户手机号码</th>
@@ -46,10 +46,11 @@
                 <th width="30">收取费用</th>
                 <th width="100">退房日期</th>
                 <th width="50">退房说明</th>
-                <th width="50"></th>
+                <th width="50">状态</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody">
+
 
             </tbody>
         </table>
@@ -67,6 +68,45 @@
 <script type="text/javascript" src="../lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
     $(function () {
+        $.ajax({
+            url: "http://127.0.0.1:9090/refund/sel",
+            dataType: "json",
+            contentType: "application/json;charset=uft-8",
+            type: "get",
+            success: function (data) {
+                console.log(data);
+                if (data) {
+                    var Valap = '';
+                    $.each(data, function (index, re) {
+                        Valap += `
+                <tr class="text-c">
+                <th><input type="checkbox" name="" value=""></th>
+                <th>${re.refundid}</th>
+                <th>${re.item.itemname+re.floor.floornumber+"栋"+re.house.housenumber}</th>
+                <th>${re.client.clientName}</th>
+                <th >${re.client.phone}</th>
+                <th>${re.refundsum}</th>
+                 <th>${re.takesum}</th>
+                <th>${re.refunddate}</th>
+                <th>${re.refundexplain}</th>
+                <th>已退房</th>
+
+
+            </tr>`
+                    })
+
+                    $("#tbody").html(Valap);
+
+                }
+            }
+        })
+
+
+
+
+
+
+
         $('.table-sort').dataTable({
             "aaSorting": [[1, "desc"]],//默认第几个排序
             "bStateSave": true,//状态保存

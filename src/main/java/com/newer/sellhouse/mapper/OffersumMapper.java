@@ -17,4 +17,6 @@ public interface OffersumMapper {
     int updateByPrimaryKey(Offersum record);
 
     List<Offersum> findbyadmitbuyid(@Param("admitbuyid")Integer admitbuyid);
+
+    int updatealreadypayaddone(@Param("offersumid")Integer offersumid);
 }

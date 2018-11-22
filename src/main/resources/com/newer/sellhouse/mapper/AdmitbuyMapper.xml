@@ -4,7 +4,7 @@
  <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Admitbuy">
     <id column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />
     <result column="scheduleid" jdbcType="INTEGER" property="scheduleid" />
-    <result column="managePerson" jdbcType="INTEGER" property="manageperson" />
+    <result column="managePerson" jdbcType="VARCHAR" property="manageperson" />
     <result column="adviserid" jdbcType="INTEGER" property="adviserid" />
     <result column="clientid" jdbcType="INTEGER" property="clientid" />
     <result column="payWayid" jdbcType="INTEGER" property="paywayid" />
@@ -39,8 +39,7 @@
     where admitBuyid = #{admitbuyid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select a.dmitBuyid, a.scheduleid, a.managePerson, a.adviserid, a.clientid, a.payWayid, a.houseid,
-    a.firstPay, a.admitbuyDate,adv.adviserName,
+    select *
     from admitbuy
     where admitBuyid = #{admitbuyid,jdbcType=INTEGER}
   </select>

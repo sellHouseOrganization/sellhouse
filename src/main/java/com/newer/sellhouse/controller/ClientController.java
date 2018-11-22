@@ -4,6 +4,7 @@ import com.newer.sellhouse.domain.Client;
 import com.newer.sellhouse.domain.Clientcontactcareful;
 import com.newer.sellhouse.service.ClientContactCarefulService;
 import com.newer.sellhouse.service.ClientService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,14 +26,17 @@ public class ClientController {
     private ClientContactCarefulService clientContactCarefulService;
 
     /**
-     * 模糊查询and查询两表信息
+     * 模糊查询and查询所有信息
      * @param cardnumber
      * @return
      */
     @RequestMapping(value = "list",method = RequestMethod.GET)
     public ResponseEntity<?> findAll(@RequestParam(name="cardnumber",required = false)String cardnumber){
         List<Clientcontactcareful> clientList=clientService.findAll(cardnumber);
-            return new ResponseEntity<>(clientList,HttpStatus.OK);
+        if(clientList.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(clientList,HttpStatus.OK);
     }
 
     /**

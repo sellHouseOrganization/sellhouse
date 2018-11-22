@@ -46,7 +46,7 @@
 
         <association property="client1" javaType="com.newer.sellhouse.domain.Client">
             <id column="clientid" jdbcType="INTEGER" property="clientid"/>
-            <result column="clientName" jdbcType="VARCHAR" property="clientname"/>
+                <result column="clientName" jdbcType="VARCHAR" property="clientName"/>
             <result column="sex" jdbcType="VARCHAR" property="sex"/>
             <result column="cardnumber" jdbcType="VARCHAR" property="cardnumber"/>
             <result column="age" jdbcType="VARCHAR" property="age"/>
@@ -56,7 +56,7 @@
 
         <association  property="client2" javaType="com.newer.sellhouse.domain.Client">
             <id column="clientid1" jdbcType="INTEGER"  property="clientid"/>
-            <result column="clientName1" jdbcType="VARCHAR" property="clientname"/>
+            <result column="clientName1" jdbcType="VARCHAR" property="clientName"/>
             <result column="sex1" jdbcType="VARCHAR" property="sex"/>
             <result column="cardnumber1" jdbcType="VARCHAR" property="cardnumber"/>
             <result column="age1" jdbcType="VARCHAR" property="age"/>
