@@ -27,10 +27,10 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 客户管理 <span class="c-gray en">&gt;</span> 客户信息 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
     <div class="text-c"> 客户搜索：
-        <input type="text" class="input-text" style="width:250px" placeholder="输入身份证号码" id="" name="">
+        <input type="text" class="input-text" style="width:250px" placeholder="输入身份证号码" id="cardNumber" name="cardNumber">
         <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜客户</button>
     </div>
-    <table class="table table-border table-bordered table-bg">
+    <table class="table table-border table-bordered table-hover table-bg table-sort">
         <thead>
         <tr>
             <th scope="col" colspan="19">客户信息</th>
@@ -57,32 +57,8 @@
             <th >操作</th>
         </tr>
         </thead>
-        <tbody>
-        <tr class="text-c">
-            <td><input type="checkbox" id="ckID" value="1" name=""></td>
-            <td>1</td>
-            <td>admin</td>
-            <td>男</td>
-            <td>84524185296363</td>
-            <td>30</td>
-            <td>252852523</td>
-            <td>强</td>
-            <td>长沙</td>
-            <td>15625@qq.com</td>
-            <td>是</td>
-            <td>自住</td>
-            <td>500w</td>
-            <td>200</td>
-            <td>贷款</td>
-            <td>价格</td>
-            <td>来访</td>
-            <td>2018-10-11</td>
-            <br class="td-manage">
-            <td>
-                <a href="javascript:;" onclick="admin_del()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 删除信息</a><p></p>
-                <a href="javascript:;" onclick="Item_upd()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6df;</i> 修改信息</a>
-            </td>
-        </tr>
+        <tbody id="tbody1">
+
         </tbody>
     </table>
 </div>
@@ -96,7 +72,7 @@
 <script type="text/javascript" src="../lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="../lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="../lib/laypage/1.2/laypage.js"></script>
-<script src="js/client.js"></script>
+<script src="../js/sellHouse.js"></script>
 <script type="text/javascript">
 
     /*
@@ -107,10 +83,67 @@
         w		弹出层宽度（缺省调默认值）
         h		弹出层高度（缺省调默认值）
     */
-    /*管理员-增加*/
-    function Item_add(){
-        layer_show('添加项目','Item_edit.html','400','500');
+    $(function () {
+        $('.table-sort').dataTable({
+            "aaSorting": [[1, "desc"]],//默认第几个排序
+            "bStateSave": true,//状态保存
+            "aoColumnDefs": [
+                //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+                {"orderable": false, "aTargets": [0, 8, 9]}// 制定列不参与排序
+            ]
+        });
+
+        query();
+    })
+    //查询所有信息
+    function query() {
+        var data={
+            "cardnumber":$("#cardNumber").val()
+        };
+        $.ajax({
+            type: "get",
+            url: CLIENT_URL + "list",
+            data: data,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success:function (data) {
+                console.log(data);
+                var appendVal='';
+                $.each(data,function (index,client) {
+                    appendVal +=`
+                  <tr class="text-c">
+            <td><input type="checkbox" id="${client.clientid}" value="${client.clientid}" name="${client.clientid}"></td>
+            <td>${client.clientid}</td>
+            <td>${client.clientName}</td>
+            <td>${client.sex}</td>
+            <td>${client.cardnumber}</td>
+            <td>${client.age}</td>
+            <td>${client.phone}</td>
+            <td>${client.clientcontactcarefulList.purposeDegree}</td>
+            <td>${client.clientcontactcarefulList.messageAddress}</td>
+            <td>${client.clientcontactcarefulList.email}</td>
+            <td>${client.clientcontactcarefulList.houseMortgageLoan}</td>
+            <td>${client.clientcontactcarefulList.aim}</td>
+            <td>${client.clientcontactcarefulList.projectPrice}</td>
+            <td>${client.clientcontactcarefulList.needArea}</td>
+            <td>${client.clientcontactcarefulList.payWay}</td>
+            <td>${client.clientcontactcarefulList.considerFactor}</td>
+            <td>${client.clientcontactcarefulList.contactWay}</td>
+            <td>${client.clientcontactcarefulList.interviewDate}</td>
+            <br class="td-manage">
+            <td>
+                <a href="javascript:;" onclick="admin_del()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 删除信息</a><p></p>
+                <a href="javascript:;" onclick="Item_upd()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6df;</i> 修改信息</a>
+            </td>
+        </tr>
+               `;
+                })
+                $("#tbody1").html(appendVal);
+            }
+
+        })
     }
+
     /*管理员-删除*/
 
     function admin_del(){

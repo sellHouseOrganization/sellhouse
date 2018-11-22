@@ -6,6 +6,7 @@ import com.newer.sellhouse.service.ClientContactCarefulService;
 import com.newer.sellhouse.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * Created by Administrator on 2018/11/19 0019.
  */
 @RestController
-@RequestMapping("Client")
+@RequestMapping("client")
 public class ClientController {
 
     @Autowired
@@ -31,10 +32,7 @@ public class ClientController {
     @RequestMapping(value = "list",method = RequestMethod.GET)
     public ResponseEntity<?> findAll(@RequestParam(name="cardnumber",required = false)String cardnumber){
         List<Clientcontactcareful> clientList=clientService.findAll(cardnumber);
-        if(clientList.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(clientList,HttpStatus.OK);
+            return new ResponseEntity<>(clientList,HttpStatus.OK);
     }
 
     /**
