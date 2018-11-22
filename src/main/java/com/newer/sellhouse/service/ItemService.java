@@ -35,4 +35,8 @@ public class ItemService {
     public int changeSettle(Integer itemid,Integer notSettle){
         return itemMapper.SettleChange(itemid,notSettle);
     }
+
+    public int ItemAndFloor(Integer ItemId){
+        return itemMapper.ItemAndFloorDel(ItemId);
+    }
 }

@@ -7,6 +7,7 @@ import com.newer.sellhouse.service.ClientService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,7 @@ public class ClientController {
     private ClientContactCarefulService clientContactCarefulService;
 
     /**
-     * 模糊查询and查询两表信息
+     * 模糊查询and查询所有信息
      * @param cardnumber
      * @return
      */
