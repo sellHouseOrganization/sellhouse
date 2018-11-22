@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Administrator on 2018/11/19 0019.
  */
 @RestController
-@RequestMapping("client")
+@RequestMapping("Client")
 public class ClientController {
 
     @Autowired

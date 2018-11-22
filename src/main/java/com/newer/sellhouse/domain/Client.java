@@ -76,6 +76,10 @@ public class Client implements Serializable {
         this.clientcontactcarefulList = clientcontactcarefulList;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
