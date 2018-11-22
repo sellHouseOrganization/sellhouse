@@ -3,6 +3,7 @@ package com.newer.sellhouse.controller;
 import com.newer.sellhouse.domain.Admitbuy;
 import com.newer.sellhouse.domain.Housesumcollect;
 import com.newer.sellhouse.domain.Offersum;
+import com.newer.sellhouse.domain.Promptnotesregister;
 import com.newer.sellhouse.service.OffersumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,4 +47,16 @@ public class OffersumController {
             return new ResponseEntity<>(housesumcollect,HttpStatus.OK);
 //        }
     }
+
+    /**
+     * 添加催款数据
+     * @param promptnotesregister
+     * @return
+     */
+    @RequestMapping(value = "addprompt",method = RequestMethod.POST)
+    public ResponseEntity<?> addprompt(@RequestBody Promptnotesregister promptnotesregister){
+        int i = offersumService.addprompt(promptnotesregister);
+        return new ResponseEntity<>(i,HttpStatus.OK);
+    }
+
 }

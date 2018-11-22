@@ -51,7 +51,7 @@
         <table class="table table-border table-bordered table-hover table-bg table-sort" id="offersumtb">
             <thead>
             <tr class="text-c">
-                <th width="25"><input type="checkbox" name="" value=""></th>
+                <th width="25"><input type="checkbox" value="0"></th>
                 <th width="80">序号</th>
                 <th width="100">付款事件</th>
                 <th width="60">付款期限</th>
@@ -199,13 +199,15 @@
 
     /*催款*/
     function Press(title, url, w, h) {
-        var offersumids= $("input[type='checkbox']").attr('value');
-        alert(offersumids);
+        var offersumids=[];
+        $.each($('input:checkbox:checked'),function(){
+            if (offersumids.indexOf($(this).val())==-1) {
+                offersumids.push($(this).val());
+            }
+        });
+        localStorage.setItem("offersumids",JSON.stringify(offersumids));
         layer_show(title, url, w, h);
     }
-
-
-
 </script>
 </body>
 </html>
