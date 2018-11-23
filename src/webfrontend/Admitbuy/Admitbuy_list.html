@@ -23,6 +23,9 @@
         th,td{
             white-space:nowrap;
         }
+        .dataTables_scrollHead {
+            height: 39px;
+        }
     </style>
 <title>销售管理</title>
 </head>
@@ -35,7 +38,7 @@
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
         <a href="javascript:;" onclick="addApply()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 认购变更申请</a>
-        <a href="javascript:;" onclick="" class="btn btn-success size-MINI radius"><i class="Hui-iconfont">&#xe61d;</i> 认购变更管理</a>
+        <a href="javascript:;" onclick="applyEdit()" class="btn btn-success size-MINI radius"><i class="Hui-iconfont">&#xe61d;</i> 认购变更管理</a>
          </span> </div>
 	<table class="table table-border table-bordered table-hover table-bg table-sort">
 		<thead>
@@ -82,7 +85,6 @@
         $('.table-sort').dataTable({
             "scrollX": true,
             "autoWidth":true,
-
         });
 
     });
@@ -133,8 +135,8 @@
         })
     }
 /*认购-添加*/
-function Admitbuy_add(){
-	layer_show('添加认购','Admitbuy_edit.html','800','800');
+function applyEdit(){
+	window.location.href="changehouseapply_list.html";
 }
 /*申请认购变更*/
 function addApply(){
