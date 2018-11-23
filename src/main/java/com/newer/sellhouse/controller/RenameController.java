@@ -32,7 +32,7 @@ public class RenameController {
      * @param newcardnumber
      * @return
      */
-    @RequestMapping(value = "updRe",method = RequestMethod.GET)
+/*    @RequestMapping(value = "updRe",method = RequestMethod.GET)
     public ResponseEntity<?> updRename(@RequestParam(name = "oldclientid")Integer oldclientid,
                                        @RequestParam(name = "newclientid")Integer newclientid,
                                        @RequestParam(name = "admitbuyid")Integer admitbuyid,
@@ -57,7 +57,7 @@ public class RenameController {
 
         }
         return new ResponseEntity<>("修改失败",HttpStatus.OK);
-    }
+    }*/
 
     @RequestMapping(value = "selall",method = RequestMethod.GET)
     public ResponseEntity<?> selAll(){

@@ -18,53 +18,63 @@
     <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css" />
     <!--[if IE 6]>
-    <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
     <!--/meta 作为公共模版分离出去-->
 </head>
 <body>
 <article class="page-container">
+
     <form method="post" class="form form-horizontal" id="form-drug-add">
-        <input type="hidden" name="AdmitbuyID" id="AdmitbuyID">
+        <input type="hidden" name="scheduleID" id="scheduleID">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>客户姓名:</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <td><input type="text" class="input-text" id="clientName" name="clientName" placeholder="客户姓名" style="width: 225px;"></td>
-                <span class="c-red">*</span>性别:
-                <td> <input type="radio" id="sex" name="sex" value="男" checked>男
-                <input type="radio" id="sex1" name="sex" value="女">女</td>
-
+                <span class="c-red">*</span>单元名称：
+                <td><input type="text" class="input-text" id="houseName" name="houseName" placeholder="单元名称" style="width: 225px;"></td>
             </div>
         </div>
 
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">单元名称：</label>
-            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:225px;">
-			<select class="select" name="itemName" id="itemName" size="1">
-				<option value="0">请选择</option>
-				<option value="1">流星花园</option>
-                <option value="2">皇宫</option>
-			</select>
-			</span>
-            <span class="c-red">*</span>预售定金:<td><input type="text" class="input-text" placeholder="定金" id="fromtMoney" name="fromtMoney"
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>预售定金:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+               <td><input type="text" class="input-text" placeholder="定金" id="fromtMoney" name="fromtMoney"
                        style="width: 225px;"></td>
+                <span class="c-red">*</span>预售单价：
+                <td><input type="text" class="input-text" id="price" name="price" placeholder="单价" style="width: 225px;"></td>
             </div>
         </div>
 
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>公摊面积:</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>预定日期:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <td><input type="text" class="input-text" id="pooledArea" name="pooledArea" placeholder="公摊面积" style="width: 225px;"></td>
-                <span class="c-red">*</span>私有面积:
+                <td><input type="text" class="input-text" placeholder="预定日期" id="scheduleDate" name="scheduleDate"
+                           style="width: 225px;"></td>
+                <span class="c-red">*</span>应交售价：
+                <td><input type="text" class="input-text" placeholder="应交售价" id="mustPrices" name="mustPrices"
+                           style="width: 225px;"></td>
+            </div>
+        </div>
+
+
+        <div class="row cl" style="margin-top: 50px">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>认购日期:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <td><input type="text" class="input-text" placeholder="认购日期" id="admitbuyDate" name="admitbuyDate"
+                       style="width: 225px;"></td>
+                <span class="c-red">*</span>私有面积：
                 <td><input type="text" class="input-text" id="privateArea" name="privateArea" placeholder="私有面积" style="width: 225px;"></td>
-
             </div>
         </div>
 
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>付款方式：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>首付(<span class="c-red"> 元 </span>):</label>
             <div class="formControls col-xs-8 col-sm-9">
+                <td><input type="text" class="input-text" placeholder="首付" id="firstPay" name="firstPay"
+                           style="width: 225px;"></td>
+                <span class="c-red">*</span>付款方式：
                 <span class="select-box" style="width:225px;">
 			<select class="select" name="structure" id="structure" size="1">
 				<option value="0">请选择</option>
@@ -72,34 +82,18 @@
                 <option value="2">全额</option>
 			</select>
 			</span>
-                <span class="c-red">*</span>预售单价:
-                <td><input type="text" class="input-text" id="price" name="price" placeholder="单价" style="width: 225px;"></td>
-
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>预定日期:</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <td><input type="text" class="input-text" placeholder="预定日期" id="scheduleDate" name="scheduleDate"
-                       style="width: 225px;"></td>
-                <span class="c-red">*</span>认购日期:
-                <td><input type="text" class="input-text" placeholder="认购日期" id="admitbuyDate" name="admitbuyDate"
-                       style="width: 225px;"></td>
             </div>
         </div>
 
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>首付:</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>成交总价:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <td><input type="text" class="input-text" placeholder="首付" id="firstPay" name="firstPay"
-                           style="width: 225px;"></td>
-                <span class="c-red">*</span>应交售价:
-                <td><input type="text" class="input-text" placeholder="应交售价" id="mustPrices" name="mustPrices"
-                           style="width: 225px;"></td>
+                <td><input type="text" class="input-text" placeholder="成交总价" id="sumPrices" name="sumPrices"
+                           style="width: 225px;"><span class="c-red"> 元</span></td>
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>经办人：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>经办人:</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:225px;">
 			<select class="select" name="managePerson" id="managePerson" size="1">
 				<option value="0">请选择</option>
@@ -107,16 +101,15 @@
 				<option value="2">李四</option>
 			</select>
 			</span>
-                <span class="c-red">*</span>简要备注:
+                <span class="c-red">*</span>简要备注：
                 <td><input type="text" class="input-text" placeholder="简要备注" id="remake" name="remake"
                            style="width: 225px;"></td>
             </div>
         </div>
-
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                 <input class="btn btn-primary radius" type="button" id="btnSvn" value="&nbsp;&nbsp;认购确定&nbsp;&nbsp;">
-                <input class="btn btn-primary radius" type="button" id="btnSvn1" value="&nbsp;&nbsp;返回&nbsp;&nbsp;">
+                <a href="../Schedule/Reserve-List.html"><input class="btn btn-primary radius" type="button" value="&nbsp;&nbsp;返回&nbsp;&nbsp;"></a>
             </div>
         </div>
 
@@ -125,7 +118,8 @@
 
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="../js/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="../js/admitbuy.js"></script>
+<!--<script type="text/javascript" src="../js/layer/2.4/layer.js"></script>-->
 <script type="text/javascript" src="../static/h-ui/js/H-ui.min.js"></script>
 <script type="text/javascript" src="../static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
 
@@ -134,10 +128,11 @@
 <script type="text/javascript" src="../lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="../lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="../lib/jquery.validation/1.14.0/messages_zh.js"></script>
-<script type="text/javascript"></script>
+<script type="text/javascript" src="../js/sellHouse.js"></script>
+
 
 <script>
-    $(window).on('load', () => {
+  /*  $(window).on('load', () => {
         $('.skin-minimal input').iCheck({
             checkboxClass: 'icheckbox-blue',
             radioClass: 'iradio-blue',
@@ -163,21 +158,21 @@
             focusCleanup: true,
             success: "valid",
             submitHandler: function (form) {
-                var drid = $("#drid").val();
-                alert(drid);
+                var scheduleID = $("#scheduleID").val();
+                alert(scheduleID);
                 var type;
-                //判断sno是否有值  有值就给隐藏框act赋值upd，没值就赋值add
-                if(drid != undefined && drid != ""&& drid != 0){
+                //判断id是否有值  有值就给隐藏框act赋值upd，没值就赋值add
+                if(scheduleID != undefined && scheduleID != ""&& scheduleID != 0){
                     type="put";
                 }else{
                     type="post";
                 }
                 console.log(type);
                 $(form).ajaxSubmit({
-                    url: HOST_URL3 + "edit",
+                    url: schedule_URL + "edit",
                     type: type,
                     dataType: "json",
-                    headers: createAuthorizationTokenHeader(),
+                   /!* headers: createAuthorizationTokenHeader(),*!/
                     success: function (result) {
                         console.log("新增结果"+result);
                         if(result==1){
@@ -188,45 +183,14 @@
                         }
                     },
                     error: function () {
-                        layer.alert("系统出现错误,请联系管理员!");
+                        layer.alert("系统出现错误,认购失败!");
                     }
                 });
             }
         });
-        query();
-    })
-    function query() {
-        var drid = localStorage.getItem("drid");
-        alert(drid);
-        if(drid != undefined && drid != ""&& drid != 0){
-            $("#drid").val(drid);
-            $.ajax({
-                type:"get",
-                url: HOST_URL3+"queryById?drid="+drid,
-                headers: createAuthorizationTokenHeader(),
-                dataType:'json',
-                success:function (result) {
-                    $("#drstate").val(result.drstate)
-                    $("#drname").val(result.drname)
-                    $("#drsum").val(result.drsum)
-                    $("#drprice").val(result.drprice)
-                    $("#dyid").val(result.dyid)
-                }
-            })
-            // 用该药的科室
-            $.ajax({
-                url: HOST_URL3+"drugdepart?drid="+drid,
-                dataType: "json",
-                headers: createAuthorizationTokenHeader(),
-                success: function (data) {
-                    $.each(data, (i, item) => {
-                        console.log($("input[name=deid][value=" + item.deid + "]").prop("checked", true));
-                        $("input[name=deid][value=" + item.deid + "]").prop("checked", true)
-                    })
-                }
-            })
-        }
-    }
+
+    })*/
+
 </script>
 </body>
 </html>

@@ -28,7 +28,7 @@ CREATE TABLE `admitbuy` (
   `clientid` int(11) DEFAULT NULL COMMENT '客户ID',
   `firstPay` double(50) DEFAULT NULL COMMENT '首付',
   `payWayid` int(11) DEFAULT NULL COMMENT '付款方式ID',
-  `admitbuyDate` date(30) DEFAULT NULL COMMENT '认购日期',
+  `admitbuyDate` date(30) DEFAULT NULL COMMENT '认购日期',++++++++++++++++++++++++++++++
   PRIMARY KEY (`admitBuyid`),
   KEY `SC_ID` (`scheduleid`),
   KEY `ADV_ID` (`adviserid`),
@@ -109,6 +109,7 @@ CREATE TABLE `client` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `client` */
+
 
 /*Table structure for table `clientcontactcareful` */
 
