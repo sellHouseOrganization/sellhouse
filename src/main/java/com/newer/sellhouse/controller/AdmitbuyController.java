@@ -1,5 +1,7 @@
 package com.newer.sellhouse.controller;
 
+import com.newer.sellhouse.domain.Admitbuy;
+import com.newer.sellhouse.domain.AdmitbuySche;
 import com.newer.sellhouse.domain.AdmitbuySel;
 import com.newer.sellhouse.service.AdmitbuySelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,13 +49,28 @@ public class AdmitbuyController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "queryById",method = RequestMethod.GET)
-    public ResponseEntity<?>queryById(Integer admitbuyid){
-        AdmitbuySel admitbuySel = admitbuySelService.queryById(admitbuyid);
-        if(admitbuySel!=null){
-            return new ResponseEntity<>(admitbuySel,HttpStatus.OK);
+   /* @RequestMapping(value = "finAll",method = RequestMethod.GET)
+    public ResponseEntity<?>findAll(@RequestParam("clientName") String clientName){
+        AdmitbuySche admitbuySche = admitbuySelService.findForName(clientName);
+//        if(admitbuySche!=null){
+            return new ResponseEntity<>(admitbuySche,HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>("",HttpStatus.OK);
+    }*/
+
+    @RequestMapping(value = "findAll",method = RequestMethod.GET)
+   public ResponseEntity<?> findForName(@RequestParam("clientName") String clientName){
+    AdmitbuySche admitbuySche = admitbuySelService.findForName(clientName);
+    return new ResponseEntity<>(admitbuySche,HttpStatus.OK);
+   }
+
+   @RequestMapping(value = "insert",method = RequestMethod.POST)
+   public ResponseEntity<?> addAdmitbuy(Admitbuy admitbuy){
+        int ret = admitbuySelService.addAdmitbuy(admitbuy);
+        if (ret>0){
+            return new ResponseEntity<>(ret,HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+        return new ResponseEntity<>(ret,HttpStatus.NO_CONTENT);
+   }
 }
 
