@@ -73,7 +73,7 @@ public class AdmitbuyController {
    @RequestMapping(value = "insert",method = RequestMethod.POST)
    public ResponseEntity<?> addAdmitbuy(Admitbuy admitbuy){
         int ret = admitbuySelService.addAdmitbuy(admitbuy);
-        if (ret>0){
+        if (ret >0){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
         return new ResponseEntity<>(ret,HttpStatus.NO_CONTENT);
