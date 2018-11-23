@@ -32,7 +32,10 @@ public class AdmitbuySelService {
     }
 
     public int addAdmitbuy(Admitbuy admitbuy){
-
         return admitbuySelMapper.addAdmitbuy(admitbuy);
+    }
+
+    public AdmitbuySel findByAdmitbuyid(Integer admitbuyid){
+        return admitbuySelMapper.findByAdmitbuyid(admitbuyid);
     }
 }

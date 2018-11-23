@@ -34,4 +34,6 @@ public interface AdmitbuySelMapper {
             "    a.clientid=c.clientid AND a.scheduleid=s.scheduleid and a.houseid=h.houseid and h.houseTypeid=r.houseTypeid and h.houseid=f.floorid and a.clientid=c.clientid and f.areaPriceid=ar.areaPriceid" +
             "    and a.payWayid=p.payWayid and c.clientName = #{name}")
     AdmitbuySche findForName(@Param("name") String name);
+
+    AdmitbuySel findByAdmitbuyid(@Param("admitbuyid")Integer admitbuyid);
 }

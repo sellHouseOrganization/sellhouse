@@ -31,6 +31,12 @@ public class AdmitbuyController {
         return new ResponseEntity<>(admitbuySelList,HttpStatus.OK);
     }
 
+    @RequestMapping(value = "findByAdmitbuyid",method = RequestMethod.GET)
+    public ResponseEntity<?> findByAdmitbuyid(@RequestParam(name = "admitbuyid")Integer admitbuyid){
+        AdmitbuySel admitbuySel = admitbuySelService.findByAdmitbuyid(admitbuyid);
+        return new ResponseEntity<>(admitbuySel,HttpStatus.OK);
+    }
+
     @RequestMapping(value = "delete",method = RequestMethod.DELETE)
     public ResponseEntity<?> delAdmitbuy(@RequestParam(name = "aid",required = true) String aid) {
         String[] id = aid.split(",");

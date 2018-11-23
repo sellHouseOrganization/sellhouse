@@ -133,6 +133,8 @@ function applyEdit(){
 }
 /*申请认购变更*/
 function addApply(){
+    var admitbuyid =$("input:checkbox:checked").val();
+    localStorage.setItem("admitbuyid",admitbuyid);
     layer_show('申请认购变更','changehouseapply_edit.html','1100','400');
 }
 /*认购-移除*/
