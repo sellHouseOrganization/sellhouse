@@ -1,11 +1,14 @@
 package com.newer.sellhouse.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class ScheduleTotal implements Serializable {
 
-    private int scheduleid ;
+    private Integer scheduleid ;
 
     private double price ;
 
@@ -19,15 +22,21 @@ public class ScheduleTotal implements Serializable {
 
     private String phone ;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date scheduleDate ;
 
     private String itemName ;
 
-    private int floornumber ;
+    private String floornumber ;
 
     private String houseName ;
 
-    public ScheduleTotal(int scheduleid, double price, double total, double fromtMoney, String clientName, String sex, String phone, Date scheduleDate, String itemName, int floornumber, String houseName) {
+    public ScheduleTotal(){
+
+    }
+
+    public ScheduleTotal(Integer scheduleid, double price, double total, double fromtMoney, String clientName, String sex, String phone, Date scheduleDate, String itemName, String floornumber, String houseName) {
         this.scheduleid = scheduleid;
         this.price = price;
         Total = total;
@@ -49,11 +58,11 @@ public class ScheduleTotal implements Serializable {
         this.houseName = houseName;
     }
 
-    public int getScheduleid() {
+    public Integer getScheduleid() {
         return scheduleid;
     }
 
-    public void setScheduleid(int scheduleid) {
+    public void setScheduleid(Integer scheduleid) {
         this.scheduleid = scheduleid;
     }
 
@@ -121,11 +130,28 @@ public class ScheduleTotal implements Serializable {
         this.itemName = itemName;
     }
 
-    public int getFloornumber() {
+    public String getFloornumber() {
         return floornumber;
     }
 
-    public void setFloornumber(int floornumber) {
+    public void setFloornumber(String floornumber) {
         this.floornumber = floornumber;
+    }
+
+    @Override
+    public String toString() {
+        return "ScheduleTotal{" +
+                "scheduleid=" + scheduleid +
+                ", price=" + price +
+                ", Total=" + Total +
+                ", fromtMoney=" + fromtMoney +
+                ", clientName='" + clientName + '\'' +
+                ", sex='" + sex + '\'' +
+                ", phone='" + phone + '\'' +
+                ", scheduleDate=" + scheduleDate +
+                ", itemName='" + itemName + '\'' +
+                ", floornumber='" + floornumber + '\'' +
+                ", houseName='" + houseName + '\'' +
+                '}';
     }
 }
