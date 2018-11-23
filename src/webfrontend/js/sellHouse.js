@@ -5,6 +5,10 @@ const sellHouse_URL = "http://127.0.0.1:9090/Item/"
 const OFFERSUM_URL = "http://127.0.0.1:9090/offersum/"
 // admitbuy url
 const ADMITBUY_URL = "http://127.0.0.1:9090/admitbuy/"
+
+// schedule url
+const SCHEDULE_URL = "http://127.0.0.1:9090/schedule/"
+//let ADMITBUY_URL = "http://127.0.0.1:9090/admitbuy/"
 // client url
 const CLIENT_URL = "http://127.0.0.1:9090/Client/"
 

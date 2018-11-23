@@ -29,4 +29,51 @@
         </if>
     </where>
 </select>
+
+    <resultMap id="resultMap-1" type="com.newer.sellhouse.domain.AdmitbuySche">
+        <id column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />
+        <result column="price" jdbcType="DOUBLE" property="price" />
+        <result column="privateArea" jdbcType="DOUBLE" property="privateArea" />
+        <result column="fromtmoney" jdbcType="DOUBLE" property="fromtmoney" />
+        <result column="firstpay" jdbcType="DOUBLE" property="firstpay" />
+        <result column="mustprices" jdbcType="DOUBLE" property="mustprices" />
+        <result column="sumprices" jdbcType="DOUBLE" property="sumprices" />
+        <result column="clientName" jdbcType="VARCHAR" property="clientName" />
+        <result column="scheduleDate" jdbcType="DATE" property="scheduleDate" />
+        <result column="remake" jdbcType="VARCHAR" property="remake" />
+        <result column="payWayName" jdbcType="VARCHAR" property="payWayName" />
+        <result column="houseName" jdbcType="VARCHAR" property="houseName" />
+        <result column="admitbuydate" jdbcType="DATE" property="admitbuydate" />
+        <result column="manageperson" jdbcType="VARCHAR" property="manageperson" />
+    </resultMap>
+<select id="findAll" resultType="com.newer.sellhouse.domain.AdmitbuySche">
+select ar.price,r.privateArea,s.fromtMoney,a.firstPay,r.privateArea*ar.price as mustPrices,mustPrices-s.fromtMoney-a.firstPay as sumPrices,c.clientName,s.scheduleDate,s.remake,p.payWayName,
+    h.houseName,a.admitbuyDate,a.managePerson from admitbuy a,house h,client c ,floor f,areaprice ar,schedule s,roomtype r,payway p where
+    a.clientid=c.clientid AND a.scheduleid=s.scheduleid and a.houseid=h.houseid and h.houseTypeid=r.houseTypeid and h.houseid=f.floorid and a.clientid=c.clientid and f.areaPriceid=ar.areaPriceid
+    and a.payWayid=p.payWayid
+</select>
+
+    <!--<resultMap id="resultMap-2" type="com.newer.sellhouse.domain.AdmitbuySche">-->
+        <!--<id column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />-->
+        <!--<result column="price" jdbcType="DOUBLE" property="price" />-->
+        <!--<result column="privateArea" jdbcType="DOUBLE" property="privateArea" />-->
+        <!--<result column="fromtmoney" jdbcType="DOUBLE" property="fromtmoney" />-->
+        <!--<result column="firstpay" jdbcType="DOUBLE" property="firstpay" />-->
+        <!--<result column="mustprices" jdbcType="DOUBLE" property="mustprices" />-->
+        <!--<result column="sumprices" jdbcType="DOUBLE" property="sumprices" />-->
+        <!--<result column="clientName" jdbcType="VARCHAR" property="clientName" />-->
+        <!--<result column="scheduleDate" jdbcType="DATE" property="scheduleDate" />-->
+        <!--<result column="remake" jdbcType="VARCHAR" property="remake" />-->
+        <!--<result column="payWayName" jdbcType="VARCHAR" property="payWayName" />-->
+        <!--<result column="houseName" jdbcType="VARCHAR" property="houseName" />-->
+        <!--<result column="admitbuydate" jdbcType="DATE" property="admitbuydate" />-->
+        <!--<result column="manageperson" jdbcType="VARCHAR" property="manageperson" />-->
+    <!--</resultMap>-->
+    <!--<select id="findForName" parameterType="name" resultType="com.newer.sellhouse.domain.AdmitbuySche">-->
+<!--select ar.price,r.privateArea,s.fromtMoney,a.firstPay,r.privateArea*ar.price as mustPrices,mustPrices-s.fromtMoney-a.firstPay as sumPrices,c.clientName,s.scheduleDate,s.remake,p.payWayName,-->
+    <!--h.houseName,a.admitbuyDate,a.managePerson from admitbuy a,house h,client c ,floor f,areaprice ar,schedule s,roomtype r,payway p where-->
+    <!--a.clientid=c.clientid AND a.scheduleid=s.scheduleid and a.houseid=h.houseid and h.houseTypeid=r.houseTypeid and h.houseid=f.floorid and a.clientid=c.clientid and f.areaPriceid=ar.areaPriceid-->
+    <!--and a.payWayid=p.payWayid and c.clientName = name;-->
+<!--</select>-->
+
 </mapper>
