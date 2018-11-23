@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.ScheduleTotalMapper">
+    <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.ScheduleTotal">
+        <id column="scheduleid" jdbcType="INTEGER" property="scheduleid" />
+        <result column="price" jdbcType="DOUBLE" property="price" />
+        <result column="Total" jdbcType="DOUBLE" property="Total" />
+        <result column="fromtMoney" jdbcType="DOUBLE" property="fromtMoney" />
+        <result column="clientName" jdbcType="VARCHAR" property="clientName" />
+        <result column="sex" jdbcType="VARCHAR" property="sex" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="scheduleDate" jdbcType="DATE" property="scheduleDate" />
+        <result column="itemName" jdbcType="VARCHAR" property="itemName" />
+        <result column="floornumber" jdbcType="VARCHAR" property="floornumber" />
+        <result column="houseName" jdbcType="VARCHAR" property="houseName" />
+    </resultMap>
+
+<select id="listAll"  resultType="com.newer.sellhouse.domain.ScheduleTotal" resultMap="BaseResultMap">
+    select s.scheduleid,ar.price,r.privateArea*ar.price as Total,s.fromtMoney,c.clientName,c.sex,c.phone,s.scheduleDate,
+    i.itemName,f.floornumber,h.houseName from schedule s,house h,adviser a,client c ,floor f,areaprice ar,item i,roomtype r where
+     s.houseid=h.houseid and s.adviserid=a.adviserid and s.clientid=c.clientid and h.floorid=f.floorid and f.areaPriceid=ar.areaPriceid
+    and f.itemid=i.itemid and h.houseTypeid=r.houseTypeid
+
+</select>
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.ScheduleAddMapper">
+    <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.ScheduleAdd">
+        <id column="scheduleid" jdbcType="INTEGER" property="scheduleid" />
+        <result column="clientName" jdbcType="VARCHAR" property="clientName" />
+        <result column="sex" jdbcType="VARCHAR" property="sex" />
+        <result column="cardnumber" jdbcType="VARCHAR" property="cardnumber" />
+        <result column="age" jdbcType="VARCHAR" property="age" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="adviserName" jdbcType="VARCHAR" property="adviserName" />
+        <result column="fromtMoney" jdbcType="DOUBLE" property="fromtMoney" />
+        <result column="itemName" jdbcType="VARCHAR" property="itemName" />
+        <result column="floornumber" jdbcType="VARCHAR" property="floornumber" />
+        <result column="privateArea" jdbcType="VARCHAR" property="privateArea" />
+        <result column="price" jdbcType="DOUBLE" property="price" />
+        <result column="total" jdbcType="DOUBLE" property="total" />
+    </resultMap>
+
+<select id="listAll"  resultType="com.newer.sellhouse.domain.ScheduleAdd" resultMap="BaseResultMap">
+      select s.scheduleid,c.clientName,c.sex,c.cardnumber,c.age,c.phone,a.adviserName,s.fromtMoney,i.itemName,f.floornumber,r.privateArea,ar.price,
+    ar.price*r.privateArea as total from client c LEFT JOIN schedule s on s.clientid = c.clientid LEFT JOIN adviser a on s.adviserid = a.adviserid
+    LEFT JOIN house h on s.houseid=h.houseid LEFT JOIN floor f on h.floorid=f.floorid LEFT JOIN item i on f.itemid=i.itemid LEFT JOIN areaprice ar
+    on f.areaPriceid=ar.areaPriceid LEFT JOIN roomtype r on h.houseTypeid=r.houseTypeid
+    <where>
+        <if test="clientName!='' and clientName!=null">
+            and clientName like concat('%',concat(#{clientName},'%'))
+        </if>
+    </where>
+</select>
+
+    <resultMap id="BaseResultMaps" type="com.newer.sellhouse.domain.ScheduleAdd">
+        <id column="scheduleid" jdbcType="INTEGER" property="scheduleid" />
+        <result column="clientName" jdbcType="VARCHAR" property="clientName" />
+        <result column="sex" jdbcType="VARCHAR" property="sex" />
+        <result column="cardnumber" jdbcType="VARCHAR" property="cardnumber" />
+        <result column="age" jdbcType="VARCHAR" property="age" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="adviserName" jdbcType="VARCHAR" property="adviserName" />
+        <result column="fromtMoney" jdbcType="DOUBLE" property="fromtMoney" />
+        <result column="itemName" jdbcType="VARCHAR" property="itemName" />
+        <result column="floornumber" jdbcType="VARCHAR" property="floornumber" />
+        <result column="privateArea" jdbcType="VARCHAR" property="privateArea" />
+        <result column="price" jdbcType="DOUBLE" property="price" />
+        <result column="total" jdbcType="DOUBLE" property="total" />
+    </resultMap>
+
+    <select id="queryById" resultType="com.newer.sellhouse.domain.ScheduleAdd" resultMap="BaseResultMaps">
+        select s.scheduleid,c.clientName,c.sex,c.cardnumber,c.age,c.phone,a.adviserName,s.fromtMoney,i.itemName,f.floornumber,r.privateArea,ar.price,ar.price*r.privateArea as total from client c,schedule s,adviser a,house h,floor f,item i,areaprice ar,roomtype r where s.clientid = c.clientid and
+s.adviserid = a.adviserid and s.houseid=h.houseid and h.floorid=f.floorid and f.itemid=i.itemid and f.areaPriceid=ar.areaPriceid and
+h.houseTypeid=r.houseTypeid and s.scheduleid=#{scheduleid}
+    </select>
+</mapper>
