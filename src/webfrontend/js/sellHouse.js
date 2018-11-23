@@ -22,3 +22,7 @@ function getFormData($form) {
 
     return indexed_array
 }
+//Schedule1
+const Schedule_URL = "http://127.0.0.1:9090/Total/"
+
+
