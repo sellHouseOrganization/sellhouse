@@ -31,6 +31,11 @@ public class AdmitbuySelService {
         return admitbuySelMapper.findForName(name);
     }
 
+    /**
+     * 新增
+     * @param admitbuy
+     * @return
+     */
     public int addAdmitbuy(Admitbuy admitbuy){
 
         return admitbuySelMapper.addAdmitbuy(admitbuy);
