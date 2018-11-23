@@ -10,7 +10,6 @@
     <result column="floorid" jdbcType="INTEGER" property="floorid" />
     <result column="tiernumber" jdbcType="INTEGER" property="tiernumber" />
     <result column="housedate" jdbcType="DATE" property="housedate" />
-    <result column="houseTypeid" jdbcType="INTEGER" property="housetypeid" />
     <result column="marketState" jdbcType="INTEGER" property="marketstate" />
     <result column="houseStateid" jdbcType="INTEGER" property="housestateid" />
     <result column="houseNumber" jdbcType="INTEGER" property="housenumber" />
@@ -42,16 +41,18 @@
     where houseid = #{houseid,jdbcType=INTEGER}
   </update>-->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select houseid, floorid, tiernumber, housedate, houseTypeid, marketState, houseStateid, 
-    houseNumber
+    select *
     from house
     where houseid = #{houseid,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
 
-select h.houseid,CONCAT(i.itemName,f.floornumber,h.houseNumber) as appendmode,i.itemCompanyName,f.floornumber,h.housenumber
-,h.tiernumber,r.orientation,h.housedate,r.houseType,h.marketState,h.houseStateid
-from item i INNER JOIN floor f on i.itemid = f.itemid INNER JOIN house h on h.floorid = f.floorid
-INNER JOIN roomtype r on r.houseTypeid=h.houseTypeid
+select h.houseid,CONCAT(i.itemName,f.floornumber,h.tiernumber,0,h.houseNumber) as appendmode,i.itemCompanyName,f.floornumber,h.housenumber
+,h.tiernumber,h.orientation,h.housedate,h.houseType,h.marketState,h.houseStateid
+from item i INNER JOIN floor f on i.itemid = f.itemid INNER JOIN house h on h.floorid = f.floorid limit #{pageno},#{pagesum}
   </select>
+
+  <select id="selectRum" resultType="java.lang.Integer">
+        select count(*) from house
+    </select>
 </mapper>

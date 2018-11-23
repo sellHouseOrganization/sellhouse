@@ -32,32 +32,12 @@
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
         <a href="javascript:;" onclick="House_del()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6e2;</i> 报废</a>
-        <a href="javascript:;" onclick="Item_add()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 添加项目</a>
         <a href="javascript:;" onclick="House_upd()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6df;</i> 修改</a>
         <a href="javascript:;" onclick="House_state()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe631;</i> 停售</a>
          </span> <span class="r">共有数据：<strong></strong> 条</span> </div>
-    <table class="table table-border table-bordered table-bg">
-        <thead>
-        <tr>
-            <th scope="col" colspan="11">房源列表</th>
+    <table class="table table-border table-bordered table-bg" id="tbody" >
+        <tr class="text-c" id="tr1">
         </tr>
-        <tr class="text-c">
-            <th width="25"><input type="checkbox" name="ckID" value="0"></th>
-            <th width="80">房源编号</th>
-            <th width="150">代码模式</th>
-            <th width="40">楼栋号</th>
-            <th width="150">房间号</th>
-            <th width="90">层号</th>
-            <th width="25">朝向</th>
-            <th width="100">建立时间</th>
-            <th width="100">房型</th>
-            <th width="100">销售状态</th>
-            <th width="100">房源状态</th>
-        </tr>
-        </thead>
-        <tbody id="tbody">
-
-        </tbody>
     </table>
 </div>
 <!--_footer 作为公共模版分离出去-->
@@ -70,7 +50,6 @@
 <script type="text/javascript" src="../lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="../lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="../lib/laypage/1.2/laypage.js"></script>
-<script src="js/client.js"></script>
 <script type="text/javascript">
 
     /*
@@ -81,42 +60,188 @@
         w		弹出层宽度（缺省调默认值）
         h		弹出层高度（缺省调默认值）
     */
+
+
+
     $(function () {
-        query();
+        page();
     })
-    function query() {
-        $.ajax({
-            url:"http://127.0.0.1:9090/House/listAll",
-            type:"get",
-            /*data:data,*/
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            success:function (result) {
-                var appendVal = '';
-                $.each(result,function (index,House) {
-                    console.log(House);
-                    appendVal+=`
-                    <tr class="text-c">
-                    <td><input type="checkbox" id="ckID" value="${House.houseid}" name=""></td>
-                    <td>${House.houseid}</td>
-                    <td>${House.appendmode}</td>
-                    <td>${House.floor.floornumber}</td>
-                    <td>${House.housenumber}</td>
-                    <td>${House.tiernumber}</td>
-                    <td>${House.orientation}</td>
-                    <td>${House.housedate}</td>
-                    <td>${House.housetype}</td>
-                    <td>${House.marketstate}</td>
-                    <td>${House.housestateid}</td>
-                    </tr>
-                    `
-                })
-                $("#tbody").html(appendVal);
+    function page() {
+        var lag = {//语言设置
+            "sProcessing" : "处理中...",
+            "sLengthMenu" : "显示 _MENU_ 项结果",
+            "sZeroRecords" : "没有匹配结果",
+            "sInfo" : "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+            "sInfoEmpty" : "显示第 0 至 0 项结果，共 0 项",
+            "sInfoFiltered" : "(由 _MAX_ 项结果过滤)",
+            "sInfoPostFix" : "",
+            "sSearch" : "搜索:",
+            "sUrl" : "",
+            "sEmptyTable" : "表中数据为空",
+            "sLoadingRecords" : "载入中...",
+            "sInfoThousands" : ",",
+            "oPaginate" : {
+                "sFirst" : "首页",
+                "sPrevious" : "上页",
+                "sNext" : "下页",
+                "sLast" : "末页"
+            },
+            "oAria" : {
+                "sSortAscending" : ": 以升序排列此列",
+                "sSortDescending" : ": 以降序排列此列"
             }
+        };
+        //调用dataTable插件
+        $("#tbody").dataTable({
+            "bServerSide":true,//是否开启服务器模式
+            "sAjaxSource":"http://127.0.0.1:9090/House/listAll",//请求url
+            "fnServerData": function(sSource,aoData,fnCallback){
+                //1.sSource--请求路径 2.aoData--dataTable封装参数 3.fnCallback--回调函数
+                //alert(JSON.stringify(aoData))
+                $.ajax({
+                    type:"get",
+                    url:sSource,
+                    data:aoData,
+                    dataType:"json",
+                    success:function(data){
+                        console.log(data);
+                        fnCallback(data);
+                    },
+                    error:function(data){
+                    }
+                });
+            },
+            "oLanguage":lag,//翻译成中文
+            "aoColumns":[
+                {
+                    "mDataProp":"houseid",
+                    "sTitle":"<th><input type='checkbox'id='checkAll' onclick='checked()'></th>",
+                    "render":function(data, type, full, callback){ // 渲染当前行的楼栋数据
+                        return "<input type='checkbox' value='"+full.houseid+"'>";
+                    }
+                },
+                {
+                    "mDataProp":"houseid",
+                    "sTitle":"房源编号",
+                },
+                {
+                    "mDataProp":"appendmode",
+                    "sTitle":"代码模式",
+                },
+                {
+                    "mDataProp":"itemcompanyname",
+                    "sTitle":"项目名称",
+
+                },
+                {
+                    "mDataProp":"floor",
+                    "sTitle":"楼栋号",
+                    "render":function(data, type, full, callback){ // 渲染当前行的楼栋数据
+                        //alert("data : " + JSON.stringify(data));
+                        return data.floornumber;
+                    }
+                },
+                {
+                    "mDataProp":"housenumber",
+                    "sTitle":"房间号",
+                    "render":function(data, type, full, callback){ // 渲染当前行的楼栋数据
+                        //alert("data : " + JSON.stringify(data));
+                        return full.tiernumber+"0"+full.housenumber;
+                    }
+                },
+                {
+                    "mDataProp":"tiernumber",
+                    "sTitle":"层号",
+
+                },
+                {
+                    "mDataProp":"orientation",
+                    "sTitle":"朝向",
+
+                },
+                {
+                    "mDataProp":"housedate",
+                    "sTitle":"建立时间",
+
+                },
+                {
+                    "mDataProp":"housetype",
+                    "sTitle":"房型",
+
+                },
+                {
+                    "mDataProp":"marketstate",
+                    "sTitle":"销售状态",
+                    "render":function(data, type, full, callback){
+                        if(full.marketstate=0){
+                            return "<span class='label label-success radius'>可购</span>";
+                        }
+                        if(full.marketstate=1){
+                            return "<span class='label label-success radius'>已认购</span>";
+                        }
+                        if(full.marketstate==2){
+                            return "<span class='label label-success radius'>预定中</span>";
+                        }
+                    }
+                },
+                {
+                    "mDataProp":"housestateid",
+                    "sTitle":"房源状态",
+                    "render":function(data, type, full, callback){
+                        if(full.housestateid=0){
+                            return "<span class='label label-success radius'>可售</span>";
+                        }
+                        if(full.housestateid=1){
+                            return "<span class='label label-success radius'>已售</span>";
+                        }
+                        if(full.housestateid==2){
+                            return "<span class='label label-success radius'>停售</span>";
+                        }
+                    }
+                },
+
+            ],
         })
     }
-    /*房源-删除*/
 
+
+    function checked(){
+        alert(1111);
+        if ($("#checkAll").attr("checked")) {
+            $(":checkbox").attr("checked", true);
+        } else {
+            $(":checkbox").attr("checked", false);
+        }
+    }
+
+    function House_state(){
+        layer.confirm('确认要停售吗？',function(index){
+            var ckid=[];
+            $.each($('input:checkbox:checked'),function(index,c){
+                ckid.push(c.value);
+            });
+            console.log(ckid);
+            $.ajax({
+                type: 'PUT',
+                url:"http://127.0.0.1:9090/House/changeState?houseid="+ckid,
+                data: {housestateid: 1},
+                dataType: 'json',
+                success: function (result) {
+                    if (result>=1) {
+                        window.location.reload();
+                        layer.msg('已停售!', {icon: 6, time: 1000});
+                    } else if (result<1) {
+                        layer.msg('该状态处于停售状态,无法停售!', {icon: 2, time: 1500});
+                    }
+                },
+                error: function (result) {
+                    console.log(result);
+                },
+            });
+        });
+    }
+
+    /*房源-删除*/
     function House_del(){
         var ckid=[];
         $.each($('input:checkbox:checked'),function(index,c){
@@ -142,11 +267,7 @@
 
     /*房源-编辑*/
     function House_upd(){
-        var ckid=[];
-        $.each($('input:checkbox:checked'),function(index,c){
-            ckid.push(c.value);
-        });
-        localStorage.setItem("houseid",ckid);
+        localStorage.setItem("houseid",1);
         layer_show('修改项目','../House/House_edit.html','400','500');
     }
     /*管理员-停用*/

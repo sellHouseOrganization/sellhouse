@@ -13,8 +13,8 @@ public class HouseService {
     @Autowired
     private HouseMapper houseMapper;
 
-    public List<House>listAll(){
-       return houseMapper.selectAll();
+    public List<House>listAll(Integer pageno,Integer pagesum){
+       return houseMapper.selectAll(pageno, pagesum);
     }
 
     public int Insert(House house){
@@ -31,5 +31,13 @@ public class HouseService {
 
     public House queryById(Integer Houseid){
         return houseMapper.selectByPrimaryKey(Houseid);
+    }
+
+    public int selectRum(){
+        return houseMapper.selectRum();
+    }
+
+    public int changeState(Integer houseid,Integer housestateid){
+        return houseMapper.changeState(houseid, housestateid);
     }
 }
