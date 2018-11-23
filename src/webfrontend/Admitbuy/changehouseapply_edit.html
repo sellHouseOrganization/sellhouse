@@ -7,18 +7,18 @@
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <title>新增认购</title>
+    <title>添加申请</title>
     <!--[if lt IE 9]>
     <script type="text/javascript" src="../lib/html5shiv.js"></script>
     <script type="text/javascript" src="../lib/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css" />
-    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css" />
-    <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css" />
-    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/skin/default/skin.css" id="skin" />
-    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css"/>
     <!--[if IE 6]>
-    <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
     <!--/meta 作为公共模版分离出去-->
@@ -28,95 +28,47 @@
     <form method="post" class="form form-horizontal" id="form-drug-add">
         <input type="hidden" name="AdmitbuyID" id="AdmitbuyID">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>客户姓名:</label>
+            <label class="form-label col-xs-4 col-sm-3">姓名</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <td><input type="text" class="input-text" id="clientName" name="clientName" placeholder="客户姓名" style="width: 225px;"></td>
-                <span class="c-red">*</span>性别:
-                <td> <input type="radio" id="sex" name="sex" value="男" checked>男
-                <input type="radio" id="sex1" name="sex" value="女">女</td>
-
-            </div>
-        </div>
-
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">单元名称：</label>
-            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:225px;">
-			<select class="select" name="itemName" id="itemName" size="1">
-				<option value="0">请选择</option>
-				<option value="1">流星花园</option>
-                <option value="2">皇宫</option>
-			</select>
-			</span>
-            <span class="c-red">*</span>预售定金:<td><input type="text" class="input-text" placeholder="定金" id="fromtMoney" name="fromtMoney"
-                       style="width: 225px;"></td>
-            </div>
-        </div>
-
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>公摊面积:</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <td><input type="text" class="input-text" id="pooledArea" name="pooledArea" placeholder="公摊面积" style="width: 225px;"></td>
-                <span class="c-red">*</span>私有面积:
-                <td><input type="text" class="input-text" id="privateArea" name="privateArea" placeholder="私有面积" style="width: 225px;"></td>
-
-            </div>
-        </div>
-
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>付款方式：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <span class="select-box" style="width:225px;">
-			<select class="select" name="structure" id="structure" size="1">
-				<option value="0">请选择</option>
-				<option value="1">按揭</option>
-                <option value="2">全额</option>
-			</select>
-			</span>
-                <span class="c-red">*</span>预售单价:
-                <td><input type="text" class="input-text" id="price" name="price" placeholder="单价" style="width: 225px;"></td>
-
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>预定日期:</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <td><input type="text" class="input-text" placeholder="预定日期" id="scheduleDate" name="scheduleDate"
-                       style="width: 225px;"></td>
-                <span class="c-red">*</span>认购日期:
-                <td><input type="text" class="input-text" placeholder="认购日期" id="admitbuyDate" name="admitbuyDate"
-                       style="width: 225px;"></td>
-            </div>
-        </div>
-
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>首付:</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <td><input type="text" class="input-text" placeholder="首付" id="firstPay" name="firstPay"
+                <td><input type="text" class="input-text" disabled="disabled" id="clientName" name="clientName" placeholder="客户姓名"
                            style="width: 225px;"></td>
-                <span class="c-red">*</span>应交售价:
-                <td><input type="text" class="input-text" placeholder="应交售价" id="mustPrices" name="mustPrices"
-                           style="width: 225px;"></td>
+                单元名称
+                <td><input type="text" class="input-text" placeholder="" disabled="disabled" style="width: 225px;"></td>
+                总价
+                <td><input type="text" class="input-text" placeholder="" disabled="disabled" style="width: 225px;"></td>
             </div>
         </div>
+
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>经办人：</label>
-            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:225px;">
-			<select class="select" name="managePerson" id="managePerson" size="1">
-				<option value="0">请选择</option>
-				<option value="1">张三</option>
-				<option value="2">李四</option>
-			</select>
-			</span>
-                <span class="c-red">*</span>简要备注:
-                <td><input type="text" class="input-text" placeholder="简要备注" id="remake" name="remake"
-                           style="width: 225px;"></td>
+            <label class="form-label col-xs-4 col-sm-3">申请变更类型</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <td> <span class="select-box" style="width:180px;">
+			<select class="select">
+				<option value="0">换房</option>
+				<option value="1">更名</option>
+                <option value="2">退房</option>
+            </select>
+			</span></td>
+                原因分类
+               <select class="select-box" style="width:180px;">
+                    <option value="0">环境因素</option>
+                </select>
+                申请日期
+                <input type="text" class="input-text" disabled="disabled" placeholder="" style="width: 225px;">
             </div>
         </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">更变原因</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <td><input type="text" class="input-text"  style="width: 800px;"></td>
+            </div>
+        </div>
+
 
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                <input class="btn btn-primary radius" type="button" id="btnSvn" value="&nbsp;&nbsp;认购确定&nbsp;&nbsp;">
-                <input class="btn btn-primary radius" type="button" id="btnSvn1" value="&nbsp;&nbsp;返回&nbsp;&nbsp;">
+                <input class="btn btn-primary radius" type="button" id="btnSvn" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
             </div>
         </div>
 
@@ -164,13 +116,12 @@
             success: "valid",
             submitHandler: function (form) {
                 var drid = $("#drid").val();
-                alert(drid);
                 var type;
                 //判断sno是否有值  有值就给隐藏框act赋值upd，没值就赋值add
-                if(drid != undefined && drid != ""&& drid != 0){
-                    type="put";
-                }else{
-                    type="post";
+                if (drid != undefined && drid != "" && drid != 0) {
+                    type = "put";
+                } else {
+                    type = "post";
                 }
                 console.log(type);
                 $(form).ajaxSubmit({
@@ -179,8 +130,8 @@
                     dataType: "json",
                     headers: createAuthorizationTokenHeader(),
                     success: function (result) {
-                        console.log("新增结果"+result);
-                        if(result==1){
+                        console.log("新增结果" + result);
+                        if (result == 1) {
                             layer.msg("新增成功", {icon: 1, time: 1000});
                             window.parent.location.reload();
                             var index = parent.layer.getFrameIndex(window.name);
@@ -193,19 +144,20 @@
                 });
             }
         });
-        query();
+
     })
+
     function query() {
         var drid = localStorage.getItem("drid");
         alert(drid);
-        if(drid != undefined && drid != ""&& drid != 0){
+        if (drid != undefined && drid != "" && drid != 0) {
             $("#drid").val(drid);
             $.ajax({
-                type:"get",
-                url: HOST_URL3+"queryById?drid="+drid,
+                type: "get",
+                url: HOST_URL3 + "queryById?drid=" + drid,
                 headers: createAuthorizationTokenHeader(),
-                dataType:'json',
-                success:function (result) {
+                dataType: 'json',
+                success: function (result) {
                     $("#drstate").val(result.drstate)
                     $("#drname").val(result.drname)
                     $("#drsum").val(result.drsum)
@@ -215,7 +167,7 @@
             })
             // 用该药的科室
             $.ajax({
-                url: HOST_URL3+"drugdepart?drid="+drid,
+                url: HOST_URL3 + "drugdepart?drid=" + drid,
                 dataType: "json",
                 headers: createAuthorizationTokenHeader(),
                 success: function (data) {

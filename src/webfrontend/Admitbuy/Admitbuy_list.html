@@ -19,6 +19,11 @@
 <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
+    <style>
+        th,td{
+            white-space:nowrap;
+        }
+    </style>
 <title>销售管理</title>
 </head>
 <body>
@@ -29,13 +34,13 @@
 		<button type="submit" class="btn btn-success radius" id="" name="" onclick="Admitbuy_query()"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
-        <a href="javascript:;" onclick="" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 认购变更申请</a>
+        <a href="javascript:;" onclick="addApply()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 认购变更申请</a>
         <a href="javascript:;" onclick="" class="btn btn-success size-MINI radius"><i class="Hui-iconfont">&#xe61d;</i> 认购变更管理</a>
          </span> </div>
 	<table class="table table-border table-bordered table-hover table-bg table-sort">
 		<thead>
 		<tr>
-			<th scope="col" colspan="9">认购列表</th>
+			<th scope="col" colspan="16">认购列表</th>
 		</tr>
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" name="aid" value="0"></th>
@@ -75,12 +80,9 @@
 <script type="text/javascript">
     $(function () {
         $('.table-sort').dataTable({
-            "aaSorting": [[1, "desc"]],//默认第几个排序
-            "bStateSave": true,//状态保存
-            "aoColumnDefs": [
-                //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-                {"orderable": false, "aTargets": [0, 8, 9]}// 制定列不参与排序
-            ]
+            "scrollX": true,
+            "autoWidth":true,
+
         });
 
     });
@@ -134,9 +136,9 @@
 function Admitbuy_add(){
 	layer_show('添加认购','Admitbuy_edit.html','800','800');
 }
-/*认购-编辑*/
-function Admitbuy_edit(){
-    layer_show('认购修改','Admitbuy_edit.html','800','800');
+/*申请认购变更*/
+function addApply(){
+    layer_show('申请认购变更','changehouseapply_edit.html','1100','400');
 }
 /*认购-移除*/
 function Admitbuy_del(obj){
