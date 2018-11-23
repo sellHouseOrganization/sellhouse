@@ -33,7 +33,11 @@
            class="btn btn-danger radius">添加预定</a>
 
         <a href="javascript:;" onclick="PressMoney()"
-           class="btn btn-danger radius">更改预定</a> </span>
+           class="btn btn-danger radius">更改预定</a>
+
+        <a href="javascript:;" onclick="Admitbuy_edit()"
+           class="btn btn-danger radius">添加认购</a> </span>
+
     </div>
 
     <div class="mt-20">
@@ -128,9 +132,9 @@
         location.href="../Schedule/Reserve-add.html";
     }
 
-    /*用户-添加*/
-    function member_add(title, url, w, h) {
-        layer_show(title, url, w, h);
+    /*认购-添加*/
+    function Admitbuy_edit() {
+        location.href="../Schedule/Admitbuy_edit.html";
     }
 
     /*用户-查看*/

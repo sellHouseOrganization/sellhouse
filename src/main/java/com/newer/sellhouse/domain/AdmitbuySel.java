@@ -1,5 +1,7 @@
 package com.newer.sellhouse.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,6 +14,7 @@ public class AdmitbuySel implements Serializable {
 
     private Double firstpay;//首付
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date admitbuydate;//认购日期
 
     private String clientName;//客户姓名
