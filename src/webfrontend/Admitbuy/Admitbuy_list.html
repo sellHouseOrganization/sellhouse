@@ -43,7 +43,7 @@
 				<th width="40">认购ID</th>
 				<th width="90">客户姓名</th>
 				<th width="40">性别</th>
-				<th width="100">身份证号</th>
+				<th width="150">身份证号</th>
 				<th width="90">电话号码</th>
 				<th width="60">定金</th>
 				<th width="60">首付</th>
@@ -51,10 +51,9 @@
 				<th width="60">成交总价</th>
 				<th width="90">置业顾问名称</th>
 				<th width="90">认购日期</th>
-				<th width="60">付款方式名称</th>
+				<th width="90">付款方式名称</th>
 				<th width="90">房源名称</th>
 				<th width="90">应交售价</th>
-				<th width="100">操作</th>
 			</tr>
 		</thead>
 		<tbody id="tbody1">
@@ -117,9 +116,6 @@
                         <td>${admitbuy.payWayName}</td>
                         <td>${admitbuy.houseName}</td>
 						<td>${admitbuy.mustprices}</td>
-                        <td class="td-manage">
-                         <a title="编辑" href="javascript:;" onclick="Admitbuy_edit(${admitbuy.admitbuyid})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-                         <a title="删除" href="javascript:;" onclick="Admitbuy_del(this,${admitbuy.admitbuyid})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                       </tr>
                         `;
                 })
