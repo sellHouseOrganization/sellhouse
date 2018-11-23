@@ -1,11 +1,16 @@
 package com.newer.sellhouse;
 
 import com.newer.sellhouse.domain.Floor;
+import com.newer.sellhouse.domain.House;
 import com.newer.sellhouse.domain.Item;
+import com.newer.sellhouse.domain.Refund;
 import com.newer.sellhouse.mapper.FloorMapper;
 import com.newer.sellhouse.domain.Renames;
+import com.newer.sellhouse.mapper.HouseMapper;
 import com.newer.sellhouse.mapper.ItemMapper;
+import com.newer.sellhouse.mapper.RefundMapper;
 import com.newer.sellhouse.mapper.RenameMapper;
+import org.apache.ibatis.annotations.Param;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +28,8 @@ public class SellhouseSellhouseApplicationTests {
     private ItemMapper itemMapper;
     @Autowired
     private FloorMapper floorMapper;
+    @Autowired
+    private HouseMapper houseMapper;
     @Test
     public void contextLoads() {
         List<Item>items = itemMapper.selectAll("荣盛花语城");
@@ -41,37 +48,5 @@ public class SellhouseSellhouseApplicationTests {
         System.out.println(ret);
     }
 
-
-    @Test
-    public void UpdateItem(){
-        Item item = new Item();
-        item.setItemname("万科金域华府");
-        item.setItemcompanyname("万科地产");
-        item.setItemlevel("一级");
-        item.setNotsettle(0);
-        item.setItemid(1);
-        int ret = itemMapper.updateByPrimaryKey(item);
-        System.out.println(ret);
-    }
-
-    @Test
-    public void SettleChange(){
-        int ret = itemMapper.SettleChange(59,1);
-        System.out.println(ret);
-    }
-
-    @Test
-    public void queryById(){
-        Item item = itemMapper.selectByPrimaryKey(59);
-        System.out.println(item);
-    }
-
-    @Test
-    public void FloorList(){
-        List<Floor>list = floorMapper.selectAll();
-        for(Floor floor:list){
-            System.out.println(floor);
-        }
-    }
 
 }

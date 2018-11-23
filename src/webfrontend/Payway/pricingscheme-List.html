@@ -20,38 +20,45 @@
     <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
-    <title>退房管理</title>
+    <title>价格方案</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 财务管理 <span
-        class="c-gray en">&gt;</span> 退房管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
-                                              href="javascript:location.replace(location.href);" title="刷新"><i
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 价格方案 <a
+        class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+        href="javascript:location.replace(location.href);" title="刷新"><i
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-
-    <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l">
-        <a href="javascript:;" onclick="PressMoney()"
-            class="btn btn-danger radius">报废</a>  <a href="javascript:;" onclick="BackHouse()"
-                                                     class="btn btn-danger radius">退房</a></span> <span class="r">共有数据：<strong>88</strong> 条</span></div>
+    <span style="margin-left: 25%">项目名</span>项目名：<select class="select-box" style="width:250px"></select>
+    楼栋号：<select class="select-box" style="width:250px"></select>
+    <div class="cl pd-5 bg-1 bk-gray mt-20">
+        <span class="l">
+        <a href="javascript:;" onclick=""
+           class="btn btn-default radius">添加</a> </span></div>
     <div class="mt-20">
         <table class="table table-border table-bordered table-hover table-bg table-sort">
             <thead>
             <tr class="text-c">
-                <th width="25"><input type="checkbox" name="" value=""></th>
-                <th width="20">退房编号</th>
-                <th width="130">单元名称</th>
-                <th width="40">客户姓名</th>
-                <th width="120">客户手机号码</th>
-                <th width="30">退还金额</th>
-                <th width="30">收取费用</th>
-                <th width="100">退房日期</th>
-                <th width="50">退房说明</th>
-                <th width="50">状态</th>
+                <th width="60">操作</th>
+                <th width="60">序号</th>
+                <th width="50">楼栋号</th>
+                <th width="70">方案名称</th>
+                <th width="100">表价单价（元/平方）</th>
+                <th width="60">制定日期</th>
+                <th width="100">简要备注</th>
             </tr>
             </thead>
             <tbody id="tbody">
-
-
+            <tr class="text-c">
+                <td><a class="label label-secondary radius" href="javascript:;" onclick=""><i class="Hui-iconfont">&#xe60c;</i>更改</a>
+                    <a class="label label-danger radius" href="javascript:;" onclick=""><i
+                            class="Hui-iconfont">&#xe6e2;</i>删除</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
             </tbody>
         </table>
     </div>
@@ -69,7 +76,7 @@
 <script type="text/javascript">
     $(function () {
         $.ajax({
-            url: "http://127.0.0.1:9090/refund/sel",
+            url: "http://127.0.0.1:9090/renames/selall",
             dataType: "json",
             contentType: "application/json;charset=uft-8",
             type: "get",
@@ -80,47 +87,40 @@
                     $.each(data, function (index, re) {
                         Valap += `
                 <tr class="text-c">
-                <th><input type="checkbox" name="" value=""></th>
-                <th>${re.refundid}</th>
-                <th>${re.item.itemname+re.floor.floornumber+"栋"+re.house.housenumber}</th>
-                <th>${re.client.clientName}</th>
-                <th >${re.client.phone}</th>
-                <th>${re.refundsum}</th>
-                 <th>${re.takesum}</th>
-                <th>${re.refunddate}</th>
-                <th>${re.refundexplain}</th>
-                <th>已退房</th>
-
+                <td><input type="checkbox" name="" value=""></td>
+                <td>${re.renameid}</td>
+                <td>${re.admitbuyid}</td>
+                <td>${re.renamedate}</td>
+                <td >${re.client1.clientname}</td>
+                <td>${re.client1.cardnumber}</td>
+                 <td>${re.client1.phone}</td>
+                <td>${re.client2.clientname}</td>
+                <td>${re.client2.cardnumber}</td>
+                <td>${re.client2.phone}</td>
 
             </tr>`
                     })
-
                     $("#tbody").html(Valap);
 
                 }
             }
         })
 
-
-
-
-
-
-
         $('.table-sort').dataTable({
-            "aaSorting": [[1, "desc"]],//默认第几个排序
-            "bStateSave": true,//状态保存
-            "aoColumnDefs": [
-                //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-                {"orderable": false, "aTargets": [0, 8, 9]}// 制定列不参与排序
-            ]
+            "searching" : false,
+            "lengthChange": false,
+            "info": false,
+            "destroy":true,
+            "retrieve":true,
+            "stateSave":false
         });
 
     });
-function BackHouse() {
-    location.href="../BackHouse/BackHouse-Back.html";
-    
-}
+
+    function HousesChange() {
+        location.href = "../Rename/Rename-Change.html";
+
+    }
 
     /*用户-添加*/
     function member_add(title, url, w, h) {

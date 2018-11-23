@@ -10,69 +10,85 @@
 <link rel="Bookmark" href="/favicon.ico" >
 <link rel="Shortcut Icon" href="/favicon.ico" />
 <!--[if lt IE 9]>
-	<script type="text/javascript" src="../lib/html5shiv.js"></script>
-	<script type="text/javascript" src="../lib/respond.min.js"></script>
-	<![endif]-->
+    <script type="text/javascript" src="../lib/html5shiv.js"></script>
+    <script type="text/javascript" src="../lib/respond.min.js"></script>
+    <![endif]-->
 <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css" />
 <!--[if IE 6]>
-	<script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js"></script>
-	<script>DD_belatedPNG.fix('*');</script>
-	<![endif]-->
+    <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
 
-<title>退房退款</title>
+<title>价格方案编辑</title>
 </head>
 <body>
 <article class="page-container">
-	<form action="" method="post" class="form form-horizontal" id="form-member-add">
+	<form action="" method="" class="form form-horizontal" id="form-member-add">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 订单号</label>
+			<label class="form-label col-xs-4 col-sm-3">项目名称</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<div>
-					<td><input type="text" class="input-text" value="" placeholder="" id="admitbuyid" name="admitbuyid" style="width:350px"></td>
-　　　　　
-					客户姓名　
-					<td><input type="text" class="input-text" value="" placeholder="" id="clientname" name="clientname" style="width:350px"></td>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 退还百分比</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<div>
-					<td><input type="text" class="input-text" value="70" placeholder="" id="discount" name="discount" style="width:350px"></td>　　　　　
-
-					客户身份证　<td><input type="text" class="input-text" value="" placeholder="" id="cardnumber" name="cardnumber" style="width:350px"></td>
-
+					<select class="select-box" style="width:250px"></select>
 				</div>
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 已收取金额</label>
+			<label class="form-label col-xs-4 col-sm-3"> 方案名称</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<div>
-					<td><input type="text" class="input-text" value="" placeholder="0" id="takesum" name="takesum" style="width:350px"></td>
-					　　　　　
-					　
+					<input type="text" class="input-text"  placeholder="方案名称"  style="width:250px">
 				</div>
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 退还金额</label>
+			<label class="form-label col-xs-4 col-sm-3">制定日期</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<div>
-			<td><input type="text" class="input-text" value="" placeholder="0" id="refundsum" name="refundsum" style="width:350px"></td>
-					　　　　　
-					退款说明　
-					<td><input type="text" class="input-text" value="" placeholder="" id="refundexplain" name="refundexplain" style="width:350px;height: 80px"></td>
+					<input type="text" class="input-text" disabled="disabled" value="" placeholder="制定日期" style="width:250px">
 				</div>
 			</div>
 		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">表价单价</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div>
+				<input type="text" class="input-text" value="0"   style="width:250px">　
+				</div>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">简要备注</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div>
+					<input type="text" class="input-text" value="" placeholder="简要备注" style="width:250px">
+				</div>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">已选择楼栋</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div>
+					<input type="text" class="input-text" disabled="disabled" value="" placeholder="没有选择楼栋" style="width:250px">
+				</div>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"></label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div>
+
+				</div>
+			</div>
+		</div>
+
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 				<input class="btn btn-primary radius" id="comit" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
@@ -95,41 +111,34 @@
 <script type="text/javascript" src="../lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript">
 $(function(){
+
+
     $("#comit").click(function () {
         alert(2222222);
         $.ajax({
-            url: "http://127.0.0.1:9090/refund/ins",
+            url: "http://127.0.0.1:9090/renames/updRe",
             dataType: "json",
-            data:{
-                "admitbuyid":$("#admitbuyid").val(),
-                "takesum":$("#takesum").val(),
-                "refundsum":$("#refundsum").val(),
-                "refundexplain":$("#refundexplain").val(),
-                "clientname":$("#clientname").val(),
-                "cardnumber":$("#cardnumber").val()
+			data:{
+            "oldclientid":$("#oldclientid").val(),
+			"newclientid":$("#newclientid").val(),
+				"admitbuyid":$("#admitbuyid").val(),
+				"oldname":$("#oldname").val(),
+				"oldcardnumber":$("#oldcardnumber").val(),
+                "newname":$("#newname").val(),
+                "newcardnumber":$("#newcardnumber").val()
 
-            },
+			},
             contentType: "application/json;charset=uft-8",
             type: "get",
             success: function (data) {
                 if(data){
-                    alert("退房成功");
-                    location.href="BackHouse-List.html";
-                }
+                    alert("更名成功");
+                location.href="Rename-List.html";
+            }
 
             }
         })
     })
-
-
-
-
-
-
-
-
-
-
 
 
 	$('.skin-minimal input').iCheck({

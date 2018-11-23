@@ -16,7 +16,53 @@ public class Refund implements Serializable {
 
     private Double takesum;
 
+    private Client client;
+    private Admitbuy admitbuy;
+    private Floor floor;
+    private House house;
+    private Item item;
+
     private static final long serialVersionUID = 1L;
+
+    public Floor getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Floor floor) {
+        this.floor = floor;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Admitbuy getAdmitbuy() {
+        return admitbuy;
+    }
+
+    public void setAdmitbuy(Admitbuy admitbuy) {
+        this.admitbuy = admitbuy;
+    }
 
     public Integer getRefundid() {
         return refundid;

@@ -28,51 +28,53 @@
 <body>
 <article class="page-container">
 	<form action="" method="post" class="form form-horizontal" id="form-member-add">
+		<input id="offersumid" name="offersumid" type="hidden">
+		<input id="offertime" name="offertime" type="hidden">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 单元名称</label>
+			<label class="form-label col-xs-4 col-sm-3">单元名称</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<div>
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:250px"></td>
+					<td><input type="text" class="input-text" value="" disabled="disabled" id="housename" name="housename" style="width:250px"></td>
 					缴款人　　
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:250px"></td>
+					<td><input type="text" class="input-text" value="" placeholder="缴款人" id="payer" name="payer" style="width:250px"></td>
 				</div>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">票据类型</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<select class="select-box" style="width: 250px;margin-right: -160px" name="city">
-					<option value="" selected>发票</option>
+				<select class="select-box" style="width: 250px;" id="bill" name="bill">
+					<option value="发票">发票</option>
 				</select>　	　　　　　　　　　　
-				收款日期<input type="text"  class="input-text" value="" placeholder="收款日期"　 id="" name="" style="width:250px;margin-left: 20px">
+				<span style="margin-left: -160px">收款日期</span><input type="text"  class="input-text" value="" placeholder="收款日期"disabled="disabled"　 id="collectiondate" name="collectiondate" style="width:250px;margin-left: 20px">
 			</div>
 		</div>
 		<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 款项名称</label>
+		<label class="form-label col-xs-4 col-sm-3">款项名称</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<div>
-				<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:250px"></td>
+				<td><input type="text" class="input-text"  disabled="disabled" value="" id="time" name="time" style="width:250px"></td>
 				开票日期　
-				<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:250px"></td>
+				<td><input type="text" class="input-text" id="billdate" name="billdate" disabled="disabled" placeholder="开票日期"  style="width:250px"></td>
 			</div>
 		</div>
 	</div>
-		<div class="row cl"　>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">付款方式</label>
-			<div class="formControls col-xs-8 col-sm-9"　> <span class="select-box" style="width: 250px;margin-right: -210px">
-				<select class="select"  name="city">
-					<option value="" selected>发票</option>
+			<div class="formControls col-xs-8 col-sm-9"　> <span class="select-box" style="width: 250px">
+				<select class="select"  name="payway" id="payway">
+					<option value="现金">现金</option>
+					<option value="微信">微信</option>
 				</select>
 				</span>　　　　　　　　　　　　　　　　　
-				金额<input type="text" class="input-text" value="" placeholder="金额"　 id="" name="" style="width:250px;margin-left: 20px">
+				<span style="margin-left: -210px">金额</span><input type="text" class="input-text" value="" disabled="disabled" placeholder="金额"  id="money" name="money" style="width:250px;margin-left: 20px">
 			</div>
 		</div>
 
 
-		<div class="row cl">
+		<div class="row cl" id="submit1">
 			<div class="col-sm-offset-3" style="margin-left: 40%">
 				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
-				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;返回&nbsp;&nbsp;">
 			</div>
 		</div>
 	</form>
@@ -89,8 +91,38 @@
 <script type="text/javascript" src="../lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="../lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="../lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script src="../js/sellHouse.js"></script>
 <script type="text/javascript">
 $(function(){
+    var housename=localStorage.getItem("housename");
+    var offersumid=localStorage.getItem("offersumid");
+    var time=localStorage.getItem("time");
+    var money=localStorage.getItem("money");
+
+    $.ajax({
+		url:OFFERSUM_URL+"findByoffersumidoffertime",
+		type:"get",
+		dataType:"json",
+		data:{offersumid:offersumid,offertime:time},
+		success:function (housesumcollect) {
+			if (housesumcollect!=null){
+			    $("#submit1").hide();
+			    $("#payer").val(housesumcollect.payer);
+			    $("#collectiondate").val(housesumcollect.collectiondate);
+			    $("#bill").val(housesumcollect.bill);
+			    $("#billdate").val(housesumcollect.billdate);
+			    $("#payway").val(housesumcollect.payway);
+			}else{
+                $("#submit1").show();
+			}
+        }
+	})
+
+	$("#housename").val(housename);
+	$("#time").val("第"+time+"期");
+	$("#money").val(money);
+	$("#offertime").val(time);
+	$("#offersumid").val(offersumid);
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',
@@ -124,10 +156,28 @@ $(function(){
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
-			//$(form).ajaxSubmit();
-			var index = parent.layer.getFrameIndex(window.name);
-			//parent.$('.btn-refresh').click();
-			parent.layer.close(index);
+		    var data={
+                "offersumid":$("#offersumid").val(),
+                "offertime" :$("#offertime").val(),
+                "payer":$("#payer").val(),
+                "bill":$("#bill").val() ,
+                "payway":$("#payway").val(),
+                "money":$("#money").val()
+			}
+            $.ajax({
+                url:OFFERSUM_URL+"addhousesumcollect",
+                type:"post",
+                dataType:"json",
+                contentType: 'application/json; charset=UTF-8',
+				data:JSON.stringify(data),
+				async:false,
+				success:function (data) {
+                    var index = parent.layer.getFrameIndex(window.name);
+                    window.parent.location.reload();
+                    parent.layer.close(index);
+                }
+			});
+
 		}
 	});
 });

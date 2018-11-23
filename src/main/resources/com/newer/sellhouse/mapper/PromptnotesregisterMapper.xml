@@ -13,11 +13,9 @@
     where promptNotesregisterid = #{promptnotesregisterid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.newer.sellhouse.domain.Promptnotesregister">
-    insert into promptnotesregister (promptNotesregisterid, offersumID, 
-      promptDate, promptWay, promptContent
+    insert into promptnotesregister (offersumID,  promptWay, promptContent
       )
-    values (#{promptnotesregisterid,jdbcType=INTEGER}, #{offersumid,jdbcType=INTEGER}, 
-      #{promptdate,jdbcType=TIMESTAMP}, #{promptway,jdbcType=VARCHAR}, #{promptcontent,jdbcType=VARCHAR}
+    values ( #{offersumid,jdbcType=INTEGER},  #{promptway,jdbcType=VARCHAR}, #{promptcontent,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.newer.sellhouse.domain.Promptnotesregister">

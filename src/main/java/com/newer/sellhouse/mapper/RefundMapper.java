@@ -10,7 +10,8 @@ public interface RefundMapper {
 
     Refund selectByPrimaryKey(Integer refundid);
 
-    List<Refund> selectAll();
 
     int updateByPrimaryKey(Refund record);
+
+    List<Refund> selAll();
 }

@@ -16,7 +16,7 @@ public class Client implements Serializable {
 
     private String phone;
 
-    private List<Clientcontactcareful> clientcontactcarefulList;
+    private Clientcontactcareful clientcontactcarefulList;
 
     private static final long serialVersionUID = 1L;
 
@@ -68,12 +68,16 @@ public class Client implements Serializable {
         this.phone = phone;
     }
 
-    public List<Clientcontactcareful> getClientcontactcarefulList() {
+    public Clientcontactcareful getClientcontactcarefulList() {
         return clientcontactcarefulList;
     }
 
-    public void setClientcontactcarefulList(List<Clientcontactcareful> clientcontactcarefulList) {
+    public void setClientcontactcarefulList(Clientcontactcareful clientcontactcarefulList) {
         this.clientcontactcarefulList = clientcontactcarefulList;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     @Override

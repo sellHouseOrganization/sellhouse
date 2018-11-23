@@ -1,6 +1,7 @@
 package com.newer.sellhouse.mapper;
 
 import com.newer.sellhouse.domain.Item;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
@@ -24,4 +25,7 @@ public interface ItemMapper {
     int updateByPrimaryKey(Item item);
 
     int SettleChange(@Param("itemid") Integer itemid, @Param("notSettle") Integer notSettle);
+
+    @Delete("delete from floor where itemid=#{itemid}")
+    int ItemAndFloorDel(@Param("itemid")Integer itemid);
 }
