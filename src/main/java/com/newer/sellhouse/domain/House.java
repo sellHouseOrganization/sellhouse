@@ -148,19 +148,19 @@ public class House implements Serializable {
         this.hallRoom = hallRoom;
     }
 
-    public Integer getPooledArea() {
+    public String getPooledArea() {
         return pooledArea;
     }
 
-    public void setPooledArea(Integer pooledArea) {
+    public void setPooledArea(String pooledArea) {
         this.pooledArea = pooledArea;
     }
 
-    public Integer getPrivateArea() {
+    public String getPrivateArea() {
         return privateArea;
     }
 
-    public void setPrivateArea(Integer privateArea) {
+    public void setPrivateArea(String privateArea) {
         this.privateArea = privateArea;
     }
 
