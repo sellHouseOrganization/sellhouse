@@ -27,8 +27,8 @@ public class AdmitbuySelService {
         return admitbuySelMapper.findAll();
     }
 
-    public AdmitbuySche findForName(@Param("name") String name){
-        return admitbuySelMapper.findForName(name);
+    public AdmitbuySche findForName(Integer scheduleid){
+        return admitbuySelMapper.findForName(scheduleid);
     }
 
     /**
@@ -40,7 +40,7 @@ public class AdmitbuySelService {
         return admitbuySelMapper.addAdmitbuy(admitbuy);
     }
 
-    public AdmitbuySel findByAdmitbuyid(Integer admitbuyid){
-        return admitbuySelMapper.findByAdmitbuyid(admitbuyid);
+    public int updAdmitbuy(Admitbuy admitbuy){
+        return admitbuySelMapper.updAdmitbuy(admitbuy);
     }
 }

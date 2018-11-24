@@ -1,17 +1,19 @@
 $(function () {
-    $("#clientName").blur(()=>{
-        // var name = $("clientName").val()
-        // alert(name);
+    $("#scheduleid").blur(()=>{
+        alert("22222");
+    var scheduleid = localStorage.getItem("scheduleid");
+    $("#scheduleid").val(scheduleid);
+
     $.ajax({
         url: ADMITBUY_URL + "findAll",
         type: "get",
-        data:{"clientName":$("clientName").val()},
+        data:{"scheduleid":$("#scheduleid").val()},
         dataType: 'json',
         success: function (schedule) {
-            alert($("clientName").val());
+            alert($("#scheduleid").val());
             console.log(schedule);
             //客户姓名
-            // $("#clientName").val(schedule.clientName)  ;
+            $("#clientName").val(schedule.clientName)  ;
             //房源名称
             $("#houseName").val(schedule.houseName)  ;
             //定金
@@ -40,12 +42,12 @@ $(function () {
         }
     })
     })
-/*
     $("#btnSvn").click(()=>{
         $.ajax({
-            url: "",
+            url: ADMITBUY_URL+"insert",
             type: "post",
-            data: {"stateId":$("#stateId").val(),"ispayed":$("ispayed").val()},
+            data: {"firstPay":$("#firstPay").val(),"admitbuyDate":$("#admitbuyDate").val(),
+                   "managePerson":$("#managePerson").val(),"structure":$("#structure").val()},
             dataType: "json",
             success:function (data) {
                 if (!data){
@@ -53,7 +55,7 @@ $(function () {
                 }
             }
         })
-    })*/
+    })
 })
 
 
