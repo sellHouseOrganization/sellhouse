@@ -4,6 +4,8 @@ import com.newer.sellhouse.domain.Floor;
 import com.newer.sellhouse.mapper.FloorMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,14 +18,17 @@ public class FloorService {
         return floorMapper.selectAll();
     }
 
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public int Insert(Floor floor){
         return floorMapper.insert(floor);
     }
+
 
     public int Delete(Integer floorid){
         return floorMapper.deleteByPrimaryKey(floorid);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public int Update(Floor floor){
         return floorMapper.updateByPrimaryKey(floor);
     }

@@ -3,6 +3,8 @@ package com.newer.sellhouse.domain;
 import java.io.Serializable;
 
 public class Payway implements Serializable {
+
+    private  String itemname;
     private Integer paywayid;
 
     private String paywayname;
@@ -21,7 +23,25 @@ public class Payway implements Serializable {
 
     private String thricescale;
 
+    private Integer itemid;
+
     private static final long serialVersionUID = 1L;
+
+    public String getItemname() {
+        return itemname;
+    }
+
+    public Integer getItemid() {
+        return itemid;
+    }
+
+    public void setItemid(Integer itemid) {
+        this.itemid = itemid;
+    }
+
+    public void setItemname(String itemname) {
+        this.itemname = itemname;
+    }
 
     public Integer getPaywayid() {
         return paywayid;
@@ -101,7 +121,9 @@ public class Payway implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
+        sb.append(", itemname=").append(itemname);
         sb.append(", paywayid=").append(paywayid);
+        sb.append(", itemid=").append(itemid);
         sb.append(", paywayname=").append(paywayname);
         sb.append(", mortgageloanno=").append(mortgageloanno);
         sb.append(", resrvedfundsloanno=").append(resrvedfundsloanno);

@@ -5,6 +5,8 @@ import com.newer.sellhouse.domain.House;
 import com.newer.sellhouse.mapper.HouseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class HouseService {
        return houseMapper.selectAll(pageno, pagesum);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public int Insert(House house){
         return houseMapper.insert(house);
     }
@@ -25,6 +28,7 @@ public class HouseService {
         return houseMapper.deleteByPrimaryKey(Houseid);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public int Update(House house){
         return houseMapper.updateByPrimaryKey(house);
     }
@@ -37,6 +41,7 @@ public class HouseService {
         return houseMapper.selectRum();
     }
 
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public int changeState(Integer houseid,Integer housestateid){
         return houseMapper.changeState(houseid, housestateid);
     }

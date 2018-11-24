@@ -27,12 +27,15 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 付款方式 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
     <div class="text-c"> 项目名：
-        <input type="text" class="input-text" style="width:250px" placeholder="输入项目名称" id="" name="">
-        <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜项目</button>
+        <input type="text" class="input-text" style="width:250px" placeholder="输入项目名称" id="itemname" name="itemname">
+        <button type="submit" class="btn btn-success" id="" name="" onclick="query()"><i class="Hui-iconfont">&#xe665;</i> 搜项目</button>
     </div>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
-        <a href="javascript:;" onclick="Item_add()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 添加</a>
-         </span>  </div>
+    <div class="cl pd-5 bg-1 bk-gray mt-20">
+        <span class="l">
+        <a href="javascript:;" onclick="payway_add()" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 添加</a>
+            <a href="javascript:;" onclick="payway_Del()" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6e2;</i> 删除</a>
+        </span>
+    </div>
     <table class="table table-border table-bordered table-bg">
         <thead>
 
@@ -41,7 +44,6 @@
             <th width="40">序号</th>
             <th width="100">项目名称</th>
             <th width="150">付款方式名称</th>
-            <th width="150">名称细目</th>
             <th width="90">是否按揭</th>
             <th width="150">是否公积金</th>
             <th width="100">按揭年限</th>
@@ -52,22 +54,7 @@
             <th width="50">操作</th>
         </tr>
         </thead>
-        <tbody>
-        <tr class="text-c">
-            <td><input type="checkbox" id="ckID" value="1" name=""></td>
-            <td>1</td>
-            <td>admin</td>
-            <td>13000000000</td>
-            <td>admin@mail.com</td>
-            <td>admin@mail.com</td>
-            <td>admin@mail.com</td>
-            <td>admin@mail.com</td>
-            <td>admin@mail.com</td>
-            <td>admin@mail.com</td>
-            <td>admin@mail.com</td>
-            <td class="td-status"><span class="label label-success radius">未结案</span></td>
-            <td class="td-manage"><a href="javascript:;" onclick="" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe6e2;</i> 删除</a><a href="javascript:;" onclick="" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe60c;</i> 更改</a></td>
-        </tr>
+        <tbody id="tbody">
         </tbody>
     </table>
 </div>
@@ -81,7 +68,6 @@
 <script type="text/javascript" src="../lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="../lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="../lib/laypage/1.2/laypage.js"></script>
-<script src="js/client.js"></script>
 <script type="text/javascript">
 
     /*
@@ -92,22 +78,77 @@
         w		弹出层宽度（缺省调默认值）
         h		弹出层高度（缺省调默认值）
     */
-    /*管理员-增加*/
-    function Item_add(){
-        layer_show('添加项目','Item_edit.html','400','500');
-    }
-    /*管理员-删除*/
 
-    function admin_del(){
-        var chexBV = $("#ckID").val();
-        alert("删除ID"+chexBV);
+    $(function () {
+        query();
+    })
+    function query() {
+        $.ajax({
+            url:"http://127.0.0.1:9090/PayWay/listAll",
+            type:"get",
+            /*data:data,*/
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success:function (result) {
+                var appendVal = '';
+                $.each(result,function (index,PayWay) {
+                    var notStart = `<span class="label label-defaunt radius">未启用</span>`
+                    var opstate = `<a href="javascript:;" onclick="payway_start(${PayWay.paywayid})" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe6a7;</i> 启用</a>`
+                    if (PayWay.notstart == 1) {
+                        notStart = `<span class="label label-success radius">已启用</span>`
+                        var opstate = `<a href="javascript:;" onclick="payway_stop(${PayWay.paywayid})"class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe6a6;</i>停用</a>`
+
+                    }
+                    console.log(PayWay);
+                    appendVal+=`
+                    <tr class="text-c">
+                    <td><input type="checkbox" id="ckID" value="${PayWay.paywayid}" name=""></td>
+                    <td>${PayWay.paywayid}</td>
+                    <td>${PayWay.itemname}</td>
+                    <td>${PayWay.paywayname}</td>
+                    <td>${PayWay.mortgageloanno}</td>
+                    <td>${PayWay.resrvedfundsloanno}</td>
+                    <td>${PayWay.mortgageterm}</td>
+                    <td>${PayWay.firstscale}</td>
+                    <td>${PayWay.twicescale}</td>
+                    <td>${PayWay.thricescale}</td>
+                    <td>${notStart}</td>
+                    <td class="td-manage">${opstate}
+                    <a href="javascript:;" class="btn btn-primary size-MINI radius" onclick=payway_upd(${PayWay.paywayid}) ><i class="Hui-iconfont">&#xe600;</i> 修改</a>
+                    </td>
+                    </tr>
+                    `
+                })
+                $("#tbody").html(appendVal);
+            }
+        })
+    }
+    /*付款方式-增加*/
+    function payway_add(){
+        localStorage.setItem("paywayid",0)
+        layer_show('添加付款方式','../Payway/Payway_edit.html','400','500');
+    }
+
+    function payway_upd(paywayid) {
+        localStorage.setItem("paywayid",paywayid)
+        layer_show('修改付款方式','../Payway/Payway_edit.html','400','500');
+    }
+    /*付款方式-删除*/
+
+    function payway_Del(){
+        var ckid=[];
+        $.each($('input:checkbox:checked'),function(index,c){
+            ckid.push(c.value);
+        });
+        console.log(ckid);
+        alert("删除ID"+ckid);
         layer.confirm('确认要删除吗？',function(index){
             $.ajax({
-                type: 'POST',
-                url: '',
+                type: 'DELETE',
+                url: "http://127.0.0.1:9090/PayWay/Delete?ckid="+ckid,
                 dataType: 'json',
                 success: function(data){
-                    $(obj).parents("tr").remove();
+                    window.location.reload();
                     layer.msg('已删除!',{icon:1,time:1000});
                 },
                 error:function(data) {
@@ -117,32 +158,55 @@
         });
     }
 
-    /*管理员-编辑*/
+    /*付款方式-编辑*/
     function Item_upd(){
         layer_show('修改项目','Item_edit.html','400','500');
     }
-    /*管理员-停用*/
-    function admin_stop(obj,id){
+    /*付款方式-停用*/
+    function payway_stop(id){
         layer.confirm('确认要停用吗？',function(index){
-            //此处请求后台程序，下方是成功后的前台处理……
-
-            $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_start(this,id)" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>');
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">已禁用</span>');
-            $(obj).remove();
-            layer.msg('已停用!',{icon: 5,time:1000});
+            $.ajax({
+                type: 'PUT',
+                url: "http://127.0.0.1:9090/PayWay/changeState",
+                data: {paywayid: id, notstart: 0},
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    if (data == 1) {
+                        window.location.reload();
+                        layer.msg('已停用!', {icon: 4, time: 1000});
+                    } else {
+                        layer.msg('出错了!', {icon: 2, time: 1000});
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
         });
     }
 
-    /*管理员-启用*/
-    function admin_start(obj,id){
+    /*付款方式-启用*/
+    function payway_start(id){
         layer.confirm('确认要启用吗？',function(index){
-            //此处请求后台程序，下方是成功后的前台处理……
-
-
-            $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_stop(this,id)" href="javascript:;" title="停用" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a>');
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
-            $(obj).remove();
-            layer.msg('已启用!', {icon: 6,time:1000});
+            $.ajax({
+                type: 'PUT',
+                url: "http://127.0.0.1:9090/PayWay/changeState",
+                data: {paywayid: id, notstart: 1},
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    if (data == 1) {
+                        window.location.reload();
+                        layer.msg('已启用!', {icon: 4, time: 1000});
+                    } else {
+                        layer.msg('出错了!', {icon: 2, time: 1000});
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
         });
     }
 </script>
