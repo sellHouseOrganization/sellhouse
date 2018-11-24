@@ -2,15 +2,15 @@ $(function () {
     $("#scheduleid").blur(()=>{
         alert("22222");
     var scheduleid = localStorage.getItem("scheduleid");
+    var paywayid = localStorage.getItem("paywayid");
     $("#scheduleid").val(scheduleid);
-
+    $("#paywayid").val(paywayid);
     $.ajax({
         url: ADMITBUY_URL + "findAll",
         type: "get",
         data:{"scheduleid":$("#scheduleid").val()},
         dataType: 'json',
         success: function (schedule) {
-            alert($("#scheduleid").val());
             console.log(schedule);
             //客户姓名
             $("#clientName").val(schedule.clientName)  ;
@@ -25,19 +25,19 @@ $(function () {
             //预交售价
             $("#mustPrices").val(schedule.mustPrices)  ;
             //认购时间
-            $("#admitbuyDate").val(schedule.admitbuyDate);
+           // $("#admitbuyDate").val(schedule.admitbuyDate);
             //私人面积
             $("#privateArea").val(schedule.privateArea)  ;
             //首付
-            $("#firstPay").val(schedule.firstPay)  ;
+            //$("#firstPay").val(schedule.firstPay)  ;
             //付款方式
             $("#structure").val(schedule.structure)  ;
             //成交总价
             $("#sumPrices").val(schedule.sumPrices);
             //经办人员
-            $("#managePerson").val(schedule.managePerson)  ;
+            //$("#managePerson").val(schedule.managePerson)  ;
             //简要备注
-            $("#remake").val(schedule.remake)  ;
+            //$("#remake").val(schedule.remake)  ;
 
         }
     })
@@ -47,7 +47,9 @@ $(function () {
             url: ADMITBUY_URL+"insert",
             type: "post",
             data: {"firstPay":$("#firstPay").val(),"admitbuyDate":$("#admitbuyDate").val(),
-                   "managePerson":$("#managePerson").val(),"structure":$("#structure").val()},
+                   "managePerson":$("#managePerson").val(),"structure":$("#structure").val(),
+                    "paywayid":$("#paywayid").val(),"scheduleid":$("#scheduleid").val(),
+                    "remake":$("#remake").val()},
             dataType: "json",
             success:function (data) {
                 if (!data){

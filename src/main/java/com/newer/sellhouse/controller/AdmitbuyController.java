@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -58,9 +59,35 @@ public class AdmitbuyController {
     }
 
     @RequestMapping(value = "insert", method = RequestMethod.POST)
-    public ResponseEntity<?> updAdmitbuy() {
+    public ResponseEntity<?> addAdmitbuy(@RequestParam("firstPay") double firstPay,
+                                         @RequestParam("admitbuyDate") Date admitbuyDate,
+                                         @RequestParam("managePerson") String managePerson,
+                                         @RequestParam("structure") String structure,
+                                         @RequestParam("paywayid") Integer paywayid,
+                                         @RequestParam("remake") String remake,
+                                         @RequestParam("scheduleid") Integer scheduleid
+                                         ) {
+       Admitbuy admitbuy = new Admitbuy();
+       admitbuy.setFirstpay(firstPay);
+       admitbuy.setAdmitbuydate(admitbuyDate);
+       admitbuy.setManageperson(managePerson);
+       int ret = admitbuySelService.addAdmitbuy(admitbuy);
+       if (ret > 0){
+           int upd = admitbuySelService.updAdmitbuy(structure,paywayid);
+           if (upd == 1){
+               int upds = admitbuySelService.updSchedule(remake, scheduleid);
+               if (upds == 1){
+                   return new ResponseEntity<>(upds,HttpStatus.OK);
+               }else {
+                   return new ResponseEntity<>("失败",HttpStatus.OK);
+               }
+           }else {
+               return new ResponseEntity<>("失败",HttpStatus.OK);
+           }
 
-        return new ResponseEntity<>('l',HttpStatus.OK);
+       }else {
+           return new ResponseEntity<>("失败",HttpStatus.OK);
+       }
     }
 }
 

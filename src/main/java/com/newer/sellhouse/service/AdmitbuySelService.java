@@ -40,7 +40,11 @@ public class AdmitbuySelService {
         return admitbuySelMapper.addAdmitbuy(admitbuy);
     }
 
-    public int updAdmitbuy(Admitbuy admitbuy){
-        return admitbuySelMapper.updAdmitbuy(admitbuy);
+    public int updAdmitbuy(String structure,Integer payWayid){
+        return admitbuySelMapper.updAdmitbuy(structure, payWayid);
+    }
+
+    public int updSchedule(String remake,Integer scheduleid){
+        return admitbuySelMapper.updSchedule(remake, scheduleid);
     }
 }
