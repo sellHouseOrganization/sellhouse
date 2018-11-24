@@ -3,10 +3,7 @@ package com.newer.sellhouse.mapper;
 import com.newer.sellhouse.domain.Admitbuy;
 import com.newer.sellhouse.domain.AdmitbuySche;
 import com.newer.sellhouse.domain.AdmitbuySel;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
