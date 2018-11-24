@@ -3,6 +3,7 @@
 <mapper namespace="com.newer.sellhouse.mapper.PaywayMapper">
   <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.Payway">
     <id column="payWayid" jdbcType="INTEGER" property="paywayid" />
+    <id column="itemname" jdbcType="VARCHAR" property="itemname" />
     <result column="payWayName" jdbcType="VARCHAR" property="paywayname" />
     <result column="mortgageLoanNo" jdbcType="VARCHAR" property="mortgageloanno" />
     <result column="resrvedFundsLoanNo" jdbcType="VARCHAR" property="resrvedfundsloanno" />
@@ -17,12 +18,12 @@
     where payWayid = #{paywayid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.newer.sellhouse.domain.Payway">
-    insert into payway (payWayid, payWayName, mortgageLoanNo, 
+    insert into payway (payWayid, itemid,payWayName, mortgageLoanNo,
       resrvedFundsLoanNo, notStart, mortgageTerm, 
       firstScale, twiceScale, thriceScale
       )
-    values (#{paywayid,jdbcType=INTEGER}, #{paywayname,jdbcType=VARCHAR}, #{mortgageloanno,jdbcType=VARCHAR}, 
-      #{resrvedfundsloanno,jdbcType=VARCHAR}, #{notstart,jdbcType=VARCHAR}, #{mortgageterm,jdbcType=VARCHAR}, 
+    values (#{paywayid,jdbcType=INTEGER}, #{itemid,jdbcType=INTEGER},#{paywayname,jdbcType=VARCHAR}, #{mortgageloanno,jdbcType=VARCHAR},
+      #{resrvedfundsloanno,jdbcType=VARCHAR}, #{notstart,jdbcType=VARCHAR}, #{mortgageterm,jdbcType=VARCHAR},
       #{firstscale,jdbcType=VARCHAR}, #{twicescale,jdbcType=VARCHAR}, #{thricescale,jdbcType=VARCHAR}
       )
   </insert>
@@ -36,17 +37,15 @@
       firstScale = #{firstscale,jdbcType=VARCHAR},
       twiceScale = #{twicescale,jdbcType=VARCHAR},
       thriceScale = #{thricescale,jdbcType=VARCHAR}
-    where payWayid = #{paywayid,jdbcType=INTEGER}
+    where payWayid = #{paywayid,jdbcType=INTEGER} and itemid=#{itemid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select payWayid, payWayName, mortgageLoanNo, resrvedFundsLoanNo, notStart, mortgageTerm, 
-    firstScale, twiceScale, thriceScale
-    from payway
-    where payWayid = #{paywayid,jdbcType=INTEGER}
+    select i.itemname,p.* from item i INNER JOIN payway p on i.itemid = p.itemid and p.payWayid=#{paywayid}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select payWayid, payWayName, mortgageLoanNo, resrvedFundsLoanNo, notStart, mortgageTerm, 
-    firstScale, twiceScale, thriceScale
-    from payway
+    select i.itemname,p.* from item i INNER JOIN payway p on i.itemid = p.itemid
   </select>
+  <update id="changeState" parameterType="java.lang.Integer">
+    UPDATE payway set  notStart = #{notstart,jdbcType=VARCHAR} where payWayid = #{paywayid,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -114,7 +114,7 @@
                     dataType: "json",
                     success: function (result) {
                         console.log("新增结果"+result);
-                        if(result==1){
+                        if(result>=1){
                             layer.msg("新增成功", {icon: 1, time: 1000});
                             window.parent.location.reload();
                             var index = parent.layer.getFrameIndex(window.name);

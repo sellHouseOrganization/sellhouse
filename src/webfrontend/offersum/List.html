@@ -45,13 +45,13 @@
         </table>
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l">
-        <a href="javascript:;" onclick="PressMoney()"
+        <a href="javascript:;" onclick="Press('催款','press.html',900, 500)"
             class="btn btn-danger radius">催款</a> </span></div>
     <div class="mt-20">
         <table class="table table-border table-bordered table-hover table-bg table-sort" id="offersumtb">
             <thead>
             <tr class="text-c">
-                <th width="25"><input type="checkbox" name="" value=""></th>
+                <th width="25"><input type="checkbox" value="0"></th>
                 <th width="80">序号</th>
                 <th width="100">付款事件</th>
                 <th width="60">付款期限</th>
@@ -63,7 +63,6 @@
             </tr>
             </thead>
             <tbody id="tbody2">
-
             </tbody>
         </table>
     </div>
@@ -100,7 +99,7 @@
                        str+=`<tr class="text-c">
                            <td>${n.clientName}</td>
                            <td>${n.houseName}</td>
-                           <td><input class="btn btn-primary radius" style="height: 27px" onclick="findoffersum(${n.admitbuyid},'${n.houseName}')" type="button" value="&nbsp;&nbsp;供款详情&nbsp;&nbsp;"></td>' +
+                           <td><input class="btn btn-primary radius" style="height: 27px" onclick="findoffersum(${n.admitbuyid},'${n.houseName}','${n.clientName}')" type="button" value="&nbsp;&nbsp;供款详情&nbsp;&nbsp;"></td>' +
                            </tr>`
                    })
                     $("#tbody1").html(str);
@@ -118,8 +117,9 @@
             })
     }
     selectAdmitBuyByClientNameHouseName();
-    function findoffersum(admitbuyid,housename) {
+    function findoffersum(admitbuyid,housename,clientname) {
         localStorage.setItem("housename",housename);
+        localStorage.setItem("clientname",clientname);
         if ($('#offersumtb').hasClass('dataTable')) {
             dttable = $('#offersumtb').dataTable();
             dttable.fnClearTable(); //清空一下table
@@ -146,7 +146,7 @@
                         }
                         holdDate.setMonth(holdDate.getMonth()+1);
                         str+=` <tr class="text-c">
-                <td><input type="checkbox" value="${offersum.offersumid},${i+1}" name=""></td>
+                <td><input type="checkbox" value="${offersum.offersumid}" name=""></td>
                 <td>${i+1}</td>
                 <td>${offersum.offersumevent}</td>
                 <td>${offersum.offersumdeadline}</td>
@@ -189,7 +189,7 @@
         return fmt;
     }
 
-    /*用户-添加*/
+    /*付款*/
     function Receivables(title, url, w, h ,offersumid ,money,time) {
         localStorage.setItem("time",time)
         localStorage.setItem("offersumid",offersumid)
@@ -197,13 +197,17 @@
         layer_show(title, url, w, h);
     }
 
-    /*用户-查看*/
-    function member_show(title, url, id, w, h) {
+    /*催款*/
+    function Press(title, url, w, h) {
+        var offersumids=[];
+        $.each($('input:checkbox:checked'),function(){
+            if (offersumids.indexOf($(this).val())==-1) {
+                offersumids.push($(this).val());
+            }
+        });
+        localStorage.setItem("offersumids",JSON.stringify(offersumids));
         layer_show(title, url, w, h);
     }
-
-
-
 </script>
 </body>
 </html>

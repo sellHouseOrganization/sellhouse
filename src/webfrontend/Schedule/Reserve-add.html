@@ -29,8 +29,8 @@
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
     <div class="text-c">
-        姓名：<input type="text" class="input-text" style="width:250px" placeholder="输入姓名" id="" name="">
-        <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+        姓名：<input type="text" class="input-text" style="width:250px" placeholder="输入姓名" id="" name="clientName">
+        <button type="submit" class="btn btn-success"  name="" onclick="query()"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l">
         <a href="javascript:;" onclick="PressMoney()"
@@ -42,35 +42,21 @@
                 <th width="25"><input type="checkbox" name="" value=""></th>
                 <th width="100">操作</th>
                 <th width="80">序号</th>
-                <th width="100">姓名</th>
+                <th width="100">客户姓名</th>
                 <th width="40">性别</th>
-                <th width="300">身份证号</th>
+                <th width="200">身份证号</th>
                 <th width="90">年龄</th>
-                <th width="">电话号码</th>
+                <th width="120">电话号码</th>
+                <th width="120">置业顾问人</th>
+                <th width="120">预约金</th>
+                <th width="120">项目名</th>
+                <th width="120">楼栋号</th>
+                <th width="120">面积</th>
+                <th width="120">面积单价</th>
+                <th width="120">总价</th>
             </tr>
             </thead>
-            <tbody>
-            <tr class="text-c">
-                <td><input type="checkbox" value="1" name=""></td>
-                <td><input type="button" value="选择" onclick=""></td>
-                <td>1</td>
-                <td>谌豪</td>
-                <td>男</td>
-                <td>430681199106103711</td>
-                <td>27</td>
-                <td>18340933711</td>
-
-            </tr>
-            <tr class="text-c">
-                <td><input type="checkbox" value="1" name=""></td>
-                <td><input type="button" value="选择" onclick=""></td>
-                <td>1</td>
-                <td>王欣齐</td>
-                <td>女</td>
-                <td>430681199308103712</td>
-                <td>24</td>
-                <td>18353943713</td>
-            </tr>
+            <tbody id="tbody1">
             </tbody>
         </table>
     </div>
@@ -93,10 +79,10 @@
     <div class="row cl">
         <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>身份证号码:</label>
         <div class="formControls col-xs-8 col-sm-9">
-            <td><input type="text" class="input-text" placeholder="身份证号" id="scheduleDate" name="scheduleDate"
+            <td><input type="text" class="input-text" placeholder="身份证号" id="cardnumber" name="cardnumber"
                        style="width: 225px;"></td>
             <span class="c-red">*</span>年龄:
-            <td><input type="text" class="input-text" placeholder="年龄" id="admitbuyDate" name="admitbuyDate"
+            <td><input type="text" class="input-text" placeholder="年龄" id="age" name="age"
                        style="width: 225px;"></td>
         </div>
     </div>
@@ -104,18 +90,21 @@
     <div class="row cl">
         <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>电话号码:</label>
         <div class="formControls col-xs-8 col-sm-9">
-            <input type="text" class="input-text" placeholder="电话号码" id="remake" name="remake"
-                   style="width: 225px;">
+            <td><input type="text" class="input-text" placeholder="电话号码" id="phone" name="phone"
+                       style="width: 225px;"></td>
+            <span class="c-red">*</span>预约金:
+            <td><input type="text" class="input-text" placeholder="预约金" id="fromtMoney" name="fromtMoney"
+                       style="width: 225px;"></td>
         </div>
     </div>
 
     <div class="row cl">
         <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>项目名:</label>
         <div class="formControls col-xs-8 col-sm-9">
-            <td><input type="text" class="input-text" placeholder="项目名" id="scheduleDate1" name="scheduleDate"
+            <td><input type="text" class="input-text" placeholder="项目名" id="itemName" name="itemName"
                        style="width: 225px;"></td>
             <span class="c-red">*</span>楼栋号:
-            <td><input type="text" class="input-text" placeholder="楼栋号" id="admitbuyDate2" name="admitbuyDate"
+            <td><input type="text" class="input-text" placeholder="楼栋号" id="floornumber" name="floornumber"
                        style="width: 225px;"></td>
         </div>
     </div>
@@ -123,17 +112,17 @@
     <div class="row cl">
         <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>面积:</label>
         <div class="formControls col-xs-8 col-sm-9">
-            <td><input type="text" class="input-text" placeholder="面积" id="scheduleDate2" name="scheduleDate"
+            <td><input type="text" class="input-text" placeholder="面积" id="privateArea" name="privateArea"
                        style="width: 225px;"></td>
             <span class="c-red">*</span>面积单价:
-            <td><input type="text" class="input-text" placeholder="面积单价" id="admitbuyDate3" name="admitbuyDate"
+            <td><input type="text" class="input-text" placeholder="面积单价" id="price" name="price"
                        style="width: 225px;"></td>
         </div>
     </div>
     <div class="row cl">
         <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>总价:</label>
         <div class="formControls col-xs-8 col-sm-9">
-            <input type="text" class="input-text" placeholder="总价" id="remake1" name="remake"
+            <input type="text" class="input-text" placeholder="总价" id="total" name="total"
                    style="width: 225px;">
         </div>
     </div>
@@ -158,23 +147,85 @@
 <script type="text/javascript" src="../lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
     $(function () {
-        $('.table-sort').dataTable({
+/*        $('.table-sort').dataTable({
             "aaSorting": [[1, "desc"]],//默认第几个排序
             "bStateSave": true,//状态保存
             "aoColumnDefs": [
                 //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
                 {"orderable": false, "aTargets": [0, 8, 9]}// 制定列不参与排序
             ]
-        });
+        });*/
+        query();
 
     });
+
+    function query() {
+        var data = {
+            "clientName": $("#clientName").val()
+        };
+        $.ajax({
+            url: "http://127.0.0.1:9090/add/" + "list",
+            type: "get",
+            data:data,
+            dataType: 'json',
+            success: function (result) {
+                console.log(result);
+                var appendVal = '';
+                $.each(result, function (index, schedule) {
+                    console.log(index);
+                    console.log(schedule);
+                    appendVal += `
+                      <tr class="text-c">
+                        <td><input type="checkbox" value="1" name=""></td>
+                        <td><input type="button" value="选择" onclick="queryById()"></td>
+                        <td>${schedule.scheduleid}</td>
+                        <td>${schedule.clientName}</td>i
+                        <td>${schedule.sex}</td>
+                        <td>${schedule.cardnumber}</td>
+                        <td>${schedule.age}</td>
+                        <td>${schedule.phone}</td>
+                        <td>${schedule.adviserName}</td>
+                        <td>${schedule.fromtMoney}</td>
+                        <td>${schedule.itemName}</td>
+                        <td>${schedule.floornumber}</td>
+                        <td>${schedule.privateArea}</td>
+                        <td>${schedule.price}</td>
+                        <td>${schedule.total}</td>
+                      </tr>
+                        `;
+                })
+                $("#tbody1").html(appendVal);
+            }
+        })
+    }
     function PressMoney() {
-        location.href="../offersum/Press.html";
+        location.href="../Schedule/Reserve-List.html";
 
     }
-    function Receivables(){
-        location.href="../offersum/Provide.html";
-    }
+
+/*    function queryById(){
+        var scheduleid = {
+            "scheduleid": $("#scheduleid").val()
+        };
+        $.ajax({
+            type: "get",
+            url: "http://127.0.0.1:9090/add/query?scheduleid="+scheduleid,
+            dataType: 'json',
+            success: function (result) {
+                $("#clientName").val(result.clientName);
+                $("#sex").val(result.sex);
+                $("#cardnumber").val(result.cardnumber);
+                $("#age").val(result.age);
+                $("#phone").val(result.phone);
+                $("#fromtMoney").val(result.fromtMoney);
+                $("#itemName").val(result.itemName);
+                $("#floornumber").val(result.floornumber);
+                $("#privateArea").val(result.privateArea);
+                $("#price").val(result.price);
+                $("#total").val(result.total);
+            }
+        })
+    }*/
 
     /*用户-添加*/
     function member_add(title, url, w, h) {

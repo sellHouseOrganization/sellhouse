@@ -31,7 +31,7 @@ public class FloorController {
     @RequestMapping(value = "edit",method = RequestMethod.POST)
     public ResponseEntity<?>InsertFloor(Floor floor){
         int ret = floorService.Insert(floor);
-        if(ret==1){
+        if(ret>=1){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -40,7 +40,7 @@ public class FloorController {
     @RequestMapping(value = "edit",method = RequestMethod.PUT)
     public ResponseEntity<?>UpdateFloor(Floor floor){
         int ret = floorService.Update(floor);
-        if(ret==1){
+        if(ret>=1){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -58,7 +58,7 @@ public class FloorController {
                 break;
             }
         }
-        if(ret==1){
+        if(ret>=1){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -85,7 +85,7 @@ public class FloorController {
                 break;
             }
         }
-        if(ret==1){
+        if(ret>=1){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -103,7 +103,7 @@ public class FloorController {
                 break;
             }
         }
-        if(ret==1){
+        if(ret>=1){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

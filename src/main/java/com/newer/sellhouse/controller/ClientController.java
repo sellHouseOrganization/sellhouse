@@ -28,7 +28,7 @@ public class ClientController {
     private ClientContactCarefulService clientContactCarefulService;
 
     /**
-     * 模糊查询and查询所有信息
+     * 模糊查询and查询两表信息
      * @param cardnumber
      * @return
      */

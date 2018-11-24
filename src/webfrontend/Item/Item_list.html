@@ -178,7 +178,7 @@
                 data: {notSettle: 1},
                 dataType: 'json',
                 success: function (data) {
-                    if (data == 1) {
+                    if (data>= 1) {
                         $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已结案</span>');
                         window.location.reload();
                         layer.msg('已结案!', {icon: 6, time: 1000});

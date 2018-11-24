@@ -28,7 +28,7 @@ CREATE TABLE `admitbuy` (
   `clientid` int(11) DEFAULT NULL COMMENT '客户ID',
   `firstPay` double(50) DEFAULT NULL COMMENT '首付',
   `payWayid` int(11) DEFAULT NULL COMMENT '付款方式ID',
-  `admitbuyDate` date(30) DEFAULT NULL COMMENT '认购日期',
+  `admitbuyDate` date(30) DEFAULT NULL COMMENT '认购日期',++++++++++++++++++++++++++++++
   PRIMARY KEY (`admitBuyid`),
   KEY `SC_ID` (`scheduleid`),
   KEY `ADV_ID` (`adviserid`),
@@ -110,6 +110,7 @@ CREATE TABLE `client` (
 
 /*Data for the table `client` */
 
+
 /*Table structure for table `clientcontactcareful` */
 
 DROP TABLE IF EXISTS `clientcontactcareful`;
@@ -160,22 +161,25 @@ createtime` date DEFAULT NULL COMMENT '建立日期',
 /*Table structure for table `house` */
 
 DROP TABLE IF EXISTS `house`;
-
 CREATE TABLE `house` (
   `houseid` int(11) NOT NULL AUTO_INCREMENT COMMENT '房源ID',
   `floorid` int(11) DEFAULT NULL COMMENT '楼栋ID',
   `tiernumber` int(11) DEFAULT NULL COMMENT '层号',
   `housedate` date DEFAULT NULL COMMENT '建立日期',
-  `houseTypeid` int(11) DEFAULT NULL COMMENT '房型ID',
   `marketState` int(11) DEFAULT NULL COMMENT '销售状态',
   `houseStateid` int(11) DEFAULT NULL COMMENT '房源状态',
   `houseNumber` int(11) DEFAULT NULL COMMENT '房号',
+  `houseName` varchar(30) DEFAULT NULL COMMENT '房源名称\n',
+  `orientation` varchar(30) DEFAULT NULL COMMENT '朝向',
+  `hallRoom` varchar(50) DEFAULT NULL COMMENT '厅室',
+  `houseType` varchar(50) DEFAULT NULL COMMENT '户型',
+  `pooledArea` int(50) DEFAULT NULL COMMENT '公摊面积',
+  `privateArea` int(50) DEFAULT NULL COMMENT '私有面积',
   PRIMARY KEY (`houseid`),
   KEY `FLO_ID` (`floorid`),
-  KEY `ROOM_ID` (`houseTypeid`),
-  CONSTRAINT `FLO_ID` FOREIGN KEY (`floorid`) REFERENCES `floor` (`floorid`),
-  CONSTRAINT `ROOM_ID` FOREIGN KEY (`houseTypeid`) REFERENCES `roomtype` (`houseTypeid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `FLO_ID` FOREIGN KEY (`floorid`) REFERENCES `floor` (`floorid`)
+) ENGINE=InnoDB AUTO_INCREMENT=213 DEFAULT CHARSET=utf8;
+
 
 /*Data for the table `house` */
 
@@ -310,21 +314,6 @@ CREATE TABLE `rename` (
 
 /*Data for the table `rename` */
 
-/*Table structure for table `roomtype` */
-
-DROP TABLE IF EXISTS `roomtype`;
-
-CREATE TABLE `roomtype` (
-  `houseTypeid` int(11) NOT NULL AUTO_INCREMENT COMMENT '房型ID',
-  `pooledArea` varchar(50) DEFAULT NULL COMMENT '公摊面积',
-  `privateArea` varchar(50) DEFAULT NULL COMMENT '私有面积',
-  `orientation` varchar(50) DEFAULT NULL COMMENT '朝向',
-  `hallRoom` varchar(50) DEFAULT NULL COMMENT '厅室',
-  `houseType` varchar(50) DEFAULT NULL COMMENT '户型',
-  PRIMARY KEY (`houseTypeid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `roomtype` */
 
 /*Table structure for table `schedule` */
 

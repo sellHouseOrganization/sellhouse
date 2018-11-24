@@ -1,6 +1,7 @@
 package com.newer.sellhouse.service;
 
 import com.newer.sellhouse.domain.Admitbuy;
+import com.newer.sellhouse.domain.AdmitbuySche;
 import com.newer.sellhouse.domain.AdmitbuySel;
 import com.newer.sellhouse.mapper.AdmitbuySelMapper;
 import org.apache.ibatis.annotations.Param;
@@ -22,7 +23,28 @@ public class AdmitbuySelService {
         return admitbuySelMapper.delAdmitbuySel(admitbuyid);
     }
 
-    public AdmitbuySel queryById(Integer admitbuyid){
-        return admitbuySelMapper.queryById(admitbuyid);
+    public  List<AdmitbuySche> findAll(){
+        return admitbuySelMapper.findAll();
+    }
+
+    public AdmitbuySche findForName(Integer scheduleid){
+        return admitbuySelMapper.findForName(scheduleid);
+    }
+
+    /**
+     * 新增
+     * @param admitbuy
+     * @return
+     */
+    public int addAdmitbuy(Admitbuy admitbuy){
+        return admitbuySelMapper.addAdmitbuy(admitbuy);
+    }
+
+    public int updAdmitbuy(String structure,Integer payWayid){
+        return admitbuySelMapper.updAdmitbuy(structure, payWayid);
+    }
+
+    public int updSchedule(String remake,Integer scheduleid){
+        return admitbuySelMapper.updSchedule(remake, scheduleid);
     }
 }

@@ -32,7 +32,7 @@ public class RenameController {
      * @param newcardnumber
      * @return
      */
-    @RequestMapping(value = "updRe",method = RequestMethod.GET)
+  @RequestMapping(value = "updRe",method = RequestMethod.GET)
     public ResponseEntity<?> updRename(@RequestParam(name = "oldclientid")Integer oldclientid,
                                        @RequestParam(name = "newclientid")Integer newclientid,
                                        @RequestParam(name = "admitbuyid")Integer admitbuyid,
@@ -43,6 +43,7 @@ public class RenameController {
     ){
         Client oldclient= renameService.selbyid(oldclientid);
         Client newclient= renameService.selbyid(newclientid);
+       System.out.println(oldclient+"***************"+newclient);
         int ret=0;
         Admitbuy admitbuy=new Admitbuy();
         if(oldclient!=null&&newclient!=null){

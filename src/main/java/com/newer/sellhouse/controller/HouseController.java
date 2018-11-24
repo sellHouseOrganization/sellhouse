@@ -1,12 +1,8 @@
 package com.newer.sellhouse.controller;
 
-import com.newer.sellhouse.domain.Floor;
 import com.newer.sellhouse.domain.House;
-import com.newer.sellhouse.domain.Roomtype;
-import com.newer.sellhouse.mapper.HouseMapper;
-import com.newer.sellhouse.mapper.RoomtypeMapper;
+import com.newer.sellhouse.domain.Pager;
 import com.newer.sellhouse.service.HouseService;
-import com.newer.sellhouse.service.RoomTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,16 +19,23 @@ public class HouseController {
     @Autowired
     private HouseService houseService;
 
-    @Autowired
-    private RoomTypeService roomTypeService;
-
     @RequestMapping(value = "listAll",method = RequestMethod.GET)
-    public ResponseEntity<?>listAll(){
-        List<House>houseList = houseService.listAll();
-        if(houseList.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<?>listAll(@RequestParam(value = "iDisplayStart",required = true)String iDisplayStart,
+                                    @RequestParam(value = "iDisplayLength",required = true)String iDisplayLength){
+
+        House house = new House();
+        int pageno =  Integer.parseInt(iDisplayStart);
+        int pagesum = Integer.parseInt(iDisplayLength);
+        int total = houseService.selectRum();
+        List<House>houseList = houseService.listAll(pageno,pagesum);
+        if(houseList!=null){
+            Pager<House>pager = new Pager<>();
+            pager.setData(houseList);
+            pager.setiTotalDisplayRecords(total);
+            pager.setiTotalRecords(total);
+            return new ResponseEntity<>(pager,HttpStatus.OK);
         }
-        return new ResponseEntity<>(houseList,HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @RequestMapping(value = "Delete",method = RequestMethod.DELETE)
@@ -47,20 +50,12 @@ public class HouseController {
                 break;
             }
         }
-        if(ret==1){
+        if(ret>=0){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "listRoom",method = RequestMethod.GET)
-    public ResponseEntity<?>listRoom(){
-        List<Roomtype>roomtypeList = roomTypeService.roomtypeList();
-        if(roomtypeList.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(roomtypeList,HttpStatus.OK);
-    }
 
     @RequestMapping(value = "queryId",method = RequestMethod.GET)
     public ResponseEntity<?>QueryFloor(Integer houseid){
@@ -77,13 +72,10 @@ public class HouseController {
         int tienumber = house.getTiernumber();
         int housenumber = house.getHousenumber();
         for(int i = 1;i<=tienumber;i++){
-            for(int j = 1;j<=housenumber;i++){
-                house.setHousenumber(j);
-                house.setTiernumber(i);
-                ret = houseService.Insert(house);
-            }
+            house.setTiernumber(i);
+            ret = houseService.Insert(house);
         }
-        if(ret==1){
+        if(ret>=0){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -91,8 +83,34 @@ public class HouseController {
 
     @RequestMapping(value = "edit",method = RequestMethod.PUT)
     public ResponseEntity<?>UpdateHouse(House house){
-        int ret = houseService.Update(house);
-        if(ret==1){
+        int ret=0;
+        if(house!=null){
+            int tienumber = house.getTiernumber();
+            int housenumber = house.getHousenumber();
+            for(int i = 1;i<=tienumber;i++){
+                house.setTiernumber(i);
+                ret = houseService.Update(house);
+            }
+        }
+        if(ret>=0){
+            return new ResponseEntity<>(ret,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "changeState",method = RequestMethod.PUT)
+    public ResponseEntity<?>changeNotApertura(@RequestParam(name = "houseid")String houseid,
+                                              @RequestParam(name = "housestateid")Integer housestateid){
+        String[]houseid1 = houseid.split(",");
+        int ret=0;
+        for(int i=0;i<houseid1.length;i++){
+            int Houseid = Integer.parseInt(houseid1[i]);
+            ret = houseService.changeState(Houseid, housestateid);
+            if(i==houseid1.length){
+                break;
+            }
+        }
+        if(ret>=1){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
