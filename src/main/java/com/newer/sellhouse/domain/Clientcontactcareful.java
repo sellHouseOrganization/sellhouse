@@ -1,5 +1,8 @@
 package com.newer.sellhouse.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,6 +11,8 @@ public class Clientcontactcareful implements Serializable {
 
     private String purposeDegree;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date interviewDate;
 
     private String messageAddress;

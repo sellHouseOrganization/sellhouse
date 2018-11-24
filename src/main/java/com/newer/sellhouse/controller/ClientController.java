@@ -6,11 +6,13 @@ import com.newer.sellhouse.service.ClientContactCarefulService;
 import com.newer.sellhouse.service.ClientService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,12 +43,12 @@ public class ClientController {
 
     /**
      * 删除客户信息
-     * @param clientid
+     * @param clientContactCarefulid
      * @return
      */
-    @RequestMapping(value = "delClient",method = RequestMethod.DELETE)
-    public ResponseEntity<?> delClient(@PathVariable(name="clientid")Integer clientid){
-        int ret=clientService.delClient(clientid);
+    @RequestMapping(value = "client/{id}",method = RequestMethod.DELETE)
+    public ResponseEntity<?> delClient(@PathVariable(name="id")Integer clientContactCarefulid){
+        int ret=clientContactCarefulService.delClientSh(clientContactCarefulid);
         if(ret>0){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
@@ -57,11 +59,22 @@ public class ClientController {
 
     /**
      * 添加客户信息
-     * @param client
+     * @param
      * @return
      */
-    @RequestMapping(value = "addClient",method =RequestMethod.POST)
-    public ResponseEntity<?> addClient(@RequestBody Client client){
+    @RequestMapping(value = "addClient",method =RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> addClient(@RequestParam(name="clientName")String clientName,
+                                       @RequestParam(name="sex")String sex,
+                                       @RequestParam(name="cardnumber")String cardnumber,
+                                       @RequestParam(name="age")String age,
+                                       @RequestParam(name="phone")String phone){
+
+        Client client=new Client();
+        client.setClientName(clientName);
+        client.setSex(sex);
+        client.setCardnumber(cardnumber);
+        client.setAge(age);
+        client.setPhone(phone);
         int ret=clientService.addClient(client);
         if(ret>0){
             return new ResponseEntity<>(ret,HttpStatus.OK);
@@ -89,11 +102,36 @@ public class ClientController {
 
     /**
      * 添加客户明细信息
-     * @param clientcontactcareful
+     * @param
      * @return
      */
-    @RequestMapping(value = "AddClients",method = RequestMethod.POST)
-    public ResponseEntity<?> AddClients(@RequestBody Clientcontactcareful clientcontactcareful){
+    @RequestMapping(value = "AddClients",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> AddClients(@RequestParam(name="email")String email,
+                                        @RequestParam(name="contactWay")String contactWay,
+                                        @RequestParam(name="purposeDegree")String purposeDegree,
+                                        @DateTimeFormat(pattern = "yyyy-MM-dd")
+                                        @RequestParam(name="interviewDate")Date interviewDate,
+                                        @RequestParam(name="messageAddress")String messageAddress,
+                                        @RequestParam(name="aim")String aim,
+                                        @RequestParam(name="payWay")String payWay,
+                                        @RequestParam(name="houseMortgageLoan")String houseMortgageLoan,
+                                        @RequestParam(name="projectPrice")String projectPrice,
+                                        @RequestParam(name="needArea")String needArea,
+                                        @RequestParam(name="considerFactor")String considerFactor
+                                       ){
+        Clientcontactcareful clientcontactcareful=new Clientcontactcareful();
+        clientcontactcareful.setEmail(email);
+        clientcontactcareful.setContactWay(contactWay);
+        clientcontactcareful.setPurposeDegree(purposeDegree);
+        clientcontactcareful.setInterviewDate(interviewDate);
+        clientcontactcareful.setMessageAddress(messageAddress);
+        clientcontactcareful.setAim(aim);
+        clientcontactcareful.setHouseMortgageLoan(houseMortgageLoan);
+        clientcontactcareful.setProjectPrice(projectPrice);
+        clientcontactcareful.setNeedArea(needArea);
+        clientcontactcareful.setPayWay(payWay);
+        clientcontactcareful.setConsiderFactor(considerFactor);
+
         int ret=clientContactCarefulService.addClientSh(clientcontactcareful);
         if(ret>0){
             return new ResponseEntity<>(ret,HttpStatus.OK);

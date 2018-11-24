@@ -1,0 +1,235 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.css" />
+    <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.min.css" />
+    <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css" />
+    <title>Title</title>
+</head>
+<body>
+<div class="panel panel-default">
+    <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 客户管理 <span class="c-gray en">&gt;</span> 添加新客 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+    <div class="panel-body">
+        <form action=""  class="form form-horizontal responsive" id="demoform">
+            <div class="row cl">
+                <label class="form-label col-xs-3">姓名：</label>
+                <div class="formControls col-xs-8">
+                    <input type="text" class="input-text" name="clientName" placeholder="客户名称" id="clientName" style="width: 200px">
+                    性别：
+                    <select name="sex" id="sex" style="width: 150px" class="input-text">
+                        <option value="1">男</option>
+                        <option value="2">女</option>
+                    </select>
+                        身份证号：
+                    <input type="text" class="input-text" name="cardnumber" placeholder="身份证号码" id="cardnumber" style="width: 200px">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-3">邮箱：</label>
+                <div class="formControls col-xs-8">
+                    <input type="text" class="input-text" name="email" placeholder="邮箱" id="email" style="width: 200px">
+                    年龄：
+                    <select name="age" id="age" style="width: 150px" class="input-text">
+                        <option value="1">30岁以下</option>
+                        <option value="2">30-45岁</option>
+                        <option value="3">45-60岁</option>
+                        <option value="4">60岁以上</option>
+                    </select>
+                    手机号码：
+                    <input type="text" class="input-text" name="phone" placeholder="手机号码" id="phone" style="width: 200px">
+                </div>
+            </div>
+
+            <div class="row cl">
+                <label class="form-label col-xs-3">来往方式：</label>
+                <div class="formControls col-xs-8">
+                    <select name="contactWay" id="contactWay" style="width: 160px" class="input-text">
+                        <option value="1">来访</option>
+                        <option value="2">电话</option>
+                    </select>&ensp;&ensp;
+                    意向程度：
+                    <select name="purposeDegree" id="purposeDegree" style="width: 150px" class="input-text">
+                        <option value="1">弱</option>
+                        <option value="2">中</option>
+                        <option value="3">高</option>
+                    </select>
+                    登记日期：
+                    <input type="date" class="input-text" name="interviewDate" placeholder="登记日期" id="interviewDate" style="width: 200px">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-3">地址：</label>
+                <div class="formControls col-xs-8">
+                    <input type="text" class="input-text" placeholder="地址" name="messageAddress" id="messageAddress" autocomplete="off">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-3">置业目的：</label>
+                <div class="formControls col-xs-8">
+                    <input type="radio" name="aim" class="chk_3" value="自住"/>自住
+                    <input type="radio" name="aim" style="margin-left: 55px" value="投资"/>投资
+                    <input type="radio" name="aim" style="margin-left: 55px" value="自住兼投资"/>自住兼投资
+                    <input type="radio" name="aim" style="margin-left: 55px" value="养老"/>养老
+                    <input type="radio" name="aim" style="margin-left: 55px" value="度假"/>度假
+                </div>
+            </div>
+
+
+            <div class="row cl">
+                <label class="form-label col-xs-3">按揭贷款：</label>
+                <div class="formControls col-xs-8">
+                    <input type="radio" name="houseMortgageLoan" class="chk_3" value="无贷款记录"/>无贷款记录
+                    <input type="radio" name="houseMortgageLoan" style="margin-left: 55px" value="一套房贷款记录"/>一套房贷款记录
+                    <input type="radio" name="houseMortgageLoan" style="margin-left: 55px" value="两套房贷款记录"/>两套房贷款记录
+                    <input type="radio" name="houseMortgageLoan" style="margin-left: 55px" value="两套房以上贷款记录"/>两套房以上贷款记录
+                </div>
+            </div>
+
+
+            <div class="row cl">
+                <label class="form-label col-xs-3">置业价格：</label>
+                <div class="formControls col-xs-8">
+                    <input type="radio" name="projectPrice" class="chk_3" value="11000以下"/>11000以下
+                    <input type="radio" name="projectPrice" style="margin-left: 55px" value="11000-18000"/>11000-18000
+                    <input type="radio" name="projectPrice" style="margin-left: 55px" value="18000-25000"/>18000-25000
+                    <input type="radio" name="projectPrice" style="margin-left: 55px" value="25000以上"/>25000以上
+                    <input type="radio" name="projectPrice" style="margin-left: 55px" value="待定"/>待定
+                </div>
+            </div>
+
+            <div class="row cl">
+                <label class="form-label col-xs-3">需求面积：</label>
+                <div class="formControls col-xs-8">
+                    <input type="radio" name="needArea" class="chk_3" value="50-150平方米"/>50-150平方米
+                    <input type="radio" name="needArea" style="margin-left: 55px" value="150-250平方米"/>150-250平方米
+                    <input type="radio" name="needArea" style="margin-left: 55px" value="250平方米以上"/>250平方米以上
+                    <input type="radio" name="needArea" style="margin-left: 55px" value="别墅/复式"/>别墅/复式
+                    <input type="radio" name="needArea" style="margin-left: 55px" value="待定"/>待定
+                </div>
+            </div>
+
+            <div class="row cl">
+                <label class="form-label col-xs-3">付款方式：</label>
+                <div class="formControls col-xs-8">
+                    <input type="radio" name="payWay" value="一次性">一次性
+                    <input type="radio" name="payWay" style="margin-left: 100px" value="商业贷款">商业贷款
+                    <input type="radio" name="payWay" style="margin-left: 100px" value="公积金贷款">公积金贷款
+                    <input type="radio" name="payWay" style="margin-left: 100px" value="分期付款">分期付款
+
+
+                </div>
+            </div>
+
+            <div class="row cl">
+                <label class="form-label col-xs-3">考虑因素：</label>
+                <div class="formControls col-xs-8">
+                    <input type="checkbox" name="considerFactor" width="200px" value="位置环境">位置环境
+                    <input type="checkbox" name="considerFactor" width="200px" value="周边配套成熟度">周边配套成熟度
+                    <input type="checkbox" name="considerFactor" width="200px" value="总价">总价
+                    <input type="checkbox" name="considerFactor" width="200px" value="景观">景观
+                    <input type="checkbox" name="considerFactor" width="200px" value="物业管理">物业管理
+                    <input type="checkbox" name="considerFactor" width="200px" value="交通便利程度">交通便利程度
+                    <input type="checkbox" name="considerFactor" width="200px" value="单价">单价
+                    <input type="checkbox" name="considerFactor" width="200px" value="户型面积">户型面积
+                    <input type="checkbox" name="considerFactor" width="200px" value="开发商品牌">开发商品牌
+
+                </div>
+            </div>
+            <div align="center" style="margin-top: 50px">
+                <button type="button" class="btn btn-primary" onclick="add()" id="myButton4" data-complete-text="Loading finished" style="width: 80px">提交</button>&ensp;&ensp;&ensp;
+                <button type="button" class="btn btn-primary" onclick="query()" id="myButton5" data-complete-text="Loading finished" style="width: 80px">返回</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="../static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="../static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="../lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="../lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../lib/laypage/1.2/laypage.js"></script>
+<script src="../js/sellHouse.js"></script>
+<script type="text/javascript"></script>
+<script>
+    $(function () {
+        //add();
+    })
+    function add() {
+        var options=$("#sex option:selected");
+        var sex=options.text();
+        var ages=$("#age option:selected");
+        var age=ages.text();
+        var contactWays=$("#contactWay option:selected");
+        var contactWay=contactWays.text();
+        var purposeDegrees=$("#purposeDegree option:selected");
+        var purposeDegree=purposeDegrees.text();
+        var aim=$("input[name='aim']:checked").val();
+        var houseMortgageLoan=$("input[name='houseMortgageLoan']:checked").val();
+        var projectPrice=$("input[name='projectPrice']:checked").val();
+        var needArea=$("input[name='needArea']:checked").val();
+        var payWay=$("input[name='payWay']:checked").val();
+        var considerFactor=$.trim($("input:checkbox[name='considerFactor']:checked").val());
+
+        var chk_value =[];
+        $('input[name="considerFactor"]:checked').each(function(){
+            chk_value.push($(this).val());
+        });
+
+        console.log(chk_value);
+
+        //添加客户信息
+        $.ajax({
+            type: "POST",
+            url:  "http://127.0.0.1:9090/Client/addClient",
+            data: {
+                "clientName":$("#clientName").val(),
+                "sex":sex,
+                "cardnumber":$("#cardnumber").val(),
+                "age":age,
+                "phone":$("#phone").val()
+            },
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success:function (data){
+                alert("123")
+                window.location.href="Client_list.html";
+            }
+        })
+        //添加客户明细信息
+        $.ajax({
+            type: "POST",
+            url: CLIENT_URL + "AddClients",
+            data: {
+                "email":$("#email").val(),
+                "contactWay":contactWay,
+                "purposeDegree":purposeDegree,
+                "interviewDate":$("#interviewDate").val(),
+                "messageAddress":$("#messageAddress").val(),
+                "aim":aim,
+                "houseMortgageLoan":houseMortgageLoan,
+                "projectPrice":projectPrice,
+                "needArea":needArea,
+                "payWay":payWay,
+                "considerFactor":chk_value
+            },
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success:function (data){
+                window.location.href="Client_list.html";
+            }
+        })
+
+    }
+
+</script>
+</body>
+</html>
