@@ -141,6 +141,10 @@ public class Clientcontactcareful implements Serializable {
         this.clientid = clientid;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     @Override
     public String toString() {
         return "Clientcontactcareful{" +

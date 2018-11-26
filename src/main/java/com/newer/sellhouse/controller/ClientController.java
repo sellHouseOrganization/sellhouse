@@ -105,7 +105,7 @@ public class ClientController {
      * @param
      * @return
      */
-    @RequestMapping(value = "AddClients",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "AddClients",method = RequestMethod.POST)
     public ResponseEntity<?> AddClients(@RequestParam(name="email")String email,
                                         @RequestParam(name="contactWay")String contactWay,
                                         @RequestParam(name="purposeDegree")String purposeDegree,
