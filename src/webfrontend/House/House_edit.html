@@ -56,10 +56,45 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">房型：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-			<select class="select" name="housetypeid" id="housetypeid" size="1" >
-				<option value="0">请选择</option>
+			<select class="select" name="housetype" id="housetype" size="1" >
+				<option value="请选择">请选择</option>
+                <option value="大型房">大型房</option>
+                <option value="中型房">中型房</option>
+                <option value="小型房">小型房</option>
 			</select>
 			</span> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">朝向：</label>
+            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+			<select class="select" name="orientation" id="orientation" size="1" >
+				<option value="请选择">请选择</option>
+                <option value="南北朝向">南北朝向</option>
+                <option value="东南朝向">东南朝向</option>
+                <option value="西南朝向">西南朝向</option>
+			</select>
+			</span> </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>户型:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" placeholder="户型" id="hallRoom" name="hallRoom"
+                       style="width: 225px;">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>公摊面积:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" placeholder="公摊面积" id="pooledArea" name="pooledArea"
+                       style="width: 225px;">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>私有面积:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" placeholder="私有面积" id="privateArea" name="privateArea"
+                       style="width: 225px;">
+            </div>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
@@ -84,7 +119,7 @@
 
 <script>
     $(window).on('load', () => {
-        $.ajax({
+        /*$.ajax({
             url:"http://127.0.0.1:9090/House/listRoom",
             dataType: "json",
             success: function (data) {
@@ -94,7 +129,7 @@
                     $("#housetypeid").append(text)
                 })
             }
-        })
+        })*/
 
         $('.skin-minimal input').iCheck({
             checkboxClass: 'icheckbox-blue',
@@ -136,9 +171,9 @@
                     type: type,
                     dataType: "json",
                     success: function (result) {
-                        console.log("新增结果"+result);
-                        if(result==1){
-                            layer.msg("新增成功", {icon: 1, time: 1000});
+                        console.log("结果"+result);
+                        if(result>0){
+                            layer.msg("成功", {icon: 1, time: 1000});
                             window.parent.location.reload();
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
@@ -163,20 +198,7 @@
         $("#appendmode").val(itemname+floornumber);
         var houseid = localStorage.getItem("houseid");
         alert(houseid);
-        if(houseid != undefined && houseid != ""&& houseid != 0){
-            $("#houseid").val(houseid);
-            $.ajax({
-                type:"get",
-                url: "http://127.0.0.1:9090/House/queryId?houseid="+houseid,
-                dataType:'json',
-                success:function (result) {
-                    console.log(result);
-                    $("#tiernumber").val(result.tiernumber)
-                    $("#housenumber").val(result.housenumber)
-                    $("#housetypeid").val(result.housetypeid)
-                }
-            })
-        }
+        $("#houseid").val(houseid);
     }
 </script>
 </body>

@@ -69,14 +69,9 @@
     from clientcontactcareful
     where clientContactCarefulid = #{clientcontactcarefulid,jdbcType=INTEGER}
   </select>
-  <!-- <select id="selectAll" resultMap="BaseResultMap">
-     select clientContactCarefulid, purposeDegree, interviewDate, messageAddress, email,
-     houseMortgageLoan, aim, projectPrice, needArea, payWay, considerFactor, contactWay,
-     clientid
-     from clientcontactcareful
-   </select>-->
+
   <select id="selectAll" parameterType="com.newer.sellhouse.domain.Client" resultMap="BaseResultMap">
-    select cc.*,c.clientName,c.sex,c.cardnumber,c.age,c.phone from clientContactCareful cc LEFT JOIN client C on cc.clientid=c.clientid
+    select cc.*,c.clientid,clientName,c.sex,c.cardnumber,c.age,c.phone from clientContactCareful cc LEFT JOIN client C on cc.clientid=c.clientid
     <where>
       <if test="cardnumber!=null and cardnumber!=''">
         and cardnumber like concat('%',concat(#{cardnumber},'%'))

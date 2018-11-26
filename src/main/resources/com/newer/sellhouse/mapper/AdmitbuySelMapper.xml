@@ -2,78 +2,88 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newer.sellhouse.mapper.AdmitbuySelMapper">
     <resultMap id="BaseResultMap" type="com.newer.sellhouse.domain.AdmitbuySel">
-        <id column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />
-        <result column="manageperson" jdbcType="VARCHAR" property="manageperson" />
-        <result column="firstpay" jdbcType="DOUBLE" property="firstpay" />
-        <result column="admitbuydate" jdbcType="DATE" property="admitbuydate" />
-        <result column="clientName" jdbcType="VARCHAR" property="clientName" />
-        <result column="sex" jdbcType="VARCHAR" property="sex" />
-        <result column="cardnumber" jdbcType="VARCHAR" property="cardnumber" />
-        <result column="phone" jdbcType="VARCHAR" property="phone" />
-        <result column="fromtmoney" jdbcType="DOUBLE" property="fromtmoney" />
-        <result column="adviserName" jdbcType="VARCHAR" property="adviserName" />
-        <result column="mustprices" jdbcType="DOUBLE" property="mustprices" />
-        <result column="sumprices" jdbcType="DOUBLE" property="sumprices" />
-        <result column="houseName" jdbcType="VARCHAR" property="houseName" />
-        <result column="payWayName" jdbcType="VARCHAR" property="payWayName" />
+        <id column="admitBuyid" jdbcType="INTEGER" property="admitbuyid"/>
+        <result column="manageperson" jdbcType="VARCHAR" property="manageperson"/>
+        <result column="firstpay" jdbcType="DOUBLE" property="firstpay"/>
+        <result column="admitbuydate" jdbcType="DATE" property="admitbuydate"/>
+        <result column="clientName" jdbcType="VARCHAR" property="clientName"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="cardnumber" jdbcType="VARCHAR" property="cardnumber"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="fromtmoney" jdbcType="DOUBLE" property="fromtmoney"/>
+        <result column="adviserName" jdbcType="VARCHAR" property="adviserName"/>
+        <result column="mustprices" jdbcType="DOUBLE" property="mustprices"/>
+        <result column="sumprices" jdbcType="DOUBLE" property="sumprices"/>
+        <result column="houseName" jdbcType="VARCHAR" property="houseName"/>
+        <result column="payWayName" jdbcType="VARCHAR" property="payWayName"/>
     </resultMap>
 
-<select id="queryParam"  resultType="com.newer.sellhouse.domain.AdmitbuySel">
-    select a.admitbuyid,a.admitbuyDate,a.firstPay,a.managePerson,s.fromtMoney,s.mustPrices,s.sumPrices,h.houseName,c.clientName,c.sex,c.cardnumber,c.phone,
-    ad.adviserName,p.payWayName from admitbuy a LEFT JOIN schedule s on a.scheduleid=s.scheduleid LEFT JOIN
-    house h on a.houseid=h.houseid LEFT JOIN client c on a.clientid=c.clientid LEFT JOIN adviser ad on a.adviserid=ad.adviserid LEFT JOIN payway p
-    on a.payWayid=p.payWayid
-    <where>
-        <if test="clientName!='' and clientName!=null">
-            and clientName like concat('%',concat(#{clientName},'%'))
-        </if>
-    </where>
-</select>
+    <select id="queryParam" resultType="com.newer.sellhouse.domain.AdmitbuySel">
+        select
+        a.admitbuyid,a.admitbuyDate,a.firstPay,a.managePerson,s.fromtMoney,s.mustPrices,s.sumPrices,h.houseName,c.clientName,c.sex,c.cardnumber,c.phone,
+        ad.adviserName,p.payWayName from admitbuy a LEFT JOIN schedule s on a.scheduleid=s.scheduleid LEFT JOIN
+        house h on a.houseid=h.houseid LEFT JOIN client c on a.clientid=c.clientid LEFT JOIN adviser ad on
+        a.adviserid=ad.adviserid LEFT JOIN payway p
+        on a.payWayid=p.payWayid
+        <where>
+            <if test="clientName!='' and clientName!=null">
+                and clientName like concat('%',concat(#{clientName},'%'))
+            </if>
+        </where>
+    </select>
 
     <resultMap id="resultMap-1" type="com.newer.sellhouse.domain.AdmitbuySche">
-        <id column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />
-        <result column="price" jdbcType="DOUBLE" property="price" />
-        <result column="privateArea" jdbcType="DOUBLE" property="privateArea" />
-        <result column="fromtmoney" jdbcType="DOUBLE" property="fromtmoney" />
-        <result column="firstpay" jdbcType="DOUBLE" property="firstpay" />
-        <result column="mustprices" jdbcType="DOUBLE" property="mustprices" />
-        <result column="sumprices" jdbcType="DOUBLE" property="sumprices" />
-        <result column="clientName" jdbcType="VARCHAR" property="clientName" />
-        <result column="scheduleDate" jdbcType="DATE" property="scheduleDate" />
-        <result column="remake" jdbcType="VARCHAR" property="remake" />
-        <result column="payWayName" jdbcType="VARCHAR" property="payWayName" />
-        <result column="houseName" jdbcType="VARCHAR" property="houseName" />
-        <result column="admitbuydate" jdbcType="DATE" property="admitbuydate" />
-        <result column="manageperson" jdbcType="VARCHAR" property="manageperson" />
+        <id column="admitBuyid" jdbcType="INTEGER" property="admitbuyid"/>
+        <result column="price" jdbcType="DOUBLE" property="price"/>
+        <result column="privateArea" jdbcType="DOUBLE" property="privateArea"/>
+        <result column="fromtmoney" jdbcType="DOUBLE" property="fromtmoney"/>
+        <result column="firstpay" jdbcType="DOUBLE" property="firstpay"/>
+        <result column="mustprices" jdbcType="DOUBLE" property="mustprices"/>
+        <result column="sumprices" jdbcType="DOUBLE" property="sumprices"/>
+        <result column="clientName" jdbcType="VARCHAR" property="clientName"/>
+        <result column="scheduleDate" jdbcType="DATE" property="scheduleDate"/>
+        <result column="remake" jdbcType="VARCHAR" property="remake"/>
+        <result column="payWayName" jdbcType="VARCHAR" property="payWayName"/>
+        <result column="houseName" jdbcType="VARCHAR" property="houseName"/>
+        <result column="admitbuydate" jdbcType="DATE" property="admitbuydate"/>
+        <result column="manageperson" jdbcType="VARCHAR" property="manageperson"/>
     </resultMap>
-<select id="findAll" resultType="com.newer.sellhouse.domain.AdmitbuySche">
+    <select id="findAll" resultType="com.newer.sellhouse.domain.AdmitbuySche">
 select ar.price,r.privateArea,s.fromtMoney,a.firstPay,r.privateArea*ar.price as mustPrices,mustPrices-s.fromtMoney-a.firstPay as sumPrices,c.clientName,s.scheduleDate,s.remake,p.payWayName,
     h.houseName,a.admitbuyDate,a.managePerson from admitbuy a,house h,client c ,floor f,areaprice ar,schedule s,roomtype r,payway p where
     a.clientid=c.clientid AND a.scheduleid=s.scheduleid and a.houseid=h.houseid and h.houseTypeid=r.houseTypeid and h.houseid=f.floorid and a.clientid=c.clientid and f.areaPriceid=ar.areaPriceid
     and a.payWayid=p.payWayid
 </select>
 
+    <select id="findByAdmitbuyid" resultType="com.newer.sellhouse.domain.AdmitbuySel">
+         select
+        a.admitbuyid,a.admitbuyDate,a.firstPay,a.managePerson,s.fromtMoney,s.mustPrices,s.sumPrices,h.houseName,c.clientName,c.sex,c.cardnumber,c.phone,
+        ad.adviserName,p.payWayName from admitbuy a LEFT JOIN schedule s on a.scheduleid=s.scheduleid LEFT JOIN
+        house h on a.houseid=h.houseid LEFT JOIN client c on a.clientid=c.clientid LEFT JOIN adviser ad on
+        a.adviserid=ad.adviserid LEFT JOIN payway p
+        on a.payWayid=p.payWayid where a.admitBuyid=#{admitbuyid}
+    </select>
     <!--<resultMap id="resultMap-2" type="com.newer.sellhouse.domain.AdmitbuySche">-->
-        <!--<id column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />-->
-        <!--<result column="price" jdbcType="DOUBLE" property="price" />-->
-        <!--<result column="privateArea" jdbcType="DOUBLE" property="privateArea" />-->
-        <!--<result column="fromtmoney" jdbcType="DOUBLE" property="fromtmoney" />-->
-        <!--<result column="firstpay" jdbcType="DOUBLE" property="firstpay" />-->
-        <!--<result column="mustprices" jdbcType="DOUBLE" property="mustprices" />-->
-        <!--<result column="sumprices" jdbcType="DOUBLE" property="sumprices" />-->
-        <!--<result column="clientName" jdbcType="VARCHAR" property="clientName" />-->
-        <!--<result column="scheduleDate" jdbcType="DATE" property="scheduleDate" />-->
-        <!--<result column="remake" jdbcType="VARCHAR" property="remake" />-->
-        <!--<result column="payWayName" jdbcType="VARCHAR" property="payWayName" />-->
-        <!--<result column="houseName" jdbcType="VARCHAR" property="houseName" />-->
-        <!--<result column="admitbuydate" jdbcType="DATE" property="admitbuydate" />-->
-        <!--<result column="manageperson" jdbcType="VARCHAR" property="manageperson" />-->
+    <!--<id column="admitBuyid" jdbcType="INTEGER" property="admitbuyid" />-->
+    <!--<result column="price" jdbcType="DOUBLE" property="price" />-->
+    <!--<result column="privateArea" jdbcType="DOUBLE" property="privateArea" />-->
+    <!--<result column="fromtmoney" jdbcType="DOUBLE" property="fromtmoney" />-->
+    <!--<result column="firstpay" jdbcType="DOUBLE" property="firstpay" />-->
+    <!--<result column="mustprices" jdbcType="DOUBLE" property="mustprices" />-->
+    <!--<result column="sumprices" jdbcType="DOUBLE" property="sumprices" />-->
+    <!--<result column="clientName" jdbcType="VARCHAR" property="clientName" />-->
+    <!--<result column="scheduleDate" jdbcType="DATE" property="scheduleDate" />-->
+    <!--<result column="remake" jdbcType="VARCHAR" property="remake" />-->
+    <!--<result column="payWayName" jdbcType="VARCHAR" property="payWayName" />-->
+    <!--<result column="houseName" jdbcType="VARCHAR" property="houseName" />-->
+    <!--<result column="admitbuydate" jdbcType="DATE" property="admitbuydate" />-->
+    <!--<result column="manageperson" jdbcType="VARCHAR" property="manageperson" />-->
     <!--</resultMap>-->
     <!--<select id="findForName" parameterType="name" resultType="com.newer.sellhouse.domain.AdmitbuySche">-->
-<!--select ar.price,r.privateArea,s.fromtMoney,a.firstPay,r.privateArea*ar.price as mustPrices,mustPrices-s.fromtMoney-a.firstPay as sumPrices,c.clientName,s.scheduleDate,s.remake,p.payWayName,-->
+    <!--select ar.price,r.privateArea,s.fromtMoney,a.firstPay,r.privateArea*ar.price as mustPrices,mustPrices-s.fromtMoney-a.firstPay as sumPrices,c.clientName,s.scheduleDate,s.remake,p.payWayName,-->
     <!--h.houseName,a.admitbuyDate,a.managePerson from admitbuy a,house h,client c ,floor f,areaprice ar,schedule s,roomtype r,payway p where-->
     <!--a.clientid=c.clientid AND a.scheduleid=s.scheduleid and a.houseid=h.houseid and h.houseTypeid=r.houseTypeid and h.houseid=f.floorid and a.clientid=c.clientid and f.areaPriceid=ar.areaPriceid-->
     <!--and a.payWayid=p.payWayid and c.clientName = name;-->
-<!--</select>-->
+    <!--</select>-->
 
 </mapper>

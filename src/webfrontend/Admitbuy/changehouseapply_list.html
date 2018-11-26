@@ -28,7 +28,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
         <a href="javascript:;" onclick="" class="btn btn-default size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 认购变更申请</a>
         <a href="javascript:;" onclick="" class="btn btn-default size-MINI radius"><i class="Hui-iconfont">&#xe6e2;</i> 报废</a>
-        <a href="javascript:;" onclick="" class="btn btn-default size-MINI radius"><i class="Hui-iconfont">&#xe66b;</i> 返回</a>
+        <a href="javascript:;" onclick="goback()" class="btn btn-default size-MINI radius"><i class="Hui-iconfont">&#xe66b;</i> 返回</a>
          </span> </div>
 	<table class="table table-border table-bordered table-hover table-bg table-sort">
 		<thead>
@@ -65,14 +65,7 @@
 <script type="text/javascript">
     $(function () {
         $('.table-sort').dataTable({
-            "aaSorting": [[1, "desc"]],//默认第几个排序
-            "bStateSave": true,//状态保存
-            "aoColumnDefs": [
-                //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-                {"orderable": false, "aTargets": [0, 8, 9]}// 制定列不参与排序
-            ]
         });
-
     });
     $(function () {
         Admitbuy_query();
@@ -120,9 +113,10 @@
             }
         })
     }
-/*认购-添加*/
-function Admitbuy_add(){
-	layer_show('添加认购','Admitbuy_edit.html','800','800');
+
+
+function goback(){
+    window.location.href="Admitbuy_list.html";
 }
 /*认购-编辑*/
 function Admitbuy_edit(){

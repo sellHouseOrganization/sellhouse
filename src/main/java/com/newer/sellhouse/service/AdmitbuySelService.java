@@ -27,8 +27,8 @@ public class AdmitbuySelService {
         return admitbuySelMapper.findAll();
     }
 
-    public AdmitbuySche findForName(@Param("name") String name){
-        return admitbuySelMapper.findForName(name);
+    public AdmitbuySche findForName(Integer scheduleid){
+        return admitbuySelMapper.findForName(scheduleid);
     }
 
     /**
@@ -37,7 +37,14 @@ public class AdmitbuySelService {
      * @return
      */
     public int addAdmitbuy(Admitbuy admitbuy){
-
         return admitbuySelMapper.addAdmitbuy(admitbuy);
+    }
+
+    public int updAdmitbuy(String structure,Integer payWayid){
+        return admitbuySelMapper.updAdmitbuy(structure, payWayid);
+    }
+
+    public int updSchedule(String remake,Integer scheduleid){
+        return admitbuySelMapper.updSchedule(remake, scheduleid);
     }
 }

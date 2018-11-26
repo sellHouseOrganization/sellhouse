@@ -51,10 +51,10 @@
             <label class="form-label col-xs-4 col-sm-3">开盘批次：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 			<select class="select" name="batch" id="batch" size="1">
-                <option value="0">请选择</option>
-				<option value="1">第一批</option>
-				<option value="2">第二批</option>
-				<option value="3">第三批</option>
+                <option value="请选择">请选择</option>
+				<option value="第一批">第一批</option>
+				<option value="第二批">第二批</option>
+				<option value="第三批">第三批</option>
 			</select>
 			</span> </div>
         </div>
@@ -62,9 +62,9 @@
             <label class="form-label col-xs-4 col-sm-3">楼栋结构：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 			<select class="select" name="structure" id="structure" size="1">
-                <option value="0">请选择</option>
-				<option value="1">住宅</option>
-				<option value="2">商用</option>
+                <option value="请选择">请选择</option>
+				<option value="住宅">住宅</option>
+				<option value="商用">商用</option>
 			</select>
 			</span> </div>
         </div>
@@ -132,7 +132,7 @@
                     dataType: "json",
                     success: function (result) {
                         console.log("新增结果"+result);
-                        if(result==1){
+                        if(result>=1){
                             layer.msg("新增成功", {icon: 1, time: 1000});
                             window.parent.location.reload();
                             var index = parent.layer.getFrameIndex(window.name);

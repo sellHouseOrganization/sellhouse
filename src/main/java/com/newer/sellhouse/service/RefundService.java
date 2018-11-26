@@ -36,7 +36,7 @@ public class RefundService {
             House house=houseMapper.selectByPrimaryKey(admitbuy.getHouseid());
             house.setHousestateid(0);
             //修改房源状态
-            int frw=houseMapper.updateByPrimaryKey(house);
+            int frw=houseMapper.changeState(house.getHouseid(),house.getHousestateid());
             //删除认购
        // int ret= admitbuyMapper.deleteByPrimaryKey(admitbuy.getAdmitbuyid());
            if(frw>0){

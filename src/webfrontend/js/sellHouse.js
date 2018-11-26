@@ -1,6 +1,9 @@
 // api url
 const sellHouse_URL = "http://127.0.0.1:9090/Item/"
 
+// CHANGEHOUSEAPPLY url
+const CHANGEHOUSEAPPLY_URL = "http://127.0.0.1:9090/changeHouseApply/"
+
 // offersum url
 const OFFERSUM_URL = "http://127.0.0.1:9090/offersum/"
 // admitbuy url
