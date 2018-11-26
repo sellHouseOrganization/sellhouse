@@ -67,10 +67,10 @@
     <div class="row cl">
         <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>姓名:</label>
         <div class="formControls col-xs-8 col-sm-9">
-            <td><input type="text" class="input-text" id="clientName" name="clientName" placeholder="客户姓名" style="width: 225px;"></td>
+            <td><input type="text" class="input-text" id="clientName1" name="clientName1" placeholder="客户姓名" style="width: 225px;"></td>
             <span class="c-red">*</span>性别:
-            <td> <input type="radio" id="sex" name="sex" value="男" checked>男
-                <input type="radio" id="sex1" name="sex" value="女">女</td>
+            <td><input type="text" class="input-text" placeholder="性别" id="sex" name="sex"
+                       style="width: 225px;"></td>
 
         </div>
     </div>
@@ -177,7 +177,7 @@
                     appendVal += `
                       <tr class="text-c">
                         <td><input type="checkbox" value="1" name=""></td>
-                        <td><input type="button" value="选择" onclick="queryById()"></td>
+                        <td><input type="button" value="选择" onclick="queryById(${schedule.scheduleid})"></td>
                         <td>${schedule.scheduleid}</td>
                         <td>${schedule.clientName}</td>i
                         <td>${schedule.sex}</td>
@@ -203,16 +203,15 @@
 
     }
 
-/*    function queryById(){
-        var scheduleid = {
-            "scheduleid": $("#scheduleid").val()
-        };
+    function queryById(scheduleid){
+        alert(scheduleid);
         $.ajax({
             type: "get",
-            url: "http://127.0.0.1:9090/add/query?scheduleid="+scheduleid,
+            url:"http://127.0.0.1:9090/add/query?scheduleid="+scheduleid,
             dataType: 'json',
             success: function (result) {
-                $("#clientName").val(result.clientName);
+                console.log(result);
+                $("#clientName1").val(result.clientName);
                 $("#sex").val(result.sex);
                 $("#cardnumber").val(result.cardnumber);
                 $("#age").val(result.age);
@@ -225,7 +224,7 @@
                 $("#total").val(result.total);
             }
         })
-    }*/
+    }
 
     /*用户-添加*/
     function member_add(title, url, w, h) {
