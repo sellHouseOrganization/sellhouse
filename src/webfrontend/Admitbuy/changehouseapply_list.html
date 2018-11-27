@@ -26,7 +26,6 @@
 <div class="page-container">
 
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
-        <a href="javascript:;" onclick="" class="btn btn-default size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 认购变更申请</a>
         <a href="javascript:;" onclick="" class="btn btn-default size-MINI radius"><i class="Hui-iconfont">&#xe6e2;</i> 报废</a>
         <a href="javascript:;" onclick="goback()" class="btn btn-default size-MINI radius"><i class="Hui-iconfont">&#xe66b;</i> 返回</a>
          </span> </div>
@@ -64,52 +63,41 @@
 <script src="../js/sellHouse.js"></script>
 <script type="text/javascript">
     $(function () {
-        $('.table-sort').dataTable({
-        });
+        findAll();
     });
-    $(function () {
-        Admitbuy_query();
-    });
-    function Admitbuy_query() {
-        var data = {
-            "clientName": $("#clientName").val()
-        };
+    function findAll() {
         $.ajax({
-            url: ADMITBUY_URL + "list",
+            url: CHANGEHOUSEAPPLY_URL + "findall",
             type: "get",
-            data: data,
             dataType: 'json',
-            contentType: "application/json; charset=utf-8",
             success: function (result) {
-                console.log(result);
                 var appendVal = '';
-                $.each(result, function (index, admitbuy) {
-                    console.log(index);
-                    console.log(admitbuy);
+                $.each(result, function (index, changehouseapply) {
+                    var s=``;
+                    if (changehouseapply.checkSuccessNo==0){
+                        s=`<td>未操作</td>`
+					}else {
+                        s=`<td>已操作</td>`
+					}
                     appendVal += `
                       <tr class="text-c">
-                        <td><input type="checkbox" value="${admitbuy.admitbuyid}" name="aid"></td>
-                        <td>${admitbuy.admitbuyid}</td>
-                        <td>${admitbuy.clientName}</td>
-                        <td>${admitbuy.sex}</td>
-                        <td>${admitbuy.cardnumber}</td>
-                        <td>${admitbuy.phone}</td>
-                        <td>${admitbuy.fromtmoney}</td>
-                        <td>${admitbuy.firstpay}</td>
-                        <td>${admitbuy.manageperson}</td>
-                        <td>${admitbuy.sumprices}</td>
-                        <td>${admitbuy.adviserName}</td>
-                        <td>${admitbuy.admitbuydate}</td>
-                        <td>${admitbuy.payWayName}</td>
-                        <td>${admitbuy.houseName}</td>
-						<td>${admitbuy.mustprices}</td>
-                        <td class="td-manage">
-                         <a title="编辑" href="javascript:;" onclick="Admitbuy_edit(${admitbuy.admitbuyid})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-                         <a title="删除" href="javascript:;" onclick="Admitbuy_del(this,${admitbuy.admitbuyid})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-                      </tr>
+                        <td><input type="checkbox" value="${changehouseapply.changeHouseApplyid}" name=""></td>
+                        <td>${changehouseapply.changeHouseApplyid}</td>
+                        <td>${changehouseapply.admitBuyid}</td>
+                        <td>${changehouseapply.sumPrices}</td>
+                        <td>${changehouseapply.changeHouseApplyDate}</td>
+                        <td>${changehouseapply.changeType}</td>
+                        <td>${changehouseapply.causeClassifiCation}</td>
+                        <td>${changehouseapply.reasonsForChange}</td>
+                        <td>${changehouseapply.clientName}</td>
+                        <td>${changehouseapply.houseName}</td>`
+						+s+
+                      `</tr>
                         `;
                 })
                 $("#tbody1").html(appendVal);
+                $('.table-sort').dataTable({
+                });
             }
         })
     }
