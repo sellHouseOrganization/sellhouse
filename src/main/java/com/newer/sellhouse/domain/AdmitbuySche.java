@@ -1,5 +1,8 @@
 package com.newer.sellhouse.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,6 +16,10 @@ public class AdmitbuySche implements Serializable {
     private double sumPrices;//成交总价
     private String clientName;//客户姓名
     private String houseName;//房源名称
+
+    //转化格式
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date scheduleDate;//预购时间
     private String remake;//简要备注
     private String payWayName;//付款方式

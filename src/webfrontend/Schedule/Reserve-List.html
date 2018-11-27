@@ -45,7 +45,7 @@
         <table class="table table-border table-bordered table-hover table-bg table-sort">
             <thead>
             <tr class="text-c">
-                <th width="25"><input type="checkbox" name="scheduleid" value="1"></th>
+                <th width="25"><input type="checkbox" name="" id="ckID" value="0"></th>
                 <th width="80">序号</th>
                 <th width="100">单价</th>
                 <th width="100">总价</th>
@@ -68,7 +68,6 @@
 </div>
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="../js/admitbuy.js"></script>
 <!--
 <script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
 -->
@@ -108,7 +107,7 @@
                     console.log(schedule);
                     appendVal += `
                       <tr class="text-c">
-                        <td><input type="checkbox" value="1" name="${schedule.scheduleid}"></td>
+                        <td><input type="checkbox" value="${schedule.scheduleid}" id="ckID"></td>
                         <td>${schedule.scheduleid}</td>
                         <td>${schedule.price}</td>
                         <td>${schedule.total}</td>
@@ -139,7 +138,13 @@
 
     /*认购-添加*/
     function Admitbuy_edit() {
-        location.href="../Schedule/Admitbuy_edit.html?scheduleid=1";
+        var ckid=[];
+        $.each($('input:checkbox:checked'),function(index,c){
+            ckid.push(c.value);
+        });
+        alert(ckid);
+        localStorage.setItem("scheduleid",ckid);
+        layer_show('添加认购','../Schedule/Admitbuy_edit.html');
     }
     /*用户-查看*/
     function member_show(title, url, id, w, h) {
