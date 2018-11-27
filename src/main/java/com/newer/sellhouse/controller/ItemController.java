@@ -35,7 +35,7 @@ public class ItemController {
     @RequestMapping(value = "edit",method = RequestMethod.POST)
     public ResponseEntity<?>InsertItem(Item item){
         int ret = itemService.InsertItem(item);
-        if(ret==1){
+        if(ret>=0){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -44,7 +44,7 @@ public class ItemController {
     @RequestMapping(value = "edit",method = RequestMethod.PUT)
     public ResponseEntity<?>UpdateItem(Item item){
         int ret = itemService.UpdateItem(item);
-        if(ret==1){
+        if(ret>=0){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -63,7 +63,7 @@ public class ItemController {
                 break;
             }
         }
-        if(ret==1){
+        if(ret>=0){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -90,7 +90,7 @@ public class ItemController {
                 break;
             }
         }
-        if(ret==1){
+        if(ret>=0){
             return new ResponseEntity<>(ret,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

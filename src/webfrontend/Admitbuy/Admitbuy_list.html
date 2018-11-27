@@ -39,7 +39,7 @@
 			<th scope="col" colspan="16">认购列表</th>
 		</tr>
 			<tr class="text-c">
-				<th width="25"><input type="checkbox" name="aid" value="0"></th>
+				<th width="25"><input type="checkbox" name="aid" value=""></th>
 				<th width="40">认购ID</th>
 				<th width="90">客户姓名</th>
 				<th width="40">性别</th>
@@ -126,6 +126,9 @@
 /*认购-添加*/
 function applyEdit(){
 	window.location.href="changehouseapply_list.html";
+function Admitbuy_add(){
+
+	layer_show('添加认购','Admitbuy_edit.html','800','800');
 }
 /*申请认购变更*/
 function addApply(){

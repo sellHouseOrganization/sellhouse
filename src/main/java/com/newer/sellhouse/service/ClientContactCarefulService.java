@@ -36,4 +36,14 @@ public class ClientContactCarefulService {
         return clientcontactcarefulMapper.updateByPrimaryKey(clientcontactcareful);
     }
 
+    /**
+     * 删除客户明细信息
+     * @param clientContactCarefulid
+     * @return
+     */
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class )
+    public int delClientSh(Integer clientContactCarefulid){
+        return clientcontactcarefulMapper.deleteByPrimaryKey(clientContactCarefulid);
+    }
+
 }
