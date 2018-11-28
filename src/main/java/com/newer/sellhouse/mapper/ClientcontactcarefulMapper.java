@@ -1,6 +1,7 @@
 package com.newer.sellhouse.mapper;
 
 import com.newer.sellhouse.domain.Clientcontactcareful;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,11 @@ import java.util.List;
 public interface ClientcontactcarefulMapper {
     int deleteByPrimaryKey(Integer clientcontactcarefulid);
 
-    int insert(Clientcontactcareful record);
+    @Insert("insert into Clientcontactcareful(purposeDegree,interviewDate,messageAddress,email,houseMortgageLoan," +
+            "aim,projectPrice,needArea,payWay,considerFactor,contactWay,clientid) values(#{purposeDegree},#{interviewDate}" +
+            ",#{messageAddress},#{email},#{houseMortgageLoan},#{aim},#{projectPrice},#{needArea}" +
+            ",#{payWay},#{considerFactor},#{contactWay},#{clientid})")
+    int insert(Clientcontactcareful clientcontactcareful);
 
     Clientcontactcareful selectByPrimaryKey(Integer clientcontactcarefulid);
 

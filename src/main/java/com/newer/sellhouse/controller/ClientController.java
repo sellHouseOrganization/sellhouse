@@ -12,8 +12,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Administrator on 2018/11/19 0019.
@@ -63,11 +65,11 @@ public class ClientController {
      * @return
      */
     @RequestMapping(value = "addClient",method =RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> addClient(@RequestParam(name="clientName")String clientName,
-                                       @RequestParam(name="sex")String sex,
-                                       @RequestParam(name="cardnumber")String cardnumber,
-                                       @RequestParam(name="age")String age,
-                                       @RequestParam(name="phone")String phone){
+    public ResponseEntity<?> addClient(@RequestParam(name="clientName",required = false)String clientName,
+                                       @RequestParam(name="sex",required = false)String sex,
+                                       @RequestParam(name="cardnumber",required = false)String cardnumber,
+                                       @RequestParam(name="age",required = false)String age,
+                                       @RequestParam(name="phone",required = false)String phone){
 
         Client client=new Client();
         client.setClientName(clientName);
@@ -75,6 +77,13 @@ public class ClientController {
         client.setCardnumber(cardnumber);
         client.setAge(age);
         client.setPhone(phone);
+        int result=5;
+        //Random random=new Random();
+        for(int i=0;i<3;i++){
+            result+=result;
+        }
+        client.setClientid(result);
+        System.out.println(clientName);
         int ret=clientService.addClient(client);
         if(ret>0){
             return new ResponseEntity<>(ret,HttpStatus.OK);
@@ -105,21 +114,22 @@ public class ClientController {
      * @param
      * @return
      */
-    @RequestMapping(value = "AddClients",method = RequestMethod.POST)
-    public ResponseEntity<?> AddClients(@RequestParam(name="email")String email,
-                                        @RequestParam(name="contactWay")String contactWay,
-                                        @RequestParam(name="purposeDegree")String purposeDegree,
+    @RequestMapping(value = "AddClients",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> AddClients(@RequestParam(value="email",required = false)String email,
+                                        @RequestParam(name="contactWay",required = false)String contactWay,
+                                        @RequestParam(name="purposeDegree",required = false)String purposeDegree,
                                         @DateTimeFormat(pattern = "yyyy-MM-dd")
-                                        @RequestParam(name="interviewDate")Date interviewDate,
-                                        @RequestParam(name="messageAddress")String messageAddress,
-                                        @RequestParam(name="aim")String aim,
-                                        @RequestParam(name="payWay")String payWay,
-                                        @RequestParam(name="houseMortgageLoan")String houseMortgageLoan,
-                                        @RequestParam(name="projectPrice")String projectPrice,
-                                        @RequestParam(name="needArea")String needArea,
-                                        @RequestParam(name="considerFactor")String considerFactor
+                                        @RequestParam(name="interviewDate",required = false)Date interviewDate,
+                                        @RequestParam(name="messageAddress",required = false)String messageAddress,
+                                        @RequestParam(name="aim",required = false)String aim,
+                                        @RequestParam(name="payWay",required = false)String payWay,
+                                        @RequestParam(name="houseMortgageLoan",required = false)String houseMortgageLoan,
+                                        @RequestParam(name="projectPrice",required = false)String projectPrice,
+                                        @RequestParam(name="needArea",required = false)String needArea,
+                                        @RequestParam(name="considerFactor",required = false)String considerFactor
                                        ){
         Clientcontactcareful clientcontactcareful=new Clientcontactcareful();
+        clientcontactcareful.setConsiderFactor(considerFactor);
         clientcontactcareful.setEmail(email);
         clientcontactcareful.setContactWay(contactWay);
         clientcontactcareful.setPurposeDegree(purposeDegree);
@@ -130,7 +140,22 @@ public class ClientController {
         clientcontactcareful.setProjectPrice(projectPrice);
         clientcontactcareful.setNeedArea(needArea);
         clientcontactcareful.setPayWay(payWay);
-        clientcontactcareful.setConsiderFactor(considerFactor);
+
+        int result=5;
+        //Random random=new Random();
+        for(int i=0;i<3;i++){
+            result+=result;
+        }
+        clientcontactcareful.setClientid(result);
+
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHH");
+       /* String newDate=sdf.format(new Date());
+
+      System.out.println(result);
+        int id= Integer.parseInt(newDate);*/
+        //clientcontactcareful.setClientid(result);
+
+        //System.out.println(id);
 
         int ret=clientContactCarefulService.addClientSh(clientcontactcareful);
         if(ret>0){
@@ -140,6 +165,8 @@ public class ClientController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
+
+
 
     /**
      * 修改客户明细信息

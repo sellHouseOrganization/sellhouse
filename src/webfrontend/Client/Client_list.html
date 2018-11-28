@@ -28,7 +28,7 @@
 <div class="page-container">
     <div class="text-c"> 客户搜索：
         <input type="text" class="input-text" style="width:250px" placeholder="输入身份证号码" id="cardNumber" name="cardNumber">
-        <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜客户</button>
+        <button type="submit" class="btn btn-success" id="" name="" onclick="query()"><i class="Hui-iconfont">&#xe665;</i> 搜客户</button>
     </div>
     <table class="table table-border table-bordered table-hover table-bg table-sort">
         <thead>
@@ -132,7 +132,7 @@
             <br class="td-manage">
             <td>
                 <a href="javascript:;" onclick="admin_del(${client.clientcontactcarefulList.clientContactCarefulid})" class="btn btn-primary size-MINI radius"><i class="Hui-iconfont">&#xe600;</i> 删除信息</a><p></p>
-                <a href="javascript:;" onclick="Item_upd(${client.clientid})" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6df;</i> 信息编辑</a>
+                <a href="javascript:;" onclick="Item_upd(${client.clientcontactcarefulList.clientContactCarefulid})" class="btn btn-danger size-MINI radius"><i class="Hui-iconfont">&#xe6df;</i> 信息编辑</a>
             </td>
         </tr>
                `;
@@ -149,7 +149,7 @@
         //var chexBV = $("#ckID").val();
         //alert("删除ID"+chexBV);
         alert(id);
-        if(window.confirm("是否确认删除？")){
+        if(window.confirm('是否确认删除？')){
             $.ajax({
                 type: 'DELETE',
                 url: CLIENT_URL+"client"+"/"+id,
@@ -169,9 +169,9 @@
 
     /*管理员-编辑*/
     function Item_upd(id){
-        alert(id);
+        //alert(id);
         localStorage.setItem("id",id);
-        layer_show('修改信息','Client_upd.html','750','550');
+        window.location.href="Client_upd.html";
     }
 </script>
 </body>

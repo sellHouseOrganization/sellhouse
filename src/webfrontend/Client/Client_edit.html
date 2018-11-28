@@ -137,7 +137,7 @@
                     <input type="checkbox" name="considerFactor" width="200px" value="单价">单价
                     <input type="checkbox" name="considerFactor" width="200px" value="户型面积">户型面积
                     <input type="checkbox" name="considerFactor" width="200px" value="开发商品牌">开发商品牌
-
+                    <input hidden="aa" id="id">
                 </div>
             </div>
             <div align="center" style="margin-top: 50px">
@@ -161,17 +161,13 @@
 <script type="text/javascript"></script>
 <script>
     $(function () {
-        add();
+        //add();
     })
     function add() {
-        var options=$("#sex option:selected");
-        var sex=options.text();
-        var ages=$("#age option:selected");
-        var age=ages.text();
-        var contactWays=$("#contactWay option:selected");
-        var contactWay=contactWays.text();
-        var purposeDegrees=$("#purposeDegree option:selected");
-        var purposeDegree=purposeDegrees.text();
+        var sex=$("#sex option:selected").text();
+        var age=$("#age option:selected").text();
+        var contactWay=$("#contactWay option:selected").text();
+        var purposeDegree=$("#purposeDegree option:selected").text();
         var aim=$("input[name='aim']:checked").val();
         var houseMortgageLoan=$("input[name='houseMortgageLoan']:checked").val();
         var projectPrice=$("input[name='projectPrice']:checked").val();
@@ -183,31 +179,15 @@
         $('input[name="considerFactor"]:checked').each(function(){
             chk_value.push($(this).val());
         });
-
+        alert(chk_value);
         console.log(chk_value);
+alert(contactWay);
 
-        //添加客户信息
-        $.ajax({
-            type: "POST",
-            url:  "http://127.0.0.1:9090/Client/addClient",
-            data: {
-                "clientName":$("#clientName").val(),
-                "sex":sex,
-                "cardnumber":$("#cardnumber").val(),
-                "age":age,
-                "phone":$("#phone").val()
-            },
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success:function (data){
-                alert("123")
-                window.location.href="Client_list.html";
-            }
-        })
         //添加客户明细信息
         $.ajax({
             type: "POST",
-            url: CLIENT_URL + "AddClients",
+            url: CLIENT_URL + "/AddClients",
+            traditional:true,//防止深度序列化
             data: {
                 "email":$("#email").val(),
                 "contactWay":contactWay,
@@ -222,8 +202,27 @@
                 "considerFactor":chk_value
             },
             dataType: "json",
-            contentType: "application/json; charset=utf-8",
             success:function (data){
+                alert("123");
+                window.location.href="Client_list.html";
+            }
+        })
+
+        //添加客户信息
+        $.ajax({
+            type: "POST",
+            url:  CLIENT_URL+"/addClient",
+            data: {
+                "clientName":$("#clientName").val(),
+                "sex":sex,
+                "cardnumber":$("#cardnumber").val(),
+                "age":age,
+                "phone":$("#phone").val()
+            },
+            dataType: "json",
+
+            success:function (data){
+                alert("14");
                 window.location.href="Client_list.html";
             }
         })

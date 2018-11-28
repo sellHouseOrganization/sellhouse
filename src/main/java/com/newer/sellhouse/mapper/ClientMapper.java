@@ -9,7 +9,7 @@ public interface ClientMapper {
 
     int deleteByPrimaryKey(Integer clientid);
 
-    @Insert("insert into client(clientName,sex,cardnumber,age,phone) values(#{clientName},#{sex},#{cardnumber},#{age},#{phone})")
+    @Insert("insert into client(clientName,sex,cardnumber,age,phone,clientid) values(#{clientName},#{sex},#{cardnumber},#{age},#{phone},#{clientid})")
     int insert(Client client);
 
     Client selectByPrimaryKey(Integer clientid);
