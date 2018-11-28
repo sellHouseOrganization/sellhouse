@@ -18,16 +18,16 @@ public interface AdmitbuySelMapper {
      */
     List<AdmitbuySel> queryParam(@Param("clientName") String clientName);
 
-    @Insert("insert into admitbuy(firstPay,admitbuyDate,managePerson,structure)values(#{firstPay},#{admitbuyDate},#{managePerson},#{structure})")
+    @Insert("insert into admitbuy(firstPay,admitbuyDate,managePerson)values(#{firstPay},#{admitbuyDate},#{managePerson})")
     int addAdmitbuy(Admitbuy admitbuy);
 
-    @Update("update payway set structure=#{structure} where payWayid=#{payWayid}")
-    int updAdmitbuy(String structure,Integer payWayid);
+    @Update("update payway set payWayName=#{payWayName} where payWayid=#{payWayid}")
+    int updAdmitbuy(@Param("payWayName") String payWayName,@Param("payWayid") Integer payWayid);
 
-    @Update("update schedule set remake=#{remake} where scheduleid=#{scheduleid}")
-    int updSchedule(String remake,Integer scheduleid);
+   /* @Update("update schedule set remake=#{remake} where scheduleid=#{scheduleid}")
+    int updSchedule(String remake,Integer scheduleid);*/
 
-    @Delete("delete from admitbuy where admitbuyid=#{admitbuyid}")
+    @Delete("delete from admitbuy where admitBuyid=#{admitbuyid}")
     int delAdmitbuySel(Integer admitbuyid);
 
     List<AdmitbuySche> findAll();

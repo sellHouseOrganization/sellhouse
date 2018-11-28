@@ -5,7 +5,9 @@ import com.newer.sellhouse.domain.AdmitbuySche;
 import com.newer.sellhouse.domain.AdmitbuySel;
 import com.newer.sellhouse.service.AdmitbuySelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -58,36 +60,31 @@ public class AdmitbuyController {
         return new ResponseEntity<>(admitbuySche, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "insert", method = RequestMethod.POST)
-    public ResponseEntity<?> addAdmitbuy(@RequestParam("firstPay") double firstPay,
-                                         @RequestParam("admitbuyDate") Date admitbuyDate,
-                                         @RequestParam("managePerson") String managePerson,
-                                         @RequestParam("structure") String structure,
-                                         @RequestParam("paywayid") Integer paywayid,
-                                         @RequestParam("remake") String remake,
-                                         @RequestParam("scheduleid") Integer scheduleid
+    @RequestMapping(value = "insert", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> addAdmitbuy(@RequestParam(name = "firstPay") Double firstPay,
+                                         @RequestParam(name = "admitbuyDate")@DateTimeFormat(pattern = "yyyy-MM-dd")Date admitbuyDate,
+                                         @RequestParam(name = "managePerson") String managePerson,
+                                         @RequestParam(name = "payWayName") String payWayName,
+                                         @RequestParam(name = "paywayid") Integer paywayid
+                                        /* @RequestParam(name = "remake") String remake,
+                                         @RequestParam(name = "scheduleid") Integer scheduleid*/
                                          ) {
        Admitbuy admitbuy = new Admitbuy();
-       admitbuy.setFirstpay(firstPay);
-       admitbuy.setAdmitbuydate(admitbuyDate);
-       admitbuy.setManageperson(managePerson);
-       int ret = admitbuySelService.addAdmitbuy(admitbuy);
-       if (ret > 0){
-           int upd = admitbuySelService.updAdmitbuy(structure,paywayid);
-           if (upd == 1){
-               int upds = admitbuySelService.updSchedule(remake, scheduleid);
-               if (upds == 1){
-                   return new ResponseEntity<>(upds,HttpStatus.OK);
-               }else {
-                   return new ResponseEntity<>("失败",HttpStatus.OK);
-               }
-           }else {
-               return new ResponseEntity<>("失败",HttpStatus.OK);
-           }
+       admitbuy.setFirstPay(firstPay);
+       admitbuy.setAdmitbuyDate(admitbuyDate);
+       admitbuy.setManagePerson(managePerson);
 
-       }else {
-           return new ResponseEntity<>("失败",HttpStatus.OK);
-       }
+       int ret = admitbuySelService.addAdmitbuy(admitbuy);
+       int upd = admitbuySelService.updAdmitbuy(payWayName,paywayid);
+      // int upds = admitbuySelService.updSchedule(remake, scheduleid);
+       if (ret > 0 ){
+           return new ResponseEntity<>(ret,HttpStatus.OK);
+       }else if (upd!=0){
+           return new ResponseEntity<>(upd,HttpStatus.OK);
+       }/*else if (upds!=0){
+           return new ResponseEntity<>(upds,HttpStatus.OK);
+       }*/
+        return new ResponseEntity<>("失败",HttpStatus.OK);
     }
 }
 

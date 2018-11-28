@@ -30,12 +30,15 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">姓名</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <td><input type="text" class="input-text" disabled="disabled" id="clientName" name="clientName" placeholder="客户姓名"
+                <td><input type="text" class="input-text" disabled="disabled" id="clientName" name="clientName"
+                           placeholder="客户姓名"
                            style="width: 225px;"></td>
                 单元名称
-                <td><input type="text" class="input-text" id="housename" name="housename" disabled="disabled" style="width: 225px;"></td>
+                <td><input type="text" class="input-text" id="housename" name="housename" disabled="disabled"
+                           style="width: 225px;"></td>
                 总价
-                <td><input type="text" class="input-text" id="totalprices" name="totalprices" disabled="disabled" style="width: 225px;"></td>
+                <td><input type="text" class="input-text" id="totalprices" name="totalprices" disabled="disabled"
+                           style="width: 225px;"></td>
             </div>
         </div>
 
@@ -50,7 +53,7 @@
             </select>
 			</span></td>
                 原因分类
-               <select class="select-box" style="width:180px;" id="causeClassifiCation" name="causeClassifiCation">
+                <select class="select-box" style="width:180px;" id="causeClassifiCation" name="causeClassifiCation">
                     <option value="环境因素">环境因素</option>
                     <option value="面积因素">面积因素</option>
                     <option value="其他因素">其他因素</option>
@@ -63,14 +66,15 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">更变原因</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <td><input type="text" class="input-text" id="reasonsForChange" name="reasonsForChange" style="width: 800px;"></td>
+                <td><input type="text" class="input-text" id="reasonsForChange" name="reasonsForChange"
+                           style="width: 800px;"></td>
             </div>
         </div>
 
 
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                <input class="btn btn-primary radius" type="button" id="btnSvn" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                <input class="btn btn-primary radius" type="submit" id="btnSvn" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
             </div>
         </div>
 
@@ -91,12 +95,13 @@
 <script type="text/javascript" src="../js/sellHouse.js"></script>
 <script>
     $(window).on('load', () => {
-        var admitbuyid=localStorage.getItem("admitbuyid");
+        var admitbuyid = localStorage.getItem("admitbuyid");
+        $("#admitbuyid").val(admitbuyid);
         localStorage.removeItem("admitbuyid");
         $.ajax({
             url: ADMITBUY_URL + "findByAdmitbuyid",
             type: "get",
-            data:{admitbuyid:admitbuyid},
+            data: {admitbuyid: admitbuyid},
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             success: function (result) {
@@ -125,23 +130,33 @@
             focusCleanup: true,
             success: "valid",
             submitHandler: function (form) {
-                $(form).ajaxSubmit({
+                var data = {
+                    admitBuyid: $("#admitbuyid").val(),
+                    changeType: $("#changeType").val(),
+                    causeClassifiCation: $("#causeClassifiCation").val(),
+                    reasonsForChange: $("#reasonsForChange").val()
+                };
+                $.ajax({
                     url: CHANGEHOUSEAPPLY_URL + "insert",
-                    type: type,
+                    type: "post",
+                    data: JSON.stringify(data),
                     dataType: "json",
+                    contentType: "application/json; charset=utf-8",
                     success: function (result) {
-                        console.log("新增结果" + result);
                         if (result == 1) {
-                            layer.msg("新增成功", {icon: 1, time: 1000});
-                            window.parent.location.reload();
-                            var index = parent.layer.getFrameIndex(window.name);
-                            parent.layer.close(index);
+                            layer.msg("申请成功", {icon: 1, time: 1000});
                         }
                     },
                     error: function () {
                         layer.alert("系统出现错误,请联系管理员!");
                     }
                 });
+                setTimeout(function () {
+                    window.parent.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                }, 1000)
+
             }
         });
 

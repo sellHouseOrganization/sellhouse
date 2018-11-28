@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.sellhouse.mapper.ChangeHouseApplyMapper">
+    <select id="findAll" resultType="com.newer.sellhouse.domain.ChangeHouseApply">
+        select c.*,s.sumPrices,c2.clientName,h.houseName
+        from changehouseapply c left join admitbuy a on c.admitBuyid=a.admitBuyid left join
+        schedule s on a.scheduleid = s.scheduleid left join client c2 on a.clientid = c2.clientid
+        left join house h on a.houseid = h.houseid where c.scrapNo=0
+    </select>
+    <select id="findChangeHouse" resultType="com.newer.sellhouse.domain.ChangeHouseApply">
+        select c.*,s.sumPrices,c2.clientName,h.houseName
+        from changehouseapply c left join admitbuy a on c.admitBuyid=a.admitBuyid left join
+        schedule s on a.scheduleid = s.scheduleid left join client c2 on a.clientid = c2.clientid
+        left join house h on a.houseid = h.houseid where c.scrapNo=0 and c.checkSuccessNo=0
+        and c.changeType='换房'
+    </select>
+    <select id="findEditByadmitbuyid" resultType="com.newer.sellhouse.domain.ChangeHouseEdit">
+        select c.cardnumber,a.admitBuyid,h.houseName,h.pooledArea+h.privateArea area,s.sumPrices,s.mustPrices,
+        a2.price,s.remake,s.fromtMoney,a.admitbuyDate,s.scheduleDate
+        from admitbuy a left join client c on a.clientid = c.clientid left join house h on a.houseid = h.houseid
+        left join schedule s on a.scheduleid = s.scheduleid left join floor f on h.floorid = f.floorid left join
+        areaprice a2 on f.floorid = a2.floorid where a.admitBuyid=#{admitbuyid}
+    </select>
+</mapper>

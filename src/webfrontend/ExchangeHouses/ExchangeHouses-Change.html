@@ -2,143 +2,139 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="renderer" content="webkit|ie-comp|ie-stand">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<link rel="Bookmark" href="/favicon.ico" >
-<link rel="Shortcut Icon" href="/favicon.ico" />
-<!--[if lt IE 9]>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="Bookmark" href="/favicon.ico">
+    <link rel="Shortcut Icon" href="/favicon.ico"/>
+    <!--[if lt IE 9]>
     <script type="text/javascript" src="../lib/html5shiv.js"></script>
     <script type="text/javascript" src="../lib/respond.min.js"></script>
     <![endif]-->
-<link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css" />
-<link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css" />
-<link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css" />
-<link rel="stylesheet" type="text/css" href="../static/h-ui.admin/skin/default/skin.css" id="skin" />
-<link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css" />
-<!--[if IE 6]>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css"/>
+    <!--[if IE 6]>
     <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
 
-<title>换房</title>
+    <title>换房</title>
 </head>
 <body>
 <article class="page-container">
-	<form action="" method="post" class="form form-horizontal" id="form-member-add">
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 身份证</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<div>
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:200px"></td>
-　　
-					地址　
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:250px"></td>　　
-					邮箱　
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:200px"></td>
-				</div>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 订单号</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<div>
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-					　　　　　
-					单元名称　　
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-				</div>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 因素权重</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<div>
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-					　　　　　
-					预定金　　　
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-				</div>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 预售单价</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<div>
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-					　　　　　
-					预售总价　　
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-				</div>
-			</div>
-		</div>
+    <form action="" method="post" class="form form-horizontal" id="form-member-add">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">身份证</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div>
+                    <td><input type="text" class="input-text" value="" disabled="disabled" id="cardNumber" name="cardNumber"
+                               style="width:200px"></td>
+                    地址　
+                    <td><input type="text" class="input-text" value="长沙市" disabled="disabled"
+                               style="width:250px"></td>
+                    邮编　
+                    <td><input type="text" class="input-text" value="410000" disabled="disabled"
+                               style="width:200px"></td>
+                </div>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">订单号</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div>
+                    <td><input type="text" class="input-text" value="" disabled="disabled" id="admitbuyid" name="admitbuyid"
+                               style="width:250px"></td>
+                    单元名称　　
+                    <td><input type="text" class="input-text" value="" disabled="disabled" id="houseName" name="houseName"
+                               style="width:250px"></td>
+                </div>
+            </div>
+        </div>
 
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 认购日期</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<div>
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-					　　　　　
-					预定签约日期　　
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-				</div>
-			</div>
-		</div>
-		<div class="row cl"　>
-			<label class="form-label col-xs-4 col-sm-3">面积</label>
-			<div class="formControls col-xs-8 col-sm-9"　>
-				<input type="text" class="input-text" value="" placeholder="面积"　 id="" name="" style="width:350px">　　　　　
-				付款方式　
-				<span class="select-box" style="width: 200px">
-				<select class="select" size="1" name="city">
-					<option value="" selected>分期</option>
-					<option value="1">北京</option>
-					<option value="2">上海</option>
-					<option value="3">广州</option>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"> 预售单价</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div>
+                    <td><input type="text" class="input-text" value="" disabled="disabled" id="price" name="price"
+                               style="width:250px"></td>
+                    预售总价　　
+                    <td><input type="text" class="input-text" value="" disabled="disabled" id="sumPrice" name="sumPrice"
+                               style="width:250px"></td>
+                </div>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">认购日期</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div>
+                    <td><input type="text" class="input-text" value="" disabled="disabled" id="admitbuyDate" name="admitbuyDate"
+                               style="width:250px"></td>
+                    预定签约日期　　
+                    <td><input type="text" class="input-text" value="" disabled="disabled" id="scheduleDate" name="scheduleDate"
+                               style="width:250px"></td>
+                </div>
+            </div>
+        </div>
+        <div class="row cl" 　>
+            <label class="form-label col-xs-4 col-sm-3">面积</label>
+            <div class="formControls col-xs-8 col-sm-9" 　>
+                <input type="text" class="input-text" disabled="disabled" id="area" name="area" style="width:250px">　　　　　
+                <span style="margin-left: -70px">付款方式　</span>
+                <span class="select-box" style="width: 200px">
+				<select class="select" name="payway" id="payway">
+
 				</select>
 				</span>　　　　　　　　　　　　　　　　
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span> 折扣%</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<div>
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-					　　　　　
-					成交总价　　
-					<td><input type="text" class="input-text" value="" placeholder="" id="" name="" style="width:350px"></td>
-				</div>
-			</div>
-		</div>
-		<div class="row cl"　>
-			<label class="form-label col-xs-4 col-sm-3">经办人</label>
-			<div class="formControls col-xs-8 col-sm-9"　> <span class="select-box" style="width: 200px">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"> 成交总价</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div>
+                    <td><input type="text" class="input-text" disabled="disabled" value="" id="mustPrice" name="mustPrice" style="width:250px"></td>
+                    定金　
+                    <td><input type="text" class="input-text" value="" disabled="disabled" id="fromtMoney" name="fromtMoney"
+                               style="width:250px"></td>
+                </div>
+            </div>
+        </div>
+        <div class="row cl" 　>
+            <label class="form-label col-xs-4 col-sm-3">经办人</label>
+            <div class="formControls col-xs-8 col-sm-9" 　> <span class="select-box" style="width: 200px">
 				<select class="select" size="1" name="city">
 					<option value="" selected>System</option>
+				</select>
+				</span>　　　　　　 　　　　　　　　　　
+            </div>
+        </div>
+        <div class="row cl" 　>
+            <label class="form-label col-xs-4 col-sm-3">简要备注</label>
+            <div class="formControls col-xs-8 col-sm-9" 　>
+			<input type="text" class="input-text" disabled="disabled" value=""  id="remake" name="remake"
+                       style="width:600px">
+            </div>
+        </div>
+
+
+        <div class="row cl" 　>
+            <label class="form-label col-xs-4 col-sm-3">项目名</label>
+            <div class="formControls col-xs-8 col-sm-9" 　> <span class="select-box" style="width: 200px">
+				<select class="select" name="item" id="item">
+					<option value="" selected>---请选择---</option>
 					<option value="1">北京</option>
 					<option value="2">上海</option>
 					<option value="3">广州</option>
 				</select>
-				</span>　　　　　　	　　　　　　　　　　
-				优惠说明　<input type="text" class="input-text" value="" placeholder="无"　 id="" name="" style="width:350px">
-			</div>
-		</div>
-		<div class="row cl"　>
-			<label class="form-label col-xs-4 col-sm-3">简要备注</label>
-			<div class="formControls col-xs-8 col-sm-9"　> <span class="select-box" style="width: 200px">
-				<select class="select" size="1" name="city">
-					<option value="" selected>认购</option>
-				</select>
-				</span>　　　　　　	　　　　　　　　　　
-			</div>
-		</div>
-
-
-		<div class="row cl"　>
-				<label class="form-label col-xs-4 col-sm-3">项目名</label>
-				<div class="formControls col-xs-8 col-sm-9"　> <span class="select-box" style="width: 200px">
+				</span>　
+                楼栋号
+                <span class="select-box" style="width: 200px">
 				<select class="select" size="1" name="city">
 					<option value="" selected>---请选择---</option>
 					<option value="1">北京</option>
@@ -146,33 +142,25 @@
 					<option value="3">广州</option>
 				</select>
 				</span>　
-					楼栋号
-				<span class="select-box" style="width: 200px">
+                单元号
+                <span class="select-box" style="width: 200px">
 				<select class="select" size="1" name="city">
 					<option value="" selected>---请选择---</option>
 					<option value="1">北京</option>
 					<option value="2">上海</option>
 					<option value="3">广州</option>
 				</select>
-				</span>　
-					单元号
-				<span class="select-box" style="width: 200px">
-				<select class="select" size="1" name="city">
-					<option value="" selected>---请选择---</option>
-					<option value="1">北京</option>
-					<option value="2">上海</option>
-					<option value="3">广州</option>
-				</select>
-				</span>　　　　　　	　　　　　　　　　　　　　　　	　　　　　　　　　　
-				</div>
-			</div>
-		<div class="row cl">
-			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
-				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;返回&nbsp;&nbsp;">
-			</div>
-		</div>
-	</form>
+				</span>　　　　　　 　　　　　　　　　　　　　　　 　　　　　　　　　　
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" type="button" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                <input class="btn btn-primary radius" type="button" onclick="goback()"
+                       value="&nbsp;&nbsp;返回&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
 </article>
 
 <!--_footer 作为公共模版分离出去-->
@@ -181,54 +169,85 @@
 <script type="text/javascript" src="../static/h-ui/js/H-ui.min.js"></script>
 <script type="text/javascript" src="../static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
 
-<!--请在下方写此页面业务相关的脚本--> 
+<!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="../lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="../lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="../lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="../lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="../js/sellHouse.js"></script>
 <script type="text/javascript">
-$(function(){
-	$('.skin-minimal input').iCheck({
-		checkboxClass: 'icheckbox-blue',
-		radioClass: 'iradio-blue',
-		increaseArea: '20%'
-	});
-	
-	$("#form-member-add").validate({
-		rules:{
-			username:{
-				required:true,
-				minlength:2,
-				maxlength:16
-			},
-			sex:{
-				required:true,
-			},
-			mobile:{
-				required:true,
-				isMobile:true,
-			},
-			email:{
-				required:true,
-				email:true,
-			},
-			uploadfile:{
-				required:true,
-			},
-			
-		},
-		onkeyup:false,
-		focusCleanup:true,
-		success:"valid",
-		submitHandler:function(form){
-			//$(form).ajaxSubmit();
-			var index = parent.layer.getFrameIndex(window.name);
-			//parent.$('.btn-refresh').click();
-			parent.layer.close(index);
-		}
-	});
-});
-</script> 
+    $(function () {
+        var admitbuyid=localStorage.getItem("admitbuyid");
+        localStorage.removeItem("admitbuyid")
+        $.ajax({
+            url:CHANGEHOUSEAPPLY_URL+"findEditByadmitbuyid?admitbuyid="+admitbuyid,
+            type:"get",
+            dataType:"json",
+            success:function (changehouseedit) {
+                $("#cardNumber").val(changehouseedit.cardnumber);
+                $("#admitbuyid").val(changehouseedit.admitBuyid);
+                $("#houseName").val(changehouseedit.houseName);
+                $("#price").val(changehouseedit.price);
+                $("#sumPrice").val(changehouseedit.sumPrice);
+                $("#admitbuyDate").val(changehouseedit.admitbuyDate);
+                $("#scheduleDate").val(changehouseedit.scheduleDate);
+                $("#mustPrice").val(changehouseedit.mustPrice);
+                $("#area").val(changehouseedit.area);
+                $("#fromtMoney").val(changehouseedit.fromtMoney);
+                $("#remake").val(changehouseedit.remake);
+            }
+        })
+        $.ajax({
+            url:CHANGEHOUSEAPPLY_URL+"findAllPayway",
+            type:"get",
+            dataType:"json",
+            success:function (data) {
+                var str=``;
+               $.each(data,function (index,payway) {
+                   str+=`<option value="${payway.paywayid}">${payway.paywayname}</option>`
+               })
+                $("#payway").html(str);
+            }
+        })
+        $("#form-member-add").validate({
+            rules: {
+                username: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 16
+                },
+                sex: {
+                    required: true,
+                },
+                mobile: {
+                    required: true,
+                    isMobile: true,
+                },
+                email: {
+                    required: true,
+                    email: true,
+                },
+                uploadfile: {
+                    required: true,
+                },
+
+            },
+            onkeyup: false,
+            focusCleanup: true,
+            success: "valid",
+            submitHandler: function (form) {
+                //$(form).ajaxSubmit();
+                var index = parent.layer.getFrameIndex(window.name);
+                //parent.$('.btn-refresh').click();
+                parent.layer.close(index);
+            }
+        });
+    });
+
+    function goback() {
+        window.location.href = "ExchangeHouses-List.html";
+    }
+</script>
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>

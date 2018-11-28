@@ -1,5 +1,7 @@
 package com.newer.sellhouse.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -9,19 +11,19 @@ public class Admitbuy implements Serializable {
 
     private Integer scheduleid;//预定ID
 
-    private String manageperson;//经办人员
+    private String managePerson;//经办人员
 
     private Integer adviserid;//置业顾问ID
 
     private Integer clientid;//客户ID
 
-    private Integer paywayid;//付款方式ID
+    private Integer paywayid;//付款方式IDw
 
     private Integer houseid;//房源ID
 
-    private Double firstpay;//首付
-
-    private Date admitbuydate;//认购日期
+    private Double firstPay;//首付
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date admitbuyDate;//认购日期
 
   /*  private List<Client> clientList;//客户关联
 
@@ -71,12 +73,12 @@ public class Admitbuy implements Serializable {
         this.scheduleid = scheduleid;
     }
 
-    public String getManageperson() {
-        return manageperson;
+    public String getManagePerson() {
+        return managePerson;
     }
 
-    public void setManageperson(String manageperson) {
-        this.manageperson = manageperson;
+    public void setManagePerson(String managePerson) {
+        this.managePerson = managePerson;
     }
 
     public Integer getAdviserid() {
@@ -111,20 +113,20 @@ public class Admitbuy implements Serializable {
         this.houseid = houseid;
     }
 
-    public Double getFirstpay() {
-        return firstpay;
+    public Double getFirstPay() {
+        return firstPay;
     }
 
-    public void setFirstpay(Double firstpay) {
-        this.firstpay = firstpay;
+    public void setFirstPay(Double firstPay) {
+        this.firstPay = firstPay;
     }
 
-    public Date getAdmitbuydate() {
-        return admitbuydate;
+    public Date getAdmitbuyDate() {
+        return admitbuyDate;
     }
 
-    public void setAdmitbuydate(Date admitbuydate) {
-        this.admitbuydate = admitbuydate;
+    public void setAdmitbuyDate(Date admitbuyDate) {
+        this.admitbuyDate = admitbuyDate;
     }
 
     @Override
@@ -135,13 +137,13 @@ public class Admitbuy implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", admitbuyid=").append(admitbuyid);
         sb.append(", scheduleid=").append(scheduleid);
-        sb.append(", manageperson=").append(manageperson);
+        sb.append(", managePerson=").append(managePerson);
         sb.append(", adviserid=").append(adviserid);
         sb.append(", clientid=").append(clientid);
         sb.append(", paywayid=").append(paywayid);
         sb.append(", houseid=").append(houseid);
-        sb.append(", firstpay=").append(firstpay);
-        sb.append(", admitbuydate=").append(admitbuydate);
+        sb.append(", firstPay=").append(firstPay);
+        sb.append(", admitbuyDate=").append(admitbuyDate);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

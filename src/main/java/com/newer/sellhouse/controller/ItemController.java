@@ -20,7 +20,7 @@ public class ItemController {
 
     /**
      * 查询所有and模糊查询
-     * @param ItemName
+     * @param itemname
      * @return
      */
     @RequestMapping(value = "listAll",method = RequestMethod.GET)

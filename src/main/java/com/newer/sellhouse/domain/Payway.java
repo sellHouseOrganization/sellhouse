@@ -7,7 +7,7 @@ public class Payway implements Serializable {
     private  String itemname;
     private Integer paywayid;
 
-    private String paywayname;
+    private String payWayName;
 
     private String mortgageloanno;
 
@@ -51,12 +51,12 @@ public class Payway implements Serializable {
         this.paywayid = paywayid;
     }
 
-    public String getPaywayname() {
-        return paywayname;
+    public String getPayWayName() {
+        return payWayName;
     }
 
-    public void setPaywayname(String paywayname) {
-        this.paywayname = paywayname == null ? null : paywayname.trim();
+    public void setPayWayName(String payWayName) {
+        this.payWayName = payWayName;
     }
 
     public String getMortgageloanno() {
@@ -124,7 +124,7 @@ public class Payway implements Serializable {
         sb.append(", itemname=").append(itemname);
         sb.append(", paywayid=").append(paywayid);
         sb.append(", itemid=").append(itemid);
-        sb.append(", paywayname=").append(paywayname);
+        sb.append(", payWayName=").append(payWayName);
         sb.append(", mortgageloanno=").append(mortgageloanno);
         sb.append(", resrvedfundsloanno=").append(resrvedfundsloanno);
         sb.append(", notstart=").append(notstart);
